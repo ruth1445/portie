@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500&amp;family=Space+Mono:wght@400&amp;display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+  @font-face { font-family: 'Neue Montreal'; src: url('./assets/fonts/NeueMontreal-Regular.otf') format('opentype'); font-weight: 400; font-style: normal; font-display: swap; }
+  @font-face { font-family: 'Neue Montreal'; src: url('./assets/fonts/NeueMontreal-Medium.otf') format('opentype'); font-weight: 500; font-style: normal; font-display: swap; }
+  @font-face { font-family: 'Neue Montreal'; src: url('./assets/fonts/NeueMontreal-Bold.otf') format('opentype'); font-weight: 700; font-style: normal; font-display: swap; }
+  @font-face { font-family: 'Ascender Sans'; src: url('./assets/fonts/ascender-sans-bold.ttf') format('truetype'); font-weight: 700; font-display: swap; }
+  html { scroll-behavior: smooth; }
+  html, body { margin: 0; padding: 0; background: #A9B7BE; }
+  * { box-sizing: border-box; }
+  a { color: #23201A; text-decoration: none; }
+  a:hover { color: #C4531F; }
+  @keyframes riseIn { from { opacity: 0; transform: translateY(18px) scale(0.985); filter: blur(6px); } to { opacity: 1; transform: none; filter: blur(0); } }
+</style>
+</helmet>
+
+<div style="min-height: 100vh; background: #A9B7BE; color: #23201A; font-family: 'Bricolage Grotesque', system-ui, sans-serif; display: flex; flex-direction: column; position: relative; overflow-x: hidden;">
+
+  <div style="{{ bgStyle }}"></div>
+
+
+  <div style="position: relative; z-index: 2; display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; padding: 30px 44px 0;">
+    <div style="display: flex; align-items: baseline; gap: 18px;">
+      <sc-if value="{{ isInner }}">
+      <a href="#top" onClick="{{ goHome }}" aria-label="Back" style="display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; position: relative; top: 3px;">
+        <span style="display: block; width: 16px; height: 16px; border-left: 2.5px solid #23201A; border-bottom: 2.5px solid #23201A; transform: rotate(45deg);"></span>
+      </a>
+      </sc-if>
+      <a href="#top" onClick="{{ goHome }}" style="font-size: 21px; letter-spacing: 0.16em; font-weight: 500; text-transform: uppercase; line-height: 1;">Ruth Sharon</a>
+    </div>
+  </div>
+
+  <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+  <div onPointerDown="{{ onDown }}" onPointerUp="{{ onUp }}" onWheel="{{ onWheel }}" style="position: absolute; inset: 0; z-index: 1; overflow: hidden; touch-action: pan-y;">
+    <sc-for list="{{ slides }}" as="slide" hint-placeholder-count="2">
+      <div style="{{ slide.style }}">
+        <div style="position: absolute; inset: 0; z-index: 0; display: flex; align-items: center; justify-content: center; padding: 120px 44px;">
+          <div style="display: flex; align-items: center; justify-content: center; gap: clamp(20px, 5vw, 68px);">
+            <sc-for list="{{ slide.boxes }}" as="box" hint-placeholder-count="2">
+              <div style="{{ box.style }}"></div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="{{ slide.artStyle }}"></div>
+        <div style="position: relative; z-index: 2; height: 100%; display: flex; align-items: center; justify-content: center; padding: 120px 44px;">
+          <div style="display: flex; align-items: center; justify-content: center; gap: clamp(20px, 5vw, 68px);">
+            <sc-for list="{{ slide.cards }}" as="card" hint-placeholder-count="2">
+              <a href="{{ card.href }}" onClick="{{ card.onClick }}" onMouseEnter="{{ card.onEnter }}" onMouseLeave="{{ card.onLeave }}" style="{{ card.style }}">
+                <span style="{{ card.captionStyle }}">{{ card.caption }}</span>
+                <sc-for list="{{ card.letters }}" as="l" hint-placeholder-count="6">
+                  <span style="{{ l.style }}">{{ l.ch }}</span>
+                </sc-for>
+              </a>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </sc-for>
+
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isAbout }}">
+  <div style="position: relative; z-index: 2; height: calc(100vh - 78px); overflow-y: auto; padding: 16px 40px 40px; display: flex; align-items: flex-start; justify-content: center; font-family: 'Ascender Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #5C5C5C;">
+    <div style="width: min(100%, 1240px); border: 2.5px solid #111; display: grid; grid-template-columns: minmax(0, 46.2fr) minmax(0, 53.8fr);">
+
+      <div style="min-width: 0; display: grid; grid-template-rows: 244fr 190fr 143fr 113fr;">
+        <div style="padding: 18px 20px;">
+          <p style="margin: 0; font-size: clamp(15px, 1.55vw, 22px); line-height: 1.42; text-wrap: pretty;">I am a data scientist based in the NJ/NY area with a Masters degree in Data Science &amp; Statistics from Rutgers University, NB (2026) and a Bachelors degree in IT engineering from CBIT (2019).</p>
+        </div>
+        <div style="border-top: 2.5px solid #111; padding: 18px 20px;">
+          <p style="margin: 0; font-size: clamp(15px, 1.55vw, 22px); line-height: 1.42; text-wrap: pretty;">I worked as:<br>- a research engineer @ Rutgers University, NB for 1 yr 3 mo<br>- AI/ML engineer @ LangPal for 8 months</p>
+        </div>
+        <div style="border-top: 2.5px solid #111; padding: 18px 20px;">
+          <p style="margin: 0; font-size: clamp(15px, 1.55vw, 22px); line-height: 1.42; text-wrap: pretty;">I work as:<br>- Data Scientist @ Transit Startup</p>
+        </div>
+        <div style="border-top: 2.5px solid #111; padding: 18px 20px;">
+          <p style="margin: 0; font-size: clamp(15px, 1.55vw, 22px); line-height: 1.42; text-wrap: pretty;">Languages: English, <span style="background: #30F840;">Python</span>, Malayalam, Arabic, <span style="background: #30F840;">TypeScript</span>, Telugu, <span style="background: #30F840;">SQL</span>, Hindi</p>
+        </div>
+      </div>
+
+      <div style="min-width: 0; border-left: 2.5px solid #111; display: grid; grid-template-rows: 594fr 96fr;">
+        <div style="min-height: 0; display: flex; flex-direction: column; align-items: center; gap: clamp(14px, 2vw, 28px); padding: clamp(16px, 2vw, 30px) clamp(18px, 2.4vw, 34px) clamp(18px, 2.4vw, 34px);">
+          <a href="#interests" onClick="{{ goInterests }}" style="font-size: clamp(17px, 1.85vw, 26px); font-style: italic; text-decoration: underline; text-underline-offset: 3px; color: #4E4E4E;" style-hover="opacity: 0.6;">check out some of my interests</a>
+          <div style="width: 100%; flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(10px, 1.4vw, 20px);">
+            <span style="display: block; width: 100%; height: 100%; min-width: 0; min-height: 0; overflow: hidden; background: #EFEFEF;">
+              <image-slot id="about-photo-1" shape="rect" placeholder="portrait photo" style="width: 100%; height: 100%;"></image-slot>
+            </span>
+            <span style="display: block; width: 100%; height: 100%; min-width: 0; min-height: 0; overflow: hidden; background: #EFEFEF;">
+              <image-slot id="about-photo-2" shape="rect" placeholder="graduation photo" style="width: 100%; height: 100%;"></image-slot>
+            </span>
+          </div>
+        </div>
+        <div style="border-top: 2.5px solid #111; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);">
+          <div style="min-width: 0; display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 12px clamp(14px, 1.6vw, 22px);">
+              <a href="https://www.linkedin.com/in/ruth1445/" target="_blank" rel="noopener" aria-label="LinkedIn" style="display: inline-flex; align-items: center; justify-content: center; text-decoration: none; transition: opacity 200ms ease;" style-hover="opacity: 0.55;"><svg viewBox="0 0 24 24" width="30" height="30" fill="#111" aria-hidden="true"><path d="M3 3h18v18H3V3zm3.2 5.1a1.6 1.6 0 1 0 0-3.2 1.6 1.6 0 0 0 0 3.2zM5 18h2.4v-8H5v8zm4.2 0h2.4v-4.3c0-1.2.8-1.6 1.4-1.6.6 0 1.2.5 1.2 1.6V18H17v-4.7c0-2.5-1.4-3.5-2.9-3.5-1.2 0-1.9.6-2.2 1.1V10H9.2v8z"/></svg></a>
+              <a href="https://github.com/ruth1445" target="_blank" rel="noopener" aria-label="GitHub" style="display: inline-flex; align-items: center; justify-content: center; text-decoration: none; transition: opacity 200ms ease;" style-hover="opacity: 0.55;"><svg viewBox="0 0 24 24" width="30" height="30" fill="#111" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.9c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.7.3-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.7 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/></svg></a>
+              <a href="mailto:ruth.sharon@rutgers.edu" target="_blank" rel="noopener" aria-label="Email" style="display: inline-flex; align-items: center; justify-content: center; text-decoration: none; transition: opacity 200ms ease;" style-hover="opacity: 0.55;"><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#111" stroke-width="1.8" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14"/><path d="M2.5 5l9.5 8 9.5-8"/></svg></a>
+              <a href="https://substack.com/@heyruthieee" target="_blank" rel="noopener" aria-label="Substack" style="display: inline-flex; align-items: center; justify-content: center; text-decoration: none; transition: opacity 200ms ease;" style-hover="opacity: 0.55;"><svg viewBox="0 0 24 24" width="28" height="28" fill="#111" aria-hidden="true"><path d="M3.5 3.5h17V6h-17V3.5zm0 4.2h17v2.5h-17V7.7zm0 4.3L12 16l8.5-4v8.5L12 24l-8.5-3.5V12z"/></svg></a>
+              <a href="https://www.instagram.com/heyruthieee/" target="_blank" rel="noopener" aria-label="Instagram" style="display: inline-flex; align-items: center; justify-content: center; text-decoration: none; transition: opacity 200ms ease;" style-hover="opacity: 0.55;"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#111" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1.1" fill="#111" stroke="none"/></svg></a>
+          </div>
+          <div style="min-width: 0; border-left: 2.5px solid #111; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px clamp(14px, 1.6vw, 22px);">
+            <a href="#resume" style="font-size: clamp(14px, 1.5vw, 21px); color: #5C5C5C; text-decoration: none;" style-hover="opacity: 0.6;">resume</a>
+            <a href="https://substack.com/@heyruthieee" target="_blank" rel="noopener" style="font-size: clamp(14px, 1.5vw, 21px); color: #5C5C5C; text-decoration: none;" style-hover="opacity: 0.6;">blog</a>
+            <span style="display: inline-flex; gap: 8px;"><svg viewBox="0 0 24 24" width="38" height="38" fill="#30F840" aria-hidden="true"><path d="M12 1.5l3.2 7.1 7.8.8-5.8 5.2 1.7 7.6L12 18.4l-6.9 3.8 1.7-7.6L1 9.4l7.8-.8z"/></svg><svg viewBox="0 0 24 24" width="38" height="38" fill="#30F840" aria-hidden="true"><path d="M12 1.5l3.2 7.1 7.8.8-5.8 5.2 1.7 7.6L12 18.4l-6.9 3.8 1.7-7.6L1 9.4l7.8-.8z"/></svg></span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isInterests }}">
+  <div style="position: relative; z-index: 2; height: calc(100vh - 78px); overflow-y: auto; padding: 24px 44px 70px; display: flex; flex-direction: column; align-items: center; gap: 30px; font-family: 'Ascender Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #5C5C5C;">
+    <h1 style="margin: 0; font-size: clamp(22px, 2.2vw, 30px); font-weight: 700;">interests</h1>
+    <div style="width: min(100%, 1000px); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 1.8vw, 24px);">
+      <sc-for list="{{ interests }}" as="it" hint-placeholder-count="6">
+        <div style="min-width: 0; display: flex; flex-direction: column; gap: 10px;">
+          <span style="display: block; width: 100%; min-width: 0; min-height: 0; aspect-ratio: 4 / 3; overflow: hidden; background: #EFEFEF; border: 2px solid #111;">
+            <image-slot id="{{ it.slotId }}" shape="rect" placeholder="{{ it.hint }}" style="width: 100%; height: 100%;"></image-slot>
+          </span>
+          <span style="font-size: 15px;">{{ it.label }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isLab }}">
+  <div data-lab-scroll="1" style="position: relative; z-index: 2; height: calc(100vh - 78px); overflow-y: auto; padding: 10px 44px 90px; display: flex; justify-content: center; gap: clamp(28px, 5vw, 76px); font-family: 'Ascender Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #6F6F6F;">
+
+    <nav style="width: 188px; flex: 0 0 188px; align-self: flex-start; position: sticky; top: 0; display: flex; flex-direction: column; gap: 22px; padding-top: 6px;">
+      <sc-for list="{{ labIndex }}" as="g" hint-placeholder-count="4">
+        <span style="display: flex; flex-direction: column; gap: 5px;">
+          <a href="{{ g.href }}" style="font-size: 12.5px; font-weight: 700; color: #4E4E4E; text-decoration: none;" style-hover="opacity: 0.6;">{{ g.label }}</a>
+          <sc-for list="{{ g.items }}" as="it" hint-placeholder-count="4">
+            <a href="{{ it.href }}" style="font-size: 12.5px; font-weight: 700; color: #A2A2A2; text-decoration: none;" style-hover="color: #4E4E4E;">{{ it.title }}</a>
+          </sc-for>
+        </span>
+      </sc-for>
+    </nav>
+
+    <div style="flex: 1 1 auto; max-width: 780px; display: flex; flex-direction: column; gap: 54px;">
+
+      <div id="lab-tech" data-sec="lab-tech" style="scroll-margin-top: 10px; width: 100%; display: flex; flex-direction: column; gap: 20px;">
+        <h2 style="margin: 0; text-align: center; font-size: 15px; font-weight: 700; letter-spacing: 0.01em; color: #6F6F6F;">Tech</h2>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px 24px;">
+          <sc-for list="{{ techProjects }}" as="p" hint-placeholder-count="6">
+            <a href="{{ p.href }}" style="{{ p.style }}" style-hover="opacity: 0.68;">
+              <span style="{{ p.shotStyle }}">
+                <sc-if value="{{ p.noImg }}">
+                  <image-slot id="{{ p.slotId }}" shape="rect" placeholder="{{ p.slotHint }}" style="width: 100%; height: 100%;"></image-slot>
+                </sc-if>
+              </span>
+              <span style="display: flex; flex-direction: column; gap: 4px; padding: 11px 2px 0; text-align: center;">
+                <span style="font-size: 12.5px; font-weight: 700; color: #4E4E4E;">{{ p.title }}</span>
+                <span style="font-size: 11.5px; font-weight: 700; color: #A2A2A2;">{{ p.tag }}</span>
+              </span>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+
+      <div id="lab-personal" data-sec="lab-personal" style="scroll-margin-top: 10px; width: 100%; display: flex; flex-direction: column; gap: 20px;">
+        <h2 style="margin: 0; text-align: center; font-size: 15px; font-weight: 700; letter-spacing: 0.01em; color: #6F6F6F;">Personal</h2>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px 24px;">
+          <sc-for list="{{ personalProjects }}" as="p" hint-placeholder-count="4">
+            <a href="{{ p.href }}" style="{{ p.style }}" style-hover="opacity: 0.68;">
+              <span style="{{ p.shotStyle }}">
+                <sc-if value="{{ p.noImg }}">
+                  <image-slot id="{{ p.slotId }}" shape="rect" placeholder="{{ p.slotHint }}" style="width: 100%; height: 100%;"></image-slot>
+                </sc-if>
+              </span>
+              <span style="display: flex; flex-direction: column; gap: 4px; padding: 11px 2px 0; text-align: center;">
+                <span style="font-size: 12.5px; font-weight: 700; color: #4E4E4E;">{{ p.title }}</span>
+                <span style="font-size: 11.5px; font-weight: 700; color: #A2A2A2;">{{ p.tag }}</span>
+              </span>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+
+      <div id="lab-research" data-sec="lab-research" style="scroll-margin-top: 10px; width: 100%; display: flex; flex-direction: column; gap: 20px;">
+        <h2 style="margin: 0; text-align: center; font-size: 15px; font-weight: 700; letter-spacing: 0.01em; color: #6F6F6F;">Research</h2>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px 24px;">
+          <sc-for list="{{ researchProjects }}" as="p" hint-placeholder-count="4">
+            <a href="{{ p.href }}" style="{{ p.style }}" style-hover="opacity: 0.68;">
+              <span style="{{ p.shotStyle }}">
+                <sc-if value="{{ p.noImg }}">
+                  <image-slot id="{{ p.slotId }}" shape="rect" placeholder="{{ p.slotHint }}" style="width: 100%; height: 100%;"></image-slot>
+                </sc-if>
+              </span>
+              <span style="display: flex; flex-direction: column; gap: 4px; padding: 11px 2px 0; text-align: center;">
+                <span style="font-size: 12.5px; font-weight: 700; color: #4E4E4E;">{{ p.title }}</span>
+                <span style="font-size: 11.5px; font-weight: 700; color: #A2A2A2;">{{ p.tag }}</span>
+              </span>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+
+      <div id="lab-writing" data-sec="lab-writing" style="scroll-margin-top: 10px; width: 100%; display: flex; flex-direction: column; gap: 20px;">
+        <h2 style="margin: 0; text-align: center; font-size: 15px; font-weight: 700; letter-spacing: 0.01em; color: #6F6F6F;">Writing</h2>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px 24px;">
+          <sc-for list="{{ writingProjects }}" as="p" hint-placeholder-count="3">
+            <a href="{{ p.href }}" style="{{ p.style }}" style-hover="opacity: 0.68;">
+              <span style="{{ p.shotStyle }}">
+                <sc-if value="{{ p.noImg }}">
+                  <image-slot id="{{ p.slotId }}" shape="rect" placeholder="{{ p.slotHint }}" style="width: 100%; height: 100%;"></image-slot>
+                </sc-if>
+              </span>
+              <span style="display: flex; flex-direction: column; gap: 4px; padding: 11px 2px 0; text-align: center;">
+                <span style="font-size: 12.5px; font-weight: 700; color: #4E4E4E;">{{ p.title }}</span>
+                <span style="font-size: 11.5px; font-weight: 700; color: #A2A2A2;">{{ p.tag }}</span>
+              </span>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isContact }}">
+  <div style="position: relative; z-index: 2; height: calc(100vh - 78px); overflow-y: auto; padding: 40px 44px 70px; display: flex; flex-direction: column; align-items: center; font-family: 'Neue Montreal', 'PP Neue Montreal', 'Neue Haas Grotesk Display Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+  <div style="width: min(100%, 1180px); background: #EDE7D6; padding: clamp(36px, 4vw, 56px) clamp(28px, 3.4vw, 48px); font-family: 'Neue Montreal', 'PP Neue Montreal', 'Neue Haas Grotesk Display Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+    <span style="font-family: 'Neue Montreal', 'PP Neue Montreal', 'Neue Haas Grotesk Display Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; letter-spacing: 0.2em; color: #6F6653;">CONTACT</span>
+    <h1 style="margin: 14px 0 22px; font-size: clamp(38px, 6vw, 68px); line-height: 1; letter-spacing: -0.02em; font-weight: 700;">Say hello</h1>
+    <p style="margin: 0 0 40px; font-size: 18px; line-height: 1.75; color: #4A4438;">Placeholder — drop in your real email and links.</p>
+    <div style="display: flex; flex-direction: column;">
+      <a href="mailto:hello@example.com" style="display: flex; align-items: baseline; justify-content: space-between; gap: 24px; padding: 20px 0; border-top: 1px solid #CFC5AB;" style-hover="color: #C4531F;">
+        <span style="font-size: 24px;">hello@example.com</span>
+        <span style="font-family: 'Neue Montreal', 'PP Neue Montreal', 'Neue Haas Grotesk Display Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; color: #6F6653;">EMAIL</span>
+      </a>
+      <a href="#linkedin" style="display: flex; align-items: baseline; justify-content: space-between; gap: 24px; padding: 20px 0; border-top: 1px solid #CFC5AB;" style-hover="color: #C4531F;">
+        <span style="font-size: 24px;">LinkedIn</span>
+        <span style="font-family: 'Neue Montreal', 'PP Neue Montreal', 'Neue Haas Grotesk Display Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; color: #6F6653;">↗</span>
+      </a>
+      <a href="#instagram" style="display: flex; align-items: baseline; justify-content: space-between; gap: 24px; padding: 20px 0; border-top: 1px solid #CFC5AB; border-bottom: 1px solid #CFC5AB;" style-hover="color: #C4531F;">
+        <span style="font-size: 24px;">Instagram</span>
+        <span style="font-family: 'Neue Montreal', 'PP Neue Montreal', 'Neue Haas Grotesk Display Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; color: #6F6653;">↗</span>
+      </a>
+    </div>
+  </div>
+  </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;bgTone&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#A9B7BE&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#A9B7BE&quot;,&quot;#9FB2BC&quot;,&quot;#B4C0C4&quot;,&quot;#8FA5AE&quot;,&quot;#C9BCA6&quot;],&quot;section&quot;:&quot;Theme&quot;}}">
+const CARDS = [
+  { key: 'about', word: 'about', caption: 'who i am + what i do', rows: [[1,3],[4,0,2]] },
+  { key: 'lab', word: 'laboratory', caption: 'all my projects and experiments', rows: [[2,0,5,3],[8,1,6],[7,4,9]] },
+];
+
+const FONT = '700 100px "Helvetica Neue", Helvetica, sans-serif';
+let METRICS = null;
+function metrics(chars) {
+  if (typeof document === 'undefined') return null;
+  if (METRICS) return METRICS;
+  const ctx = document.createElement('canvas').getContext('2d');
+  ctx.font = FONT;
+  const out = {};
+  chars.forEach((ch) => {
+    const m = ctx.measureText(ch);
+    out[ch] = {
+      w: m.actualBoundingBoxLeft + m.actualBoundingBoxRight,
+      h: m.actualBoundingBoxAscent + m.actualBoundingBoxDescent,
+      aLeft: m.actualBoundingBoxLeft,
+      asc: m.actualBoundingBoxAscent,
+      fbAsc: m.fontBoundingBoxAscent,
+      fbDesc: m.fontBoundingBoxDescent,
+    };
+  });
+  METRICS = out;
+  return out;
+}
+
+// Packs each row of letters to fill the box: no overlap, nothing clipped.
+// All math in "width units" (1 unit = 1% of container width); ar = width/height.
+function pack(word, rows, M, ar) {
+  ar = ar || 1;
+  const H = 100 / ar;
+  const mx = 7, gapX = 3.5, my = 0.07 * H, gapY = 0.04 * H;
+  const R = rows.length;
+  const rowH = (H - 2 * my - (R - 1) * gapY) / R;
+  const out = [];
+  rows.forEach((idxs, ri) => {
+    const ms = idxs.map((i) => M[word[i]]);
+    const maxH = Math.max(...ms.map((m) => m.h)) / 100;
+    const Fh = rowH / maxH;
+    const sumW = ms.reduce((a, m) => a + m.w, 0) / 100 * Fh;
+    const avail = 100 - 2 * mx - (idxs.length - 1) * gapX;
+    let F = Fh, sx = 1, sy = 1;
+    if (sumW > avail) {
+      F = Fh * avail / sumW;
+      sy = Math.min(1.5, rowH / (maxH * F));
+    } else {
+      sx = Math.min(1.45, avail / sumW);
+    }
+    const widths = ms.map((m) => m.w / 100 * F * sx);
+    const total = widths.reduce((a, b) => a + b, 0);
+    const slack = avail - total;
+    const gap = idxs.length > 1 ? gapX + slack / (idxs.length - 1) : gapX;
+    let x = mx + (idxs.length > 1 ? 0 : slack / 2);
+    const rowTop = my + ri * (rowH + gapY);
+    idxs.forEach((i, j) => {
+      const m = ms[j];
+      const inkH = m.h / 100 * F * sy;
+      const baseline = ((1 - (m.fbAsc + m.fbDesc) / 100) / 2 + m.fbAsc / 100) * F;
+      const inkTop = (baseline - m.asc / 100 * F) * sy;
+      const inkLeft = (-m.aLeft / 100 * F) * sx;
+      out[i] = {
+        left: x - inkLeft,
+        top: (rowTop + (rowH - inkH) / 2 - inkTop) * ar,
+        F, sx, sy,
+      };
+      x += widths[j] + gap;
+    });
+  });
+  return out;
+}
+
+// Scattered letters at ONE uniform size: uneven gaps, varied heights, always inside the bar.
+function scatter(word, M, A, ar, jitter) {
+  const H = 100 / ar;
+  const chars = word.split('');
+  const live = chars.map((ch, i) => i).filter((i) => chars[i] !== ' ');
+  const widths = {};
+  live.forEach((i) => { widths[i] = M[chars[i]].w / 100 * A; });
+  const totalInk = live.reduce((a, i) => a + widths[i], 0);
+  const mx = 2.2;
+  const slack = 100 - 2 * mx - totalInk;
+  const gaps = live.length - 1;
+  const wobble = [1.35, 0.7, 1.1, 0.5, 1.5, 0.85, 1.2, 0.6, 1.4, 0.75, 1.05, 0.95, 1.3, 0.65, 1.15, 0.8];
+  const wSum = wobble.slice(0, gaps).reduce((a, b) => a + b, 0) || 1;
+  const out = [];
+  let x = mx;
+  live.forEach((i, k) => {
+    const m = M[chars[i]];
+    const inkH = m.h / 100 * A;
+    const play = Math.max(0, H - 2 * (H * 0.06) - inkH);
+    const lvl = jitter[k % jitter.length];
+    const inkTop = H * 0.06 + play * lvl;
+    out[i] = {
+      left: x + m.aLeft / 100 * A,
+      top: (inkTop - (m.fbAsc - m.asc) / 100 * A) * ar,
+    };
+    x += widths[i];
+    if (k < gaps) x += slack * (wobble[k % wobble.length] / wSum);
+  });
+  return out;
+}
+
+// One centered line, letters spaced by their real ink widths, baselines aligned.
+function layout(word, M, A, ar) {
+  const H = 100 / ar;
+  const track = A * 0.22, wordGap = A * 0.5;
+  const chars = word.split('');
+  const widths = chars.map((ch) => (ch === ' ' ? 0 : M[ch].w / 100 * A));
+  let total = 0;
+  chars.forEach((ch, i) => {
+    total += widths[i];
+    if (i < chars.length - 1) total += ch === ' ' || chars[i + 1] === ' ' ? wordGap / 2 : track;
+  });
+  const baseline = H / 2 + A * 0.26;
+  const out = [];
+  let x = (100 - total) / 2;
+  chars.forEach((ch, i) => {
+    if (ch !== ' ') {
+      const m = M[ch];
+      out[i] = { left: x + m.aLeft / 100 * A, top: (baseline - m.fbAsc / 100 * A) * ar };
+      x += widths[i];
+    }
+    if (i < chars.length - 1) x += ch === ' ' || chars[i + 1] === ' ' ? wordGap / 2 : track;
+  });
+  return out;
+}
+
+const LAB_BARS = [
+  { key: 'writings', word: 'writings', bg: '#3E5148', ink: '#F3EEE2',
+    order: [3, 0, 6, 1, 5, 2, 7, 4], jitter: [0.15, 0.8, 0.45, 1, 0.3, 0.65, 0, 0.9] },
+  { key: 'research', word: 'research projects', bg: '#67795D', ink: '#F3EEE2',
+    order: [10, 2, 6, 0, 13, 4, 12, 15, 1, 11, 5, 16, 3, 9, 7, 14], jitter: [0.9, 0.25, 0.6, 0, 1, 0.4, 0.75, 0.1, 0.55, 0.95, 0.2, 0.7, 0.35, 0.85, 0.05, 0.5] },
+  { key: 'tech', word: 'tech projects', bg: '#99A07B', ink: '#1C1A14',
+    order: [6, 1, 9, 3, 11, 0, 7, 12, 2, 5, 8, 10], jitter: [0.35, 1, 0.15, 0.7, 0.5, 0.05, 0.85, 0.3, 0.95, 0.45, 0.65, 0.2] },
+  { key: 'personal', word: 'personal projects', bg: '#D5D8E4', ink: '#1C1A14',
+    order: [12, 3, 7, 0, 15, 5, 9, 1, 16, 10, 4, 13, 2, 11, 14, 6], jitter: [0.6, 0.05, 0.95, 0.3, 0.75, 0.45, 0.1, 0.85, 0.25, 1, 0.5, 0.15, 0.7, 0.4, 0.9, 0.55] },
+];
+
+const LAB_CHARS = ['a','b','c','e','g','h','i','j','l','n','o','p','r','s','t','u','w','y'];
+
+const THEMES = [
+  { name: 'Mountains', page: '#FAF0E0', art: './assets/mountains.png', artSize: 'cover', artPos: 'center bottom',
+    cards: { about: { bg: '#DCE2E9', ink: '#16150F' }, lab: { bg: '#66795D', ink: '#0F140C' }, contact: { bg: '#A7A87E', ink: '#16150F' } } },
+];
+
+const COPY = 'I can read/write/speak English, Hindi, Malayalam, and Arabic. I understand Telugu and Tamil. I have ben trying to learn Indonesian and French for a year now.';
+const ABOUT_CONTENT = {
+  education: { title: 'education', body: COPY },
+  work: { title: 'work', body: COPY },
+  languages: { title: 'languages', body: COPY },
+  interests: { title: 'interests', body: COPY },
+};
+
+const FAN = [
+  { key: 'education', title: 'education', body: COPY, tint: '#66795D' },
+  { key: 'work', title: 'work', body: COPY, tint: '#C4531F' },
+  { key: 'languages', title: 'languages', body: COPY, tint: '#7C8AA6' },
+  { key: 'interests', title: 'interests', body: COPY, tint: '#99A07B' },
+];
+const FAN_ANGLES = [-13, -4.5, 4.5, 13];
+
+const LAB_CATS = [
+  { key: 'tech', label: 'tech projects' },
+  { key: 'personal', label: 'personal projects' },
+  { key: 'research', label: 'research projects' },
+  { key: 'writing', label: 'writing' },
+];
+const T = 'One line on what it does and what you built.';
+const P = 'One line on the idea and why you made it.';
+const R = 'One line on the question and the method.';
+const W = 'One line on what the piece is about.';
+const PROJECTS = [
+  { cat: 'tech', title: 'Project one', blurb: T },
+  { cat: 'tech', title: 'Project two', blurb: T },
+  { cat: 'tech', title: 'Project three', blurb: T },
+  { cat: 'tech', title: 'Project four', blurb: T },
+  { cat: 'tech', title: 'Project five', blurb: T },
+  { cat: 'tech', title: 'Project six', blurb: T },
+  { cat: 'personal', title: 'Project seven', blurb: P },
+  { cat: 'personal', title: 'Project eight', blurb: P },
+  { cat: 'personal', title: 'Project nine', blurb: P },
+  { cat: 'personal', title: 'Project ten', blurb: P },
+  { cat: 'research', title: 'Value of computation', blurb: 'Pricing extra reasoning tokens to decide when chain-of-thought is worth it.', img: './assets/research/voc-reasoning.png' },
+  { cat: 'research', title: 'MiCRo router', blurb: 'Routing tokens to language, logic, social, and world expert modules.', img: './assets/research/micro-router.png' },
+  { cat: 'research', title: 'Embedding clusters', blurb: 'Projecting concept embeddings to see how semantic domains separate.', img: './assets/research/embedding-clusters.png' },
+  { cat: 'research', title: 'Fourth project', blurb: R },
+  { cat: 'writing', title: 'Essay one', blurb: W },
+  { cat: 'writing', title: 'Essay two', blurb: W },
+  { cat: 'writing', title: 'Essay three', blurb: W },
+];
+
+class Component extends DCLogic {
+  state = { page: 'home', hover: null, slide: 0, barAR: null, listMode: false, card: null };
+
+  componentDidMount() {
+    this._onChipClick = (ev) => {
+      const a = ev.target && ev.target.closest && ev.target.closest('a[href^="#lab-"]');
+      if (!a) return;
+      const box = document.querySelector('[data-lab-scroll]');
+      const sec = box && box.querySelector(a.getAttribute('href'));
+      if (!box || !sec) return;
+      ev.preventDefault();
+      const top = sec.getBoundingClientRect().top - box.getBoundingClientRect().top + box.scrollTop - 8;
+      box.scrollTo({ top: Math.max(0, top), behavior: 'auto' });
+    };
+    document.addEventListener('click', this._onChipClick, true);
+    this._cleanupChip = () => document.removeEventListener('click', this._onChipClick, true);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { METRICS = null; this.forceUpdate(); });
+    this._measure = () => {
+      const el = this._bars && this._bars.firstElementChild;
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      if (!r.width || !r.height) return;
+      const ar = r.width / r.height;
+      if (Math.abs((this.state.barAR || 0) - ar) > 0.02) this.setState({ barAR: ar });
+    };
+    window.addEventListener('resize', this._measure);
+    this._raf = setInterval(this._measure, 250);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this._measure);
+    clearInterval(this._raf);
+  }
+
+  set(page) { this.setState({ page, hover: null }); if (typeof window !== 'undefined') window.scrollTo(0, 0); }
+
+  renderVals() {
+    const p = this.state.page;
+    const hover = this.state.hover;
+
+    const glass = (hex, a) => {
+      const h = hex.replace('#', '');
+      const n = parseInt(h.length === 3 ? h.split('').map((x) => x + x).join('') : h, 16);
+      return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${a})`;
+    };
+    const buildCards = (theme, active) => CARDS.map((c) => {
+      const t = theme.cards[c.key];
+      const on = active && hover === c.key;
+      const n = c.word.length;
+      const M = metrics(LAB_CHARS);
+      const arrangedSize = Math.min(40, Math.round(84 / n));
+      const placed = M ? pack(c.word, c.rows, M) : null;
+      const letters = c.word.split('').map((ch, i) => {
+        const shadow = t.bg === 'transparent' ? ' text-shadow:0 1px 10px rgba(250,240,224,.85);' : '';
+        const p = placed && placed[i];
+        const style = on || !p
+          ? `position:absolute; left:${((i + 0.5) / n) * 88 + 6}%; top:50%; transform:translate(-50%,-50%); font-size:${arrangedSize}cqw; line-height:1; font-weight:700; transition:all 620ms cubic-bezier(.2,.9,.2,1);${shadow}`
+          : `position:absolute; left:${p.left.toFixed(2)}%; top:${p.top.toFixed(2)}%; transform-origin:top left; transform:scale(${p.sx.toFixed(3)},${p.sy.toFixed(3)}); font-size:${p.F.toFixed(2)}cqw; line-height:1; font-weight:700; transition:all 620ms cubic-bezier(.2,.9,.2,1);${shadow}`;
+        return { ch, style };
+      });
+      return {
+        key: c.key,
+        href: '#' + c.key,
+        caption: c.caption,
+        captionStyle: `position:absolute; left:50%; bottom:calc(100% + 14px); transform:translateX(-50%) translateY(${on ? '0' : '6px'}); opacity:${on ? 1 : 0}; pointer-events:none; white-space:nowrap; color:#23201A; font-family:'Helvetica Neue',Helvetica,sans-serif; font-size:15px; font-weight:700; letter-spacing:-0.01em; text-transform:lowercase; transition:opacity 320ms ease, transform 320ms cubic-bezier(.2,.9,.2,1);`,
+        letters,
+        style: `position:relative; container-type:inline-size; display:block; width:clamp(210px,27vw,360px); aspect-ratio:1; border-radius:30px; background:${theme.boxesBehind ? 'transparent' : 'linear-gradient(155deg,' + glass(t.bg, 0.62) + ',' + glass(t.bg, 0.78) + ')'}; backdrop-filter:blur(20px) saturate(1.4); -webkit-backdrop-filter:blur(20px) saturate(1.4); border:1px solid rgba(255,255,255,0.34); box-shadow:0 22px 50px -26px rgba(35,32,26,0.42), inset 0 1px 0 rgba(255,255,255,0.42); color:${t.ink}; font-family:'Helvetica Neue',Helvetica,sans-serif; overflow:visible; transition:transform 420ms cubic-bezier(.32,.72,0,1), background 500ms ease; transform:translateY(${on ? '-8px' : '0'});`,
+        onClick: (e) => { e.preventDefault(); this.set(c.key); },
+        onEnter: () => this.setState({ hover: c.key }),
+        onLeave: () => this.setState({ hover: null }),
+      };
+    });
+
+    const LAB_INK = '#F2EDE1';
+
+    const barRows = LAB_BARS.map((bar, ri) => {
+      const on = hover === bar.key;
+      const word = bar.word;
+      const seed = word.split('').reduce((acc, ch, i) => acc + ch.charCodeAt(0) * (i + 3), ri * 97 + 11);
+      const N = 62;
+      const ticks = Array.from({ length: N }, (_, i) => {
+        const r1 = (Math.sin(seed + i * 12.9898) + 1) / 2;
+        const w = r1 > 0.9 ? 1.0 : r1 > 0.64 ? 0.62 : r1 > 0.34 ? 0.4 : 0.22;
+        return { style: `display:block; flex:1 1 0; min-width:0; height:100%; border-left:${w}cqw solid ${LAB_INK};` };
+      });
+      const chars = word.split('').map((ch) => ({ ch: ch === ' ' ? '\u00A0' : ch, style: 'display:inline-block;' }));
+      const E = 'cubic-bezier(.32,.72,0,1)';
+      return {
+        key: bar.key,
+        href: '#' + bar.key,
+        ticks,
+        chars,
+        stripStyle: `position:absolute; inset:20% 7%; display:flex; align-items:stretch; gap:0; opacity:${on ? 0 : 1}; transform:scale(${on ? 1.03 : 1}); filter:blur(${on ? '5px' : '0px'}); will-change:opacity,transform,filter; transition:opacity 520ms ${E}, transform 620ms ${E}, filter 520ms ${E};`,
+        wordStyle: `position:absolute; inset:0; display:flex; align-items:center; justify-content:center; padding:0 6%; font-size:clamp(24px, 2.7vw, 34px); line-height:1; font-weight:500; letter-spacing:-0.01em; color:${LAB_INK}; white-space:nowrap; opacity:${on ? 1 : 0}; transform:scale(${on ? 1 : 0.965}); filter:blur(${on ? '0px' : '6px'}); will-change:opacity,transform,filter; transition:opacity 520ms ${E}, transform 620ms ${E}, filter 520ms ${E};`,
+        style: `position:relative; container-type:inline-size; display:block; overflow:hidden; width:100%; height:clamp(76px, 12.5vh, 132px); background:${on ? 'rgba(242,237,225,0.10)' : 'transparent'}; ${ri ? 'border-top:1px solid rgba(242,237,225,0.16);' : ''} color:${LAB_INK}; font-family:'Helvetica Neue',Helvetica,sans-serif; transition:background 380ms ${E};`,
+        onEnter: () => this.setState({ hover: bar.key }),
+        onLeave: () => this.setState({ hover: null }),
+      };
+    });
+
+    const idx = this.state.slide;
+    const slides = THEMES.map((t, i) => ({
+      cards: buildCards(t, i === idx),
+      boxes: CARDS.map((c) => ({
+        style: `width:clamp(210px,27vw,360px); aspect-ratio:1; background:${t.boxesBehind ? t.cards[c.key].bg : 'transparent'}; transition:transform 420ms cubic-bezier(.2,.9,.2,1); transform:translateY(${i === idx && hover === c.key ? '-8px' : '0'});`,
+      })),
+      style: `position:absolute; inset:0; background:transparent; opacity:${i === idx ? 1 : 0}; transform:translateX(${(i - idx) * 6}%) scale(${i === idx ? 1 : 1.03}); transition:opacity 700ms ease, transform 700ms cubic-bezier(.2,.9,.2,1); pointer-events:${i === idx ? 'auto' : 'none'};`,
+      artStyle: 'display:none;',
+    }));
+    const dots = THEMES.map((t, i) => ({
+      label: t.name,
+      style: `width:${i === idx ? 26 : 9}px; height:9px; border-radius:9px; border:none; padding:0; cursor:pointer; background:${i === idx ? '#23201A' : 'rgba(35,32,26,.3)'}; transition:all 400ms ease;`,
+      onClick: () => this.setState({ slide: i, hover: null }),
+    }));
+
+    const E = 'cubic-bezier(.32,.72,0,1)';
+    const active = this.state.card;
+    const fan = FAN.map((c, i) => {
+      const a = FAN_ANGLES[i];
+      const on = active === c.key;
+      const dim = active && !on;
+      const ai = FAN.findIndex((x) => x.key === active);
+      const baseX = (i - 1.5) * 96;
+      const GAP = 88;
+      let shift = 0, recenter = 0;
+      if (ai >= 0) {
+        shift = i < ai ? -GAP : i > ai ? GAP : 0;
+        const before = ai, after = FAN.length - 1 - ai;
+        recenter = ((after - before) * GAP) / FAN.length;
+      }
+      const x = Math.round(baseX + shift - recenter);
+      const t = on
+        ? `translateX(calc(-50% + ${x}px)) rotate(${(a * 0.25).toFixed(2)}deg) translateY(-8px)`
+        : `translateX(calc(-50% + ${x}px)) rotate(${a}deg) translateY(0)`;
+      return {
+        key: c.key,
+        num: '0' + (i + 1),
+        title: c.title,
+        body: c.body,
+        style: `position:absolute; left:50%; bottom:16%; width:clamp(198px,24%,248px); height:clamp(292px,52%,318px); padding:22px 22px 24px; border-radius:0; transform-origin:50% 150%; transform:${t}; z-index:${on ? 30 : 10 + i}; cursor:default; display:flex; flex-direction:column; gap:10px; background:#F5F0E4; border:1px solid #23201A; box-shadow:${on ? '0 18px 34px -26px rgba(35,32,26,0.4)' : '0 10px 24px -22px rgba(35,32,26,0.3)'}; border-top:3px solid ${on ? c.tint : '#23201A'}; opacity:${dim ? 0.7 : 1}; transition:transform 520ms ${E}, box-shadow 520ms ${E}, opacity 360ms ease, border-color 360ms ease;`,
+        numStyle: `font-family:'Space Mono',monospace; font-size:11px; letter-spacing:0.18em; color:${c.tint};`,
+        titleStyle: `margin:0; font-family:'Helvetica Neue',Helvetica,sans-serif; font-size:${on ? 19 : 17}px; font-weight:700; letter-spacing:-0.01em; color:#16150F; transition:font-size 420ms ${E};`,
+        bodyStyle: `margin:0; font-family:Georgia,'Times New Roman',serif; font-size:13.5px; line-height:1.5; color:rgba(22,21,15,0.78); text-wrap:pretty; opacity:${on ? 1 : 0}; transform:translateY(${on ? '0' : '8px'}); transition:opacity 380ms ease ${on ? '120ms' : '0ms'}, transform 460ms ${E};`,
+        onEnter: () => this.setState({ card: c.key }),
+        onLeave: () => this.setState({ card: null }),
+      };
+    });
+
+    const base = this.props.bgTone || '#A9B7BE';
+    const bgStyle = `position:fixed; inset:0; z-index:0; pointer-events:none; background:${p === 'home' || p === 'lab' || p === 'about' || p === 'interests' ? '#FFFFFF' : base};`;
+
+    const labChips = LAB_CATS.map((c) => ({
+      label: c.label,
+      href: '#lab-' + c.key,
+      style: `display:inline-block; font-size:13.5px; font-weight:500; letter-spacing:0.01em; color:#16150F; transition:opacity 220ms ease;`,
+    }));
+    const projList = (cat) => PROJECTS.filter((p) => p.cat === cat).map((p, j) => ({
+      title: p.title,
+      blurb: p.blurb,
+      href: '#' + cat + '-' + j,
+      slotId: 'lab-' + cat + '-' + j,
+      slotHint: 'screenshot for ' + p.title,
+      style: 'display:flex; flex-direction:column; text-decoration:none; transition:opacity 240ms ease;',
+      tag: cat,
+      shotStyle: 'display:block; width:100%; aspect-ratio:4 / 3; background:' + (p.img ? "#EFEFEF url('" + p.img + "') center center / cover no-repeat" : '#EFEFEF') + ';',
+      noImg: !p.img,
+    }));
+    const labIndex = LAB_CATS.map((c) => ({
+      label: c.label.replace(' projects', ''),
+      href: '#lab-' + c.key,
+      items: PROJECTS.filter((p) => p.cat === c.key).map((p, j) => ({ title: p.title, href: '#' + c.key + '-' + j })),
+    }));
+    const techProjects = projList('tech');
+    const personalProjects = projList('personal');
+    const researchProjects = projList('research');
+    const writingProjects = projList('writing');
+
+    return {
+      bgStyle,
+      labIndex,
+      techProjects,
+      personalProjects,
+      researchProjects,
+      writingProjects,
+      slides,
+      barRows,
+      dots,
+      prev: () => this.setState({ slide: (idx + THEMES.length - 1) % THEMES.length, hover: null }),
+      next: () => this.setState({ slide: (idx + 1) % THEMES.length, hover: null }),
+      onDown: (e) => { this._x = e.clientX; },
+      onUp: (e) => {
+        const d = e.clientX - (this._x ?? e.clientX);
+        if (Math.abs(d) > 60) this.setState({ slide: (idx + (d < 0 ? 1 : THEMES.length - 1)) % THEMES.length, hover: null });
+        this._x = null;
+      },
+      onWheel: (e) => {
+        if (Math.abs(e.deltaX) < 40 || this._lock) return;
+        this._lock = true;
+        setTimeout(() => { this._lock = false; }, 700);
+        this.setState({ slide: (idx + (e.deltaX > 0 ? 1 : THEMES.length - 1)) % THEMES.length, hover: null });
+      },
+      isHome: p === 'home',
+      isInner: p !== 'home',
+      isAbout: p === 'about',
+      isInterests: p === 'interests',
+      goInterests: (e) => { e.preventDefault(); this.set('interests'); },
+      interests: ['film photography', 'running', 'cooking', 'reading', 'music', 'travel'].map((label, i) => ({ label, slotId: 'interest-' + i, hint: label + ' photo' })),
+      aboutList: this.state.listMode,
+      aboutFan: !this.state.listMode,
+      aboutPrompt: this.state.listMode ? 'want the cards back?' : 'want the info in list form?',
+      aboutToggle: this.state.listMode ? 'take me back' : 'click here',
+      toggleList: (e) => { e.preventDefault(); this.setState({ listMode: !this.state.listMode, card: null }); },
+      fan,
+      fanHintStyle: `position:absolute; left:6px; bottom:10px; pointer-events:none; font-family:'Helvetica Neue',Helvetica,sans-serif; font-size:12px; letter-spacing:0.04em; color:rgba(28,26,20,0.5); opacity:${this.state.card ? 0 : 1}; transition:opacity 320ms ease;`,
+      isLab: p === 'lab',
+      isContact: p === 'contact',
+      goHome: (e) => { e.preventDefault(); this.set('home'); },
+      goContact: (e) => { e.preventDefault(); this.set('contact'); },
+    };
+  }
+}
+</script>
+</body>
+</html>
