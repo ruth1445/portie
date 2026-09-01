@@ -1,23 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ruth Sharon — Portfolio</title>
 <script src="./support.js"></script>
-</head>
-<body>
-<x-dc>
-<helmet>
+<link rel="stylesheet" href="./about.css">
+<link rel="icon" href="data:,">
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500&amp;family=Space+Mono:wght@400&amp;display=swap" rel="stylesheet">
-<script src="./image-slot.js"></script>
+
 <style>
-  @font-face { font-family: 'Neue Montreal'; src: url('./assets/fonts/NeueMontreal-Regular.otf') format('opentype'); font-weight: 400; font-style: normal; font-display: swap; }
-  @font-face { font-family: 'Neue Montreal'; src: url('./assets/fonts/NeueMontreal-Medium.otf') format('opentype'); font-weight: 500; font-style: normal; font-display: swap; }
-  @font-face { font-family: 'Neue Montreal'; src: url('./assets/fonts/NeueMontreal-Bold.otf') format('opentype'); font-weight: 700; font-style: normal; font-display: swap; }
-  @font-face { font-family: 'Ascender Sans'; src: url('./assets/fonts/ascender-sans-bold.ttf') format('truetype'); font-weight: 700; font-display: swap; }
   html { scroll-behavior: smooth; }
   html, body { margin: 0; padding: 0; background: #A9B7BE; }
   * { box-sizing: border-box; }
@@ -25,14 +21,18 @@
   a:hover { color: #C4531F; }
   @keyframes riseIn { from { opacity: 0; transform: translateY(18px) scale(0.985); filter: blur(6px); } to { opacity: 1; transform: none; filter: blur(0); } }
 </style>
-</helmet>
 
-<div style="min-height: 100vh; background: #A9B7BE; color: #23201A; font-family: 'Bricolage Grotesque', system-ui, sans-serif; display: flex; flex-direction: column; position: relative; overflow-x: hidden;">
+</head>
+<body>
+<x-dc data-loading>
+
+
+<div class="site-shell" style="min-height: 100vh; background: #A9B7BE; color: #23201A; font-family: 'Bricolage Grotesque', system-ui, sans-serif; display: flex; flex-direction: column; position: relative; overflow-x: hidden;">
 
   <div style="{{ bgStyle }}"></div>
 
 
-  <div style="position: relative; z-index: 2; display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; padding: 30px 44px 0;">
+  <div class="site-header" style="position: relative; z-index: 2; display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; padding: 30px 44px 0;">
     <div style="display: flex; align-items: baseline; gap: 18px;">
       <sc-if value="{{ isInner }}">
       <a href="#top" onClick="{{ goHome }}" aria-label="Back" style="display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; position: relative; top: 3px;">
@@ -48,7 +48,7 @@
     <sc-for list="{{ slides }}" as="slide" hint-placeholder-count="2">
       <div style="{{ slide.style }}">
         <div style="position: absolute; inset: 0; z-index: 0; display: flex; align-items: center; justify-content: center; padding: 120px 44px;">
-          <div style="display: flex; align-items: center; justify-content: center; gap: clamp(20px, 5vw, 68px);">
+          <div class="home-card-row" style="display: flex; align-items: center; justify-content: center; gap: clamp(20px, 5vw, 68px);">
             <sc-for list="{{ slide.boxes }}" as="box" hint-placeholder-count="2">
               <div style="{{ box.style }}"></div>
             </sc-for>
@@ -56,9 +56,9 @@
         </div>
         <div style="{{ slide.artStyle }}"></div>
         <div style="position: relative; z-index: 2; height: 100%; display: flex; align-items: center; justify-content: center; padding: 120px 44px;">
-          <div style="display: flex; align-items: center; justify-content: center; gap: clamp(20px, 5vw, 68px);">
+          <div class="home-card-row" style="display: flex; align-items: center; justify-content: center; gap: clamp(20px, 5vw, 68px);">
             <sc-for list="{{ slide.cards }}" as="card" hint-placeholder-count="2">
-              <a href="{{ card.href }}" onClick="{{ card.onClick }}" onMouseEnter="{{ card.onEnter }}" onMouseLeave="{{ card.onLeave }}" style="{{ card.style }}">
+              <a href="{{ card.href }}" aria-label="{{ card.key }}" onClick="{{ card.onClick }}" onMouseEnter="{{ card.onEnter }}" onMouseLeave="{{ card.onLeave }}" style="{{ card.style }}">
                 <span style="{{ card.captionStyle }}">{{ card.caption }}</span>
                 <sc-for list="{{ card.letters }}" as="l" hint-placeholder-count="6">
                   <span style="{{ l.style }}">{{ l.ch }}</span>
@@ -74,60 +74,56 @@
   </sc-if>
 
   <sc-if value="{{ isAbout }}">
-  <div style="position: relative; z-index: 2; height: calc(100vh - 78px); overflow-y: auto; padding: 16px 40px 40px; display: flex; align-items: flex-start; justify-content: center; font-family: 'Ascender Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #5C5C5C;">
-    <div style="width: min(100%, 1240px); border: 2.5px solid #111; display: grid; grid-template-columns: minmax(0, 46.2fr) minmax(0, 53.8fr);">
-
-      <div style="min-width: 0; display: grid; grid-template-rows: 244fr 190fr 143fr 113fr;">
-        <div style="padding: 18px 20px;">
-          <p style="margin: 0; font-size: clamp(15px, 1.55vw, 22px); line-height: 1.42; text-wrap: pretty;">I am a data scientist based in the NJ/NY area with a Masters degree in Data Science &amp; Statistics from Rutgers University, NB (2026) and a Bachelors degree in IT engineering from CBIT (2019).</p>
+  <main class="about-page" aria-label="About Ruth Sharon">
+    <a class="about-home" href="#top" onClick="{{ goHome }}">← Back to home</a>
+    <div class="about-wrap">
+      <div class="about-board">
+        <div class="about-copy">
+          <section class="about-cell about-cell--intro" aria-label="Education and location">
+            <p>I am a data scientist based in the NJ/NY area with a Masters degree in Data Science &amp; Statistics from Rutgers University, NB (2026) and a Bachelors degree in IT engineering from CBIT (2019).</p>
+          </section>
+          <section class="about-cell" aria-label="Previous work">
+            <p>I worked as:<br>- a research engineer @ Rutgers University, NB for 1 yr 3 mo<br>- AI/ML engineer @ LangPal for 8 months</p>
+          </section>
+          <section class="about-cell about-cell--current" aria-label="Current work">
+            <p>I work as:<br>- Data Scientist @ Transit Startup</p>
+          </section>
+          <section class="about-cell about-cell--languages" aria-label="Languages">
+            <p>Languages: English, <mark class="about-highlight">Python</mark>, Malayalam, Arabic, <mark class="about-highlight">TypeScript</mark>, Telugu, <mark class="about-highlight">SQL</mark>, Hindi</p>
+          </section>
         </div>
-        <div style="border-top: 2.5px solid #111; padding: 18px 20px;">
-          <p style="margin: 0; font-size: clamp(15px, 1.55vw, 22px); line-height: 1.42; text-wrap: pretty;">I worked as:<br>- a research engineer @ Rutgers University, NB for 1 yr 3 mo<br>- AI/ML engineer @ LangPal for 8 months</p>
-        </div>
-        <div style="border-top: 2.5px solid #111; padding: 18px 20px;">
-          <p style="margin: 0; font-size: clamp(15px, 1.55vw, 22px); line-height: 1.42; text-wrap: pretty;">I work as:<br>- Data Scientist @ Transit Startup</p>
-        </div>
-        <div style="border-top: 2.5px solid #111; padding: 18px 20px;">
-          <p style="margin: 0; font-size: clamp(15px, 1.55vw, 22px); line-height: 1.42; text-wrap: pretty;">Languages: English, <span style="background: #30F840;">Python</span>, Malayalam, Arabic, <span style="background: #30F840;">TypeScript</span>, Telugu, <span style="background: #30F840;">SQL</span>, Hindi</p>
+        <div class="about-right">
+          <div class="about-gallery">
+            <a class="about-interests" href="#interests" onClick="{{ goInterests }}">check out some of my interests</a>
+            <div class="about-photos">
+              <svg class="about-photo" viewBox="726 241 315 364" role="img" aria-label="Ruth Sharon in sunlight"><image href="./assets/about-reference.png" width="1500" height="836" /></svg>
+              <svg class="about-photo" viewBox="1058 241 313 364" role="img" aria-label="Ruth Sharon celebrating graduation"><image href="./assets/about-reference.png" width="1500" height="836" /></svg>
+            </div>
+          </div>
+          <footer class="about-footer">
+            <nav class="about-socials" aria-label="Social and contact links">
+              <a href="https://www.linkedin.com/in/ruth1445/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><svg class="" viewBox="724 679 45 48" aria-hidden="true"><image href="./assets/about-reference.png" width="1500" height="836" /></svg></a>
+              <a href="https://github.com/ruth1445" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><svg class="" viewBox="781 680 43 48" aria-hidden="true"><image href="./assets/about-reference.png" width="1500" height="836" /></svg></a>
+              <a href="mailto:ruth.sharon@rutgers.edu" aria-label="Email"><svg class="" viewBox="833 681 53 44" aria-hidden="true"><image href="./assets/about-reference.png" width="1500" height="836" /></svg></a>
+              <a href="https://substack.com/@heyruthieee" aria-label="Substack" target="_blank" rel="noopener noreferrer"><svg class="" viewBox="898 676 49 53" aria-hidden="true"><image href="./assets/about-reference.png" width="1500" height="836" /></svg></a>
+              <a href="https://www.instagram.com/heyruthieee/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><svg class="" viewBox="958 680 43 45" aria-hidden="true"><image href="./assets/about-reference.png" width="1500" height="836" /></svg></a>
+            </nav>
+            <div class="about-links">
+              <a href="mailto:ruth.sharon@rutgers.edu?subject=Resume%20request" title="Request my resume by email">resume</a>
+              <a href="https://substack.com/@heyruthieee" target="_blank" rel="noopener noreferrer">blog</a>
+              <span class="about-stars"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 1 40 24 63 24 44 39 51 62 32 48 13 62 20 39 1 24 24 24Z"/></svg><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 1 40 24 63 24 44 39 51 62 32 48 13 62 20 39 1 24 24 24Z"/></svg></span>
+            </div>
+          </footer>
         </div>
       </div>
-
-      <div style="min-width: 0; border-left: 2.5px solid #111; display: grid; grid-template-rows: 594fr 96fr;">
-        <div style="min-height: 0; display: flex; flex-direction: column; align-items: center; gap: clamp(14px, 2vw, 28px); padding: clamp(16px, 2vw, 30px) clamp(18px, 2.4vw, 34px) clamp(18px, 2.4vw, 34px);">
-          <a href="#interests" onClick="{{ goInterests }}" style="font-size: clamp(17px, 1.85vw, 26px); font-style: italic; text-decoration: underline; text-underline-offset: 3px; color: #4E4E4E;" style-hover="opacity: 0.6;">check out some of my interests</a>
-          <div style="width: 100%; flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(10px, 1.4vw, 20px);">
-            <span style="display: block; width: 100%; height: 100%; min-width: 0; min-height: 0; overflow: hidden; background: #EFEFEF;">
-              <image-slot id="about-photo-1" shape="rect" placeholder="portrait photo" style="width: 100%; height: 100%;"></image-slot>
-            </span>
-            <span style="display: block; width: 100%; height: 100%; min-width: 0; min-height: 0; overflow: hidden; background: #EFEFEF;">
-              <image-slot id="about-photo-2" shape="rect" placeholder="graduation photo" style="width: 100%; height: 100%;"></image-slot>
-            </span>
-          </div>
-        </div>
-        <div style="border-top: 2.5px solid #111; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);">
-          <div style="min-width: 0; display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 12px clamp(14px, 1.6vw, 22px);">
-              <a href="https://www.linkedin.com/in/ruth1445/" target="_blank" rel="noopener" aria-label="LinkedIn" style="display: inline-flex; align-items: center; justify-content: center; text-decoration: none; transition: opacity 200ms ease;" style-hover="opacity: 0.55;"><svg viewBox="0 0 24 24" width="30" height="30" fill="#111" aria-hidden="true"><path d="M3 3h18v18H3V3zm3.2 5.1a1.6 1.6 0 1 0 0-3.2 1.6 1.6 0 0 0 0 3.2zM5 18h2.4v-8H5v8zm4.2 0h2.4v-4.3c0-1.2.8-1.6 1.4-1.6.6 0 1.2.5 1.2 1.6V18H17v-4.7c0-2.5-1.4-3.5-2.9-3.5-1.2 0-1.9.6-2.2 1.1V10H9.2v8z"/></svg></a>
-              <a href="https://github.com/ruth1445" target="_blank" rel="noopener" aria-label="GitHub" style="display: inline-flex; align-items: center; justify-content: center; text-decoration: none; transition: opacity 200ms ease;" style-hover="opacity: 0.55;"><svg viewBox="0 0 24 24" width="30" height="30" fill="#111" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.9c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.7.3-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.7 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/></svg></a>
-              <a href="mailto:ruth.sharon@rutgers.edu" target="_blank" rel="noopener" aria-label="Email" style="display: inline-flex; align-items: center; justify-content: center; text-decoration: none; transition: opacity 200ms ease;" style-hover="opacity: 0.55;"><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#111" stroke-width="1.8" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14"/><path d="M2.5 5l9.5 8 9.5-8"/></svg></a>
-              <a href="https://substack.com/@heyruthieee" target="_blank" rel="noopener" aria-label="Substack" style="display: inline-flex; align-items: center; justify-content: center; text-decoration: none; transition: opacity 200ms ease;" style-hover="opacity: 0.55;"><svg viewBox="0 0 24 24" width="28" height="28" fill="#111" aria-hidden="true"><path d="M3.5 3.5h17V6h-17V3.5zm0 4.2h17v2.5h-17V7.7zm0 4.3L12 16l8.5-4v8.5L12 24l-8.5-3.5V12z"/></svg></a>
-              <a href="https://www.instagram.com/heyruthieee/" target="_blank" rel="noopener" aria-label="Instagram" style="display: inline-flex; align-items: center; justify-content: center; text-decoration: none; transition: opacity 200ms ease;" style-hover="opacity: 0.55;"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#111" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1.1" fill="#111" stroke="none"/></svg></a>
-          </div>
-          <div style="min-width: 0; border-left: 2.5px solid #111; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px clamp(14px, 1.6vw, 22px);">
-            <a href="#resume" style="font-size: clamp(14px, 1.5vw, 21px); color: #5C5C5C; text-decoration: none;" style-hover="opacity: 0.6;">resume</a>
-            <a href="https://substack.com/@heyruthieee" target="_blank" rel="noopener" style="font-size: clamp(14px, 1.5vw, 21px); color: #5C5C5C; text-decoration: none;" style-hover="opacity: 0.6;">blog</a>
-            <span style="display: inline-flex; gap: 8px;"><svg viewBox="0 0 24 24" width="38" height="38" fill="#30F840" aria-hidden="true"><path d="M12 1.5l3.2 7.1 7.8.8-5.8 5.2 1.7 7.6L12 18.4l-6.9 3.8 1.7-7.6L1 9.4l7.8-.8z"/></svg><svg viewBox="0 0 24 24" width="38" height="38" fill="#30F840" aria-hidden="true"><path d="M12 1.5l3.2 7.1 7.8.8-5.8 5.2 1.7 7.6L12 18.4l-6.9 3.8 1.7-7.6L1 9.4l7.8-.8z"/></svg></span>
-          </div>
-        </div>
-      </div>
-
     </div>
-  </div>
+  </main>
   </sc-if>
 
   <sc-if value="{{ isInterests }}">
   <div style="position: relative; z-index: 2; height: calc(100vh - 78px); overflow-y: auto; padding: 24px 44px 70px; display: flex; flex-direction: column; align-items: center; gap: 30px; font-family: 'Ascender Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #5C5C5C;">
     <h1 style="margin: 0; font-size: clamp(22px, 2.2vw, 30px); font-weight: 700;">interests</h1>
-    <div style="width: min(100%, 1000px); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 1.8vw, 24px);">
+    <div class="interests-grid" style="width: min(100%, 1000px); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 1.8vw, 24px);">
       <sc-for list="{{ interests }}" as="it" hint-placeholder-count="6">
         <div style="min-width: 0; display: flex; flex-direction: column; gap: 10px;">
           <span style="display: block; width: 100%; min-width: 0; min-height: 0; aspect-ratio: 4 / 3; overflow: hidden; background: #EFEFEF; border: 2px solid #111;">
@@ -160,7 +156,7 @@
         <h2 style="margin: 0; text-align: center; font-size: 15px; font-weight: 700; letter-spacing: 0.01em; color: #6F6F6F;">Tech</h2>
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px 24px;">
           <sc-for list="{{ techProjects }}" as="p" hint-placeholder-count="6">
-            <a href="{{ p.href }}" style="{{ p.style }}" style-hover="opacity: 0.68;">
+            <a id="{{ p.id }}" href="{{ p.href }}" style="{{ p.style }}" style-hover="opacity: 0.68;">
               <span style="{{ p.shotStyle }}">
                 <sc-if value="{{ p.noImg }}">
                   <image-slot id="{{ p.slotId }}" shape="rect" placeholder="{{ p.slotHint }}" style="width: 100%; height: 100%;"></image-slot>
@@ -179,7 +175,7 @@
         <h2 style="margin: 0; text-align: center; font-size: 15px; font-weight: 700; letter-spacing: 0.01em; color: #6F6F6F;">Personal</h2>
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px 24px;">
           <sc-for list="{{ personalProjects }}" as="p" hint-placeholder-count="4">
-            <a href="{{ p.href }}" style="{{ p.style }}" style-hover="opacity: 0.68;">
+            <a id="{{ p.id }}" href="{{ p.href }}" style="{{ p.style }}" style-hover="opacity: 0.68;">
               <span style="{{ p.shotStyle }}">
                 <sc-if value="{{ p.noImg }}">
                   <image-slot id="{{ p.slotId }}" shape="rect" placeholder="{{ p.slotHint }}" style="width: 100%; height: 100%;"></image-slot>
@@ -198,7 +194,7 @@
         <h2 style="margin: 0; text-align: center; font-size: 15px; font-weight: 700; letter-spacing: 0.01em; color: #6F6F6F;">Research</h2>
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px 24px;">
           <sc-for list="{{ researchProjects }}" as="p" hint-placeholder-count="4">
-            <a href="{{ p.href }}" style="{{ p.style }}" style-hover="opacity: 0.68;">
+            <a id="{{ p.id }}" href="{{ p.href }}" style="{{ p.style }}" style-hover="opacity: 0.68;">
               <span style="{{ p.shotStyle }}">
                 <sc-if value="{{ p.noImg }}">
                   <image-slot id="{{ p.slotId }}" shape="rect" placeholder="{{ p.slotHint }}" style="width: 100%; height: 100%;"></image-slot>
@@ -217,7 +213,7 @@
         <h2 style="margin: 0; text-align: center; font-size: 15px; font-weight: 700; letter-spacing: 0.01em; color: #6F6F6F;">Writing</h2>
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px 24px;">
           <sc-for list="{{ writingProjects }}" as="p" hint-placeholder-count="3">
-            <a href="{{ p.href }}" style="{{ p.style }}" style-hover="opacity: 0.68;">
+            <a id="{{ p.id }}" href="{{ p.href }}" style="{{ p.style }}" style-hover="opacity: 0.68;">
               <span style="{{ p.shotStyle }}">
                 <sc-if value="{{ p.noImg }}">
                   <image-slot id="{{ p.slotId }}" shape="rect" placeholder="{{ p.slotHint }}" style="width: 100%; height: 100%;"></image-slot>
@@ -261,7 +257,7 @@
 
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;bgTone&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#A9B7BE&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#A9B7BE&quot;,&quot;#9FB2BC&quot;,&quot;#B4C0C4&quot;,&quot;#8FA5AE&quot;,&quot;#C9BCA6&quot;],&quot;section&quot;:&quot;Theme&quot;}}">
+<script>
 const CARDS = [
   { key: 'about', word: 'about', caption: 'who i am + what i do', rows: [[1,3],[4,0,2]] },
   { key: 'lab', word: 'laboratory', caption: 'all my projects and experiments', rows: [[2,0,5,3],[8,1,6],[7,4,9]] },
@@ -282,8 +278,8 @@ function metrics(chars) {
       h: m.actualBoundingBoxAscent + m.actualBoundingBoxDescent,
       aLeft: m.actualBoundingBoxLeft,
       asc: m.actualBoundingBoxAscent,
-      fbAsc: m.fontBoundingBoxAscent,
-      fbDesc: m.fontBoundingBoxDescent,
+      fbAsc: m.fontBoundingBoxAscent ?? 90,
+      fbDesc: m.fontBoundingBoxDescent ?? 20,
     };
   });
   METRICS = out;
@@ -489,7 +485,14 @@ class Component extends DCLogic {
     clearInterval(this._raf);
   }
 
-  set(page) { this.setState({ page, hover: null }); if (typeof window !== 'undefined') window.scrollTo(0, 0); }
+  set(page) {
+    const hash = page === 'home' ? '#top' : '#' + page;
+    if (location.hash !== hash) history.pushState(null, '', hash);
+    document.body.dataset.page = page;
+    document.title = (page === 'home' ? 'Ruth Sharon' : page[0].toUpperCase() + page.slice(1) + ' — Ruth Sharon') + ' — Portfolio';
+    this.setState({ page, hover: null });
+    window.scrollTo(0, 0);
+  }
 
   renderVals() {
     const p = this.state.page;
@@ -604,7 +607,7 @@ class Component extends DCLogic {
     });
 
     const base = this.props.bgTone || '#A9B7BE';
-    const bgStyle = `position:fixed; inset:0; z-index:0; pointer-events:none; background:${p === 'home' || p === 'lab' || p === 'about' || p === 'interests' ? '#FFFFFF' : base};`;
+    const bgStyle = `position:fixed; inset:0; z-index:0; pointer-events:none; background:${p === 'about' ? '#F7F0E2' : p === 'home' || p === 'lab' || p === 'interests' ? '#FFFFFF' : base};`;
 
     const labChips = LAB_CATS.map((c) => ({
       label: c.label,
@@ -615,12 +618,13 @@ class Component extends DCLogic {
       title: p.title,
       blurb: p.blurb,
       href: '#' + cat + '-' + j,
+      id: cat + '-' + j,
       slotId: 'lab-' + cat + '-' + j,
       slotHint: 'screenshot for ' + p.title,
       style: 'display:flex; flex-direction:column; text-decoration:none; transition:opacity 240ms ease;',
       tag: cat,
-      shotStyle: 'display:block; width:100%; aspect-ratio:4 / 3; background:' + (p.img ? "#EFEFEF url('" + p.img + "') center center / cover no-repeat" : '#EFEFEF') + ';',
-      noImg: !p.img,
+      shotStyle: 'display:block; width:100%; aspect-ratio:4 / 3; background:#EFEFEF;',
+      noImg: true,
     }));
     const labIndex = LAB_CATS.map((c) => ({
       label: c.label.replace(' projects', ''),
@@ -676,6 +680,17 @@ class Component extends DCLogic {
     };
   }
 }
+const portfolio = new Component();
+const route = () => {
+  const hash = location.hash.slice(1);
+  const page = ['about', 'interests', 'lab', 'contact'].includes(hash) ? hash : /^(lab-|tech-|personal-|research-|writing-)/.test(hash) ? 'lab' : 'home';
+  document.body.dataset.page = page;
+  portfolio.setState({ page, hover: null });
+};
+route();
+portfolio.mount(document.querySelector('x-dc'));
+window.addEventListener('hashchange', route);
 </script>
+<noscript>Please enable JavaScript to browse the portfolio. Contact: <a href="mailto:ruth.sharon@rutgers.edu">ruth.sharon@rutgers.edu</a>.</noscript>
 </body>
 </html>
