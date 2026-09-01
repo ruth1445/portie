@@ -28,7 +28,7 @@ body[data-page="about"] .site-header { display: none !important; }
   line-height: 1.465;
 }
 .about-copy { min-width: 0; display: grid; grid-template-rows: 232fr 184fr 127fr 110fr; }
-.about-cell { padding: .86cqw 1.53cqw; min-width: 0; }
+.about-cell { padding: .86cqw 1.53cqw .35cqw; min-width: 0; }
 .about-cell + .about-cell { border-top: var(--rule) solid #000; }
 .about-cell p { margin: 0; }
 .about-cell--intro { padding-top: .91cqw; padding-right: 0; }
