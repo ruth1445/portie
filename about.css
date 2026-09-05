@@ -23,7 +23,7 @@ body[data-page="about"] .site-header { display: none !important; }
 }
 .about-wrap {
   position: relative;
-  width: min(78vw, 1120px);
+  width: min(72vw, 1000px);
   container-type: inline-size;
   filter: drop-shadow(0 26px 34px rgba(56, 63, 66, .11));
 }
@@ -112,6 +112,9 @@ image-slot::after { content: attr(placeholder); }
   [data-lab-scroll] { padding: 20px !important; flex-direction: column; }
   [data-lab-scroll] nav { position: static !important; width: 100% !important; flex: none !important; flex-direction: row !important; flex-wrap: wrap; }
   .interests-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
+@media (min-width: 701px) and (max-width: 1000px) {
+  .about-wrap { width: calc(100% - 64px); }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto !important; }

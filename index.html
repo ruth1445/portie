@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ruth Sharon — Portfolio</title>
 <script src="./support.js"></script>
-<link rel="stylesheet" href="./about.css?v=4">
+<link rel="stylesheet" href="./about.css?v=5">
 <link rel="icon" href="data:,">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -524,7 +524,7 @@ class Component extends DCLogic {
         caption: c.caption,
         captionStyle: `position:absolute; left:50%; bottom:calc(100% + 14px); transform:translateX(-50%) translateY(${on ? '0' : '6px'}); opacity:${on ? 1 : 0}; pointer-events:none; white-space:nowrap; color:#23201A; font-family:'Helvetica Neue',Helvetica,sans-serif; font-size:15px; font-weight:700; letter-spacing:-0.01em; text-transform:lowercase; transition:opacity 320ms ease, transform 320ms cubic-bezier(.2,.9,.2,1);`,
         letters,
-        style: `position:relative; container-type:inline-size; display:block; width:clamp(210px,27vw,360px); aspect-ratio:1; border-radius:30px; background:${theme.boxesBehind ? 'transparent' : 'linear-gradient(155deg,' + glass(t.bg, 0.62) + ',' + glass(t.bg, 0.78) + ')'}; backdrop-filter:blur(20px) saturate(1.4); -webkit-backdrop-filter:blur(20px) saturate(1.4); border:1px solid rgba(255,255,255,0.34); box-shadow:0 22px 50px -26px rgba(35,32,26,0.42), inset 0 1px 0 rgba(255,255,255,0.42); color:${t.ink}; font-family:'Helvetica Neue',Helvetica,sans-serif; overflow:visible; transition:transform 420ms cubic-bezier(.32,.72,0,1), background 500ms ease; transform:translateY(${on ? '-8px' : '0'});`,
+        style: `position:relative; container-type:inline-size; display:block; width:clamp(210px,27vw,360px); aspect-ratio:1; border-radius:30px; background:${theme.boxesBehind ? 'transparent' : 'linear-gradient(135deg,rgba(255,255,255,.38),' + glass(t.bg, 0.12) + ' 58%,rgba(255,255,255,.16))'}; backdrop-filter:blur(28px) saturate(1.35); -webkit-backdrop-filter:blur(28px) saturate(1.35); border:1.5px solid rgba(21,24,23,.68); box-shadow:0 28px 54px -34px rgba(35,42,43,.38), inset 0 1px 0 rgba(255,255,255,.88), inset 1px 0 0 rgba(255,255,255,.38); color:${t.ink}; font-family:'Helvetica Neue',Helvetica,sans-serif; overflow:visible; transition:transform 420ms cubic-bezier(.32,.72,0,1), background 500ms ease, box-shadow 420ms ease; transform:translateY(${on ? '-8px' : '0'});`,
         onClick: (e) => { e.preventDefault(); this.set(c.key); },
         onEnter: () => this.setState({ hover: c.key }),
         onLeave: () => this.setState({ hover: null }),
@@ -607,7 +607,8 @@ class Component extends DCLogic {
     });
 
     const base = this.props.bgTone || '#A9B7BE';
-    const bgStyle = `position:fixed; inset:0; z-index:0; pointer-events:none; background:${p === 'about' ? '#F7F0E2' : p === 'home' || p === 'lab' || p === 'interests' ? '#FFFFFF' : base};`;
+    const liquidBackdrop = 'radial-gradient(circle at 19% 24%,rgba(150,201,229,.42),transparent 29%),radial-gradient(circle at 78% 73%,rgba(51,255,68,.17),transparent 25%),radial-gradient(circle at 66% 16%,rgba(224,191,234,.25),transparent 23%),#F7F0E2';
+    const bgStyle = `position:fixed; inset:0; z-index:0; pointer-events:none; background:${p === 'home' || p === 'about' ? liquidBackdrop : p === 'lab' || p === 'interests' ? '#FFFFFF' : base};`;
 
     const labChips = LAB_CATS.map((c) => ({
       label: c.label,
