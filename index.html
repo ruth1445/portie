@@ -510,10 +510,14 @@ class Component extends DCLogic {
       const M = metrics(LAB_CHARS);
       const arrangedSize = Math.min(40, Math.round(84 / n));
       const placed = M ? pack(c.word, c.rows, M) : null;
+      const arranged = M ? layout(c.word, M, arrangedSize, 1) : null;
       const letters = c.word.split('').map((ch, i) => {
         const shadow = t.bg === 'transparent' ? ' text-shadow:0 1px 10px rgba(250,240,224,.85);' : '';
         const p = placed && placed[i];
-        const style = on || !p
+        const q = arranged && arranged[i];
+        const style = on && q
+          ? `position:absolute; left:${q.left.toFixed(2)}%; top:${q.top.toFixed(2)}%; transform:none; font-size:${arrangedSize}cqw; line-height:1; font-weight:700; transition:all 620ms cubic-bezier(.2,.9,.2,1);${shadow}`
+          : !p
           ? `position:absolute; left:${((i + 0.5) / n) * 88 + 6}%; top:50%; transform:translate(-50%,-50%); font-size:${arrangedSize}cqw; line-height:1; font-weight:700; transition:all 620ms cubic-bezier(.2,.9,.2,1);${shadow}`
           : `position:absolute; left:${p.left.toFixed(2)}%; top:${p.top.toFixed(2)}%; transform-origin:top left; transform:scale(${p.sx.toFixed(3)},${p.sy.toFixed(3)}); font-size:${p.F.toFixed(2)}cqw; line-height:1; font-weight:700; transition:all 620ms cubic-bezier(.2,.9,.2,1);${shadow}`;
         return { ch, style };
