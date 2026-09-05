@@ -36,7 +36,7 @@ body[data-page="about"] .site-header { display: none !important; }
   aspect-ratio: 1308 / 660;
   display: grid;
   grid-template-columns: minmax(0, 46.05fr) minmax(0, 53.95fr);
-  gap: clamp(118px, 15.5cqw, 155px);
+  gap: clamp(48px, 6.4cqw, 64px);
   font-size: 2.14067cqw;
   line-height: 1.465;
 }
@@ -62,7 +62,7 @@ body[data-page="about"] .site-header { display: none !important; }
   display: grid;
   grid-template-rows: 232fr 184fr 127fr 110fr;
   transform-origin: left center;
-  transform: perspective(1400px) rotateY(-11deg) scaleX(1.10);
+  transform: perspective(1800px) rotateY(-4deg) scaleX(1.02);
 }
 .about-cell { padding: .86cqw 1.53cqw .35cqw; min-width: 0; }
 .about-cell + .about-cell { border-top: var(--rule) solid rgba(21, 24, 23, .88); }
@@ -77,7 +77,7 @@ body[data-page="about"] .site-header { display: none !important; }
   display: grid;
   grid-template-rows: 574fr 80fr;
   transform-origin: right center;
-  transform: perspective(1400px) rotateY(11deg) scaleX(1.10);
+  transform: perspective(1800px) rotateY(4deg) scaleX(1.02);
 }
 .about-gallery { min-width: 0; padding: 5.65cqw 2.14cqw 4.36cqw 1.91cqw; }
 .about-interests { display: block; width: fit-content; margin: 0 auto 2.67cqw; font-style: italic; text-decoration: underline; text-underline-offset: .12em; color: inherit; }
