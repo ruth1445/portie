@@ -31,37 +31,39 @@ body[data-page="about"] .site-header { display: none !important; }
   --rule: max(2px, .26758cqw);
   position: relative;
   isolation: isolate;
-  overflow: hidden;
-  border: var(--rule) solid rgba(21, 24, 23, .88);
-  border-radius: clamp(12px, 1.2cqw, 18px);
+  overflow: visible;
   width: 100%;
   aspect-ratio: 1308 / 660;
   display: grid;
-  grid-template-columns: 46.05% 53.95%;
+  grid-template-columns: minmax(0, 46.05fr) minmax(0, 53.95fr);
+  gap: clamp(118px, 15.5cqw, 155px);
   font-size: 2.14067cqw;
   line-height: 1.465;
+}
+.about-copy,
+.about-right {
+  min-width: 0;
+  overflow: hidden;
+  border: var(--rule) solid rgba(21, 24, 23, .88);
+  border-radius: clamp(12px, 1.2cqw, 18px);
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, .48), rgba(255, 255, 255, .18) 46%, rgba(231, 239, 240, .30));
+    linear-gradient(135deg, rgba(255, 255, 255, .50), rgba(255, 255, 255, .18) 48%, rgba(231, 239, 240, .31));
   -webkit-backdrop-filter: blur(28px) saturate(1.35);
   backdrop-filter: blur(28px) saturate(1.35);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, .92),
+    inset 0 1px 0 rgba(255, 255, 255, .94),
     inset 1px 0 0 rgba(255, 255, 255, .48),
     inset 0 -1px 0 rgba(14, 22, 22, .10),
-    0 14px 44px rgba(53, 63, 65, .08);
+    0 18px 42px rgba(53, 63, 65, .10);
 }
-.about-board::after {
-  content: '';
-  position: absolute;
-  z-index: 0;
-  inset: 0;
-  pointer-events: none;
-  background:
-    linear-gradient(116deg, rgba(255, 255, 255, .34), transparent 23%, transparent 70%, rgba(255, 255, 255, .14)),
-    radial-gradient(ellipse at 32% -12%, rgba(255, 255, 255, .58), transparent 34%);
-  mix-blend-mode: screen;
+.about-copy {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-rows: 232fr 184fr 127fr 110fr;
+  transform-origin: left center;
+  transform: perspective(1400px) rotateY(-11deg) scaleX(1.10);
 }
-.about-copy { position: relative; z-index: 1; min-width: 0; display: grid; grid-template-rows: 232fr 184fr 127fr 110fr; }
 .about-cell { padding: .86cqw 1.53cqw .35cqw; min-width: 0; }
 .about-cell + .about-cell { border-top: var(--rule) solid rgba(21, 24, 23, .88); }
 .about-cell p { margin: 0; }
@@ -69,7 +71,14 @@ body[data-page="about"] .site-header { display: none !important; }
 .about-cell--current { padding-top: 1.32cqw; }
 .about-cell--languages { padding-top: .94cqw; }
 .about-highlight { background: linear-gradient(transparent 25%, #33ff44 25%, #33ff44 83%, transparent 83%); color: inherit; }
-.about-right { position: relative; z-index: 1; min-width: 0; display: grid; grid-template-rows: 574fr 80fr; border-left: var(--rule) solid rgba(21, 24, 23, .88); }
+.about-right {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-rows: 574fr 80fr;
+  transform-origin: right center;
+  transform: perspective(1400px) rotateY(11deg) scaleX(1.10);
+}
 .about-gallery { min-width: 0; padding: 5.65cqw 2.14cqw 4.36cqw 1.91cqw; }
 .about-interests { display: block; width: fit-content; margin: 0 auto 2.67cqw; font-style: italic; text-decoration: underline; text-underline-offset: .12em; color: inherit; }
 .about-interests:hover { color: inherit; opacity: .7; }
@@ -93,10 +102,10 @@ image-slot::after { content: attr(placeholder); }
 @media (max-width: 700px) {
   .about-page { padding: 24px 0; }
   .about-wrap { width: calc(100% - 32px); }
-  .about-board { grid-template-columns: 1fr; aspect-ratio: auto; font-size: clamp(17px, 4.9cqw, 25px); line-height: 1.45; }
-  .about-copy { grid-template-rows: auto; }
+  .about-board { grid-template-columns: 1fr; gap: 16px; aspect-ratio: auto; font-size: clamp(17px, 4.9cqw, 25px); line-height: 1.45; }
+  .about-copy { grid-template-rows: auto; transform: none; }
   .about-cell { padding: 16px 18px; }
-  .about-right { border-left: 0; border-top: var(--rule) solid rgba(21, 24, 23, .88); grid-template-rows: auto auto; }
+  .about-right { grid-template-rows: auto auto; transform: none; }
   .about-gallery { padding: 28px 18px 24px; }
   .about-interests { margin-bottom: 22px; text-align: center; font-size: .93em; }
   .about-photos { gap: 12px; }
