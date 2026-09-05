@@ -500,7 +500,7 @@ class Component extends DCLogic {
   renderVals() {
     const p = this.state.page;
     const hover = this.state.hover;
-    const homeCardRowStyle = 'display:flex; align-items:center; justify-content:center; gap:calc(clamp(20px, 5vw, 68px) + 60px);';
+    const homeCardRowStyle = 'display:flex; align-items:center; justify-content:center; gap:calc(clamp(20px, 5vw, 68px) + 100px);';
 
     const glass = (hex, a) => {
       const h = hex.replace('#', '');
@@ -515,8 +515,8 @@ class Component extends DCLogic {
       const arrangedSize = Math.min(40, Math.round(84 / n));
       const placed = M ? pack(c.word, c.rows, M) : null;
       const arranged = M ? layout(c.word, M, arrangedSize, 1) : null;
-      const lean = (c.key === 'about' ? -1 : 1) * 6.2;
-      const stretch = 1.06;
+      const lean = (c.key === 'about' ? -1 : 1) * 11;
+      const stretch = 1.10;
       const origin = c.key === 'about' ? 'left center' : 'right center';
       const letters = c.word.split('').map((ch, i) => {
         const shadow = t.bg === 'transparent' ? ' text-shadow:0 1px 10px rgba(250,240,224,.85);' : '';
