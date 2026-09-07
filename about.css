@@ -94,9 +94,7 @@ body[data-page="about"], body[data-page="about"] .site-shell { background: #f7f0
 .about-stars svg { width: 4.82cqw; height: 4.82cqw; fill: #33ff44; }
 image-slot { display: flex; align-items: center; justify-content: center; color: #666; font: 14px/1.4 Arial, sans-serif; text-align: center; padding: 12px; }
 image-slot::after { content: attr(placeholder); }
-.lab-nav,
-.lab-section,
-.lab-project {
+.lab-section {
   border: 1.5px solid rgba(21, 24, 23, .68);
   background: linear-gradient(135deg, rgba(255, 255, 255, .42), rgba(235, 243, 243, .14) 58%, rgba(255, 255, 255, .22));
   -webkit-backdrop-filter: blur(26px) saturate(1.35);
@@ -106,19 +104,13 @@ image-slot::after { content: attr(placeholder); }
     inset 1px 0 0 rgba(255, 255, 255, .40),
     0 22px 44px -34px rgba(35, 42, 43, .45);
 }
-.lab-nav { padding: 18px 16px 20px !important; border-radius: 22px; }
 .lab-content { gap: 38px !important; }
 .lab-section { padding: clamp(18px, 2.2vw, 28px); border-radius: 28px; }
 .lab-project {
   padding: 10px 10px 12px;
-  border-radius: 18px;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .86), 0 16px 34px -30px rgba(35, 42, 43, .48);
 }
 .lab-project > span:first-child {
   overflow: hidden;
-  border: 1px solid rgba(31, 36, 35, .28);
-  border-radius: 11px;
-  background: linear-gradient(145deg, rgba(255, 255, 255, .34), rgba(220, 235, 238, .16)) !important;
 }
 .lab-project__blurb {
   display: block;
