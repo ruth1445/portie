@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ruth Sharon — Portfolio</title>
 <script src="./support.js"></script>
-<link rel="stylesheet" href="./about.css?v=9">
+<link rel="stylesheet" href="./about.css?v=10">
 <link rel="icon" href="data:,">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -112,7 +112,7 @@
             </nav>
             <div class="about-links">
               <a href="mailto:ruth.sharon@rutgers.edu?subject=Resume%20request" title="Request my resume by email">resume</a>
-              <a href="https://substack.com/@heyruthieee" target="_blank" rel="noopener noreferrer">blog</a>
+              <a href="https://publicyuzu.org/#/" target="_blank" rel="noopener noreferrer">blog</a>
               <span class="about-stars"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 1 40 24 63 24 44 39 51 62 32 48 13 62 20 39 1 24 24 24Z"/></svg><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 1 40 24 63 24 44 39 51 62 32 48 13 62 20 39 1 24 24 24Z"/></svg></span>
             </div>
           </footer>
@@ -154,10 +154,10 @@
 
     <div class="lab-content" style="flex: 1 1 auto; max-width: 780px; display: flex; flex-direction: column; gap: 54px;">
 
-      <div class="lab-section" id="lab-tech" data-sec="lab-tech" style="scroll-margin-top: 10px; width: 100%; display: flex; flex-direction: column; gap: 20px;">
-        <h2 style="margin: 0; text-align: center; font-size: 15px; font-weight: 700; letter-spacing: 0.01em; color: #6F6F6F;">Tech</h2>
+      <div class="lab-section" id="lab-projects" data-sec="lab-projects" style="scroll-margin-top: 10px; width: 100%; display: flex; flex-direction: column; gap: 20px;">
+        <h2 style="margin: 0; text-align: center; font-size: 15px; font-weight: 700; letter-spacing: 0.01em; color: #6F6F6F;">Projects</h2>
         <div class="lab-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px 24px;">
-          <sc-for list="{{ techProjects }}" as="p" hint-placeholder-count="6">
+          <sc-for list="{{ projectCards }}" as="p" hint-placeholder-count="7">
             <a class="lab-project" id="{{ p.id }}" href="{{ p.href }}" style="{{ p.style }}" style-hover="opacity: 0.68;">
               <span style="{{ p.shotStyle }}">
                 <sc-if value="{{ p.noImg }}">
@@ -167,16 +167,17 @@
               <span style="display: flex; flex-direction: column; gap: 4px; padding: 11px 2px 0; text-align: center;">
                 <span style="font-size: 12.5px; font-weight: 700; color: #4E4E4E;">{{ p.title }}</span>
                 <span style="font-size: 11.5px; font-weight: 700; color: #A2A2A2;">{{ p.tag }}</span>
+                <span class="lab-project__blurb">{{ p.blurb }}</span>
               </span>
             </a>
           </sc-for>
         </div>
       </div>
 
-      <div class="lab-section" id="lab-personal" data-sec="lab-personal" style="scroll-margin-top: 10px; width: 100%; display: flex; flex-direction: column; gap: 20px;">
-        <h2 style="margin: 0; text-align: center; font-size: 15px; font-weight: 700; letter-spacing: 0.01em; color: #6F6F6F;">Personal</h2>
+      <div class="lab-section" id="lab-passion" data-sec="lab-passion" style="scroll-margin-top: 10px; width: 100%; display: flex; flex-direction: column; gap: 20px;">
+        <h2 style="margin: 0; text-align: center; font-size: 15px; font-weight: 700; letter-spacing: 0.01em; color: #6F6F6F;">Passion Projects</h2>
         <div class="lab-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px 24px;">
-          <sc-for list="{{ personalProjects }}" as="p" hint-placeholder-count="4">
+          <sc-for list="{{ passionProjects }}" as="p" hint-placeholder-count="2">
             <a class="lab-project" id="{{ p.id }}" href="{{ p.href }}" style="{{ p.style }}" style-hover="opacity: 0.68;">
               <span style="{{ p.shotStyle }}">
                 <sc-if value="{{ p.noImg }}">
@@ -186,25 +187,7 @@
               <span style="display: flex; flex-direction: column; gap: 4px; padding: 11px 2px 0; text-align: center;">
                 <span style="font-size: 12.5px; font-weight: 700; color: #4E4E4E;">{{ p.title }}</span>
                 <span style="font-size: 11.5px; font-weight: 700; color: #A2A2A2;">{{ p.tag }}</span>
-              </span>
-            </a>
-          </sc-for>
-        </div>
-      </div>
-
-      <div class="lab-section" id="lab-research" data-sec="lab-research" style="scroll-margin-top: 10px; width: 100%; display: flex; flex-direction: column; gap: 20px;">
-        <h2 style="margin: 0; text-align: center; font-size: 15px; font-weight: 700; letter-spacing: 0.01em; color: #6F6F6F;">Research</h2>
-        <div class="lab-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px 24px;">
-          <sc-for list="{{ researchProjects }}" as="p" hint-placeholder-count="4">
-            <a class="lab-project" id="{{ p.id }}" href="{{ p.href }}" style="{{ p.style }}" style-hover="opacity: 0.68;">
-              <span style="{{ p.shotStyle }}">
-                <sc-if value="{{ p.noImg }}">
-                  <image-slot id="{{ p.slotId }}" shape="rect" placeholder="{{ p.slotHint }}" style="width: 100%; height: 100%;"></image-slot>
-                </sc-if>
-              </span>
-              <span style="display: flex; flex-direction: column; gap: 4px; padding: 11px 2px 0; text-align: center;">
-                <span style="font-size: 12.5px; font-weight: 700; color: #4E4E4E;">{{ p.title }}</span>
-                <span style="font-size: 11.5px; font-weight: 700; color: #A2A2A2;">{{ p.tag }}</span>
+                <span class="lab-project__blurb">{{ p.blurb }}</span>
               </span>
             </a>
           </sc-for>
@@ -214,7 +197,7 @@
       <div class="lab-section" id="lab-writing" data-sec="lab-writing" style="scroll-margin-top: 10px; width: 100%; display: flex; flex-direction: column; gap: 20px;">
         <h2 style="margin: 0; text-align: center; font-size: 15px; font-weight: 700; letter-spacing: 0.01em; color: #6F6F6F;">Writing</h2>
         <div class="lab-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px 24px;">
-          <sc-for list="{{ writingProjects }}" as="p" hint-placeholder-count="3">
+          <sc-for list="{{ writingProjects }}" as="p" hint-placeholder-count="2">
             <a class="lab-project" id="{{ p.id }}" href="{{ p.href }}" style="{{ p.style }}" style-hover="opacity: 0.68;">
               <span style="{{ p.shotStyle }}">
                 <sc-if value="{{ p.noImg }}">
@@ -224,6 +207,7 @@
               <span style="display: flex; flex-direction: column; gap: 4px; padding: 11px 2px 0; text-align: center;">
                 <span style="font-size: 12.5px; font-weight: 700; color: #4E4E4E;">{{ p.title }}</span>
                 <span style="font-size: 11.5px; font-weight: 700; color: #A2A2A2;">{{ p.tag }}</span>
+                <span class="lab-project__blurb">{{ p.blurb }}</span>
               </span>
             </a>
           </sc-for>
@@ -424,33 +408,23 @@ const FAN = [
 const FAN_ANGLES = [-13, -4.5, 4.5, 13];
 
 const LAB_CATS = [
-  { key: 'tech', label: 'tech projects' },
-  { key: 'personal', label: 'personal projects' },
-  { key: 'research', label: 'research projects' },
+  { key: 'projects', label: 'projects' },
+  { key: 'passion', label: 'passion projects' },
   { key: 'writing', label: 'writing' },
 ];
-const T = 'One line on what it does and what you built.';
-const P = 'One line on the idea and why you made it.';
-const R = 'One line on the question and the method.';
-const W = 'One line on what the piece is about.';
+const PLACEHOLDER = '#lab-projects';
 const PROJECTS = [
-  { cat: 'tech', title: 'Project one', blurb: T },
-  { cat: 'tech', title: 'Project two', blurb: T },
-  { cat: 'tech', title: 'Project three', blurb: T },
-  { cat: 'tech', title: 'Project four', blurb: T },
-  { cat: 'tech', title: 'Project five', blurb: T },
-  { cat: 'tech', title: 'Project six', blurb: T },
-  { cat: 'personal', title: 'Project seven', blurb: P },
-  { cat: 'personal', title: 'Project eight', blurb: P },
-  { cat: 'personal', title: 'Project nine', blurb: P },
-  { cat: 'personal', title: 'Project ten', blurb: P },
-  { cat: 'research', title: 'Value of computation', blurb: 'Pricing extra reasoning tokens to decide when chain-of-thought is worth it.', img: './assets/research/voc-reasoning.png' },
-  { cat: 'research', title: 'MiCRo router', blurb: 'Routing tokens to language, logic, social, and world expert modules.', img: './assets/research/micro-router.png' },
-  { cat: 'research', title: 'Embedding clusters', blurb: 'Projecting concept embeddings to see how semantic domains separate.', img: './assets/research/embedding-clusters.png' },
-  { cat: 'research', title: 'Fourth project', blurb: R },
-  { cat: 'writing', title: 'Essay one', blurb: W },
-  { cat: 'writing', title: 'Essay two', blurb: W },
-  { cat: 'writing', title: 'Essay three', blurb: W },
+  { cat: 'projects', title: 'ETA estimator', blurb: 'Quantified transit prediction error across routes, time periods, and weather to surface 6+ minute failure cases.', href: PLACEHOLDER, tag: 'data science' },
+  { cat: 'projects', title: 'LangPal 11Labs pipeline', blurb: 'Built an end-to-end voice loop with ElevenLabs STT/TTS, Gemini, Supabase, FastAPI, and a Flutter app.', href: PLACEHOLDER, tag: 'AI engineering' },
+  { cat: 'projects', title: 'Rational Metareasoning', blurb: 'Replicated value-of-computation style reasoning to decide when extra deliberation is worth the cost.', href: PLACEHOLDER, tag: 'research' },
+  { cat: 'projects', title: 'MiCRo', blurb: 'Replicated an expert-router setup with MLflow tracking, faster training, and module-level routing diagnostics.', href: PLACEHOLDER, tag: 'ML systems' },
+  { cat: 'projects', title: 'Monosemanticity', blurb: 'Trained sparse autoencoders on language-model activations to study interpretable features and superposition.', href: PLACEHOLDER, tag: 'interpretability' },
+  { cat: 'projects', title: 'Societal Impacts Research Paper', blurb: 'Co-authored an NBEA paper using an NLP pipeline over 8K+ Reddit posts to study chatbot perception and bias.', href: PLACEHOLDER, tag: 'NLP research' },
+  { cat: 'projects', title: 'Does a growth mindset nudge boost achievement?', blurb: 'Analyzed whether a short growth-mindset intervention shifts achievement outcomes using a causal/statistical lens.', href: PLACEHOLDER, tag: 'statistics' },
+  { cat: 'passion', title: 'Learning from People', blurb: 'A public interview and writing project about creative people, work, taste, and the strange ways people think.', href: 'https://publicyuzu.org/#/', tag: 'public yuzu' },
+  { cat: 'passion', title: 'Harmonies', blurb: 'A small web experiment in layered sound, language, and visual rhythm.', href: 'https://ruth1445.github.io/harmonies/', tag: 'creative code' },
+  { cat: 'writing', title: 'Learning from People', blurb: 'Long-form conversations and portraits hosted on Public Yuzu.', href: 'https://publicyuzu.org/#/', tag: 'interviews' },
+  { cat: 'writing', title: 'Substack', blurb: 'Essays, notes, and thinking-in-public on AI, philosophy, language, and becoming sharper.', href: 'https://substack.com/@heyruthieee', tag: 'essays' },
 ];
 
 class Component extends DCLogic {
@@ -458,7 +432,7 @@ class Component extends DCLogic {
 
   componentDidMount() {
     this._onChipClick = (ev) => {
-      const a = ev.target && ev.target.closest && ev.target.closest('a[href^="#lab-"]');
+      const a = ev.target && ev.target.closest && ev.target.closest('a[href^="#lab-"],a[href^="#projects-"],a[href^="#passion-"],a[href^="#writing-"]');
       if (!a) return;
       const box = document.querySelector('[data-lab-scroll]');
       const sec = box && box.querySelector(a.getAttribute('href'));
@@ -628,12 +602,12 @@ class Component extends DCLogic {
     const projList = (cat) => PROJECTS.filter((p) => p.cat === cat).map((p, j) => ({
       title: p.title,
       blurb: p.blurb,
-      href: '#' + cat + '-' + j,
+      href: p.href || '#lab-' + cat,
       id: cat + '-' + j,
       slotId: 'lab-' + cat + '-' + j,
       slotHint: 'screenshot for ' + p.title,
       style: 'display:flex; flex-direction:column; text-decoration:none; transition:opacity 240ms ease;',
-      tag: cat,
+      tag: p.tag || cat,
       shotStyle: 'display:block; width:100%; aspect-ratio:4 / 3; background:#EFEFEF;',
       noImg: true,
     }));
@@ -642,18 +616,16 @@ class Component extends DCLogic {
       href: '#lab-' + c.key,
       items: PROJECTS.filter((p) => p.cat === c.key).map((p, j) => ({ title: p.title, href: '#' + c.key + '-' + j })),
     }));
-    const techProjects = projList('tech');
-    const personalProjects = projList('personal');
-    const researchProjects = projList('research');
+    const projectCards = projList('projects');
+    const passionProjects = projList('passion');
     const writingProjects = projList('writing');
 
     return {
       bgStyle,
       homeCardRowStyle,
       labIndex,
-      techProjects,
-      personalProjects,
-      researchProjects,
+      projectCards,
+      passionProjects,
       writingProjects,
       slides,
       barRows,
@@ -695,7 +667,7 @@ class Component extends DCLogic {
 const portfolio = new Component();
 const route = () => {
   const hash = location.hash.slice(1);
-  const page = ['about', 'interests', 'lab', 'contact'].includes(hash) ? hash : /^(lab-|tech-|personal-|research-|writing-)/.test(hash) ? 'lab' : 'home';
+  const page = ['about', 'interests', 'lab', 'contact'].includes(hash) ? hash : /^(lab-|projects-|passion-|writing-)/.test(hash) ? 'lab' : 'home';
   document.body.dataset.page = page;
   portfolio.setState({ page, hover: null });
 };
