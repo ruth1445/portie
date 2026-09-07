@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ruth Sharon — Portfolio</title>
 <script src="./support.js"></script>
-<link rel="stylesheet" href="./about.css?v=7">
+<link rel="stylesheet" href="./about.css?v=8">
 <link rel="icon" href="data:,">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -83,7 +83,7 @@
       <div class="about-board">
         <div class="about-copy">
           <section class="about-cell about-cell--intro" aria-label="Education and location">
-            <p>I am a data scientist based in the NJ/NY area with a Masters degree in Data Science &amp; Statistics from Rutgers University, NB (2026) and a Bachelors degree in IT engineering from CBIT (2019).</p>
+            <p>I am a data scientist based in the <span class="about-location">NJ/NY&nbsp;area</span><span class="about-intro-rest">with a Masters degree in Data Science &amp; Statistics from Rutgers University, NB (2026) and a Bachelors degree in IT engineering from CBIT (2019).</span></p>
           </section>
           <section class="about-cell" aria-label="Previous work">
             <p>I worked as:<br>- a research engineer @ Rutgers University, NB for 1 yr 3 mo<br>- AI/ML engineer @ LangPal for 8 months</p>
@@ -619,7 +619,7 @@ class Component extends DCLogic {
 
     const base = this.props.bgTone || '#A9B7BE';
     const liquidBackdrop = 'radial-gradient(circle at 19% 24%,rgba(150,201,229,.42),transparent 29%),radial-gradient(circle at 78% 73%,rgba(51,255,68,.17),transparent 25%),radial-gradient(circle at 66% 16%,rgba(224,191,234,.25),transparent 23%),#F7F0E2';
-    const bgStyle = `position:fixed; inset:0; z-index:0; pointer-events:none; background:${p === 'home' || p === 'about' ? liquidBackdrop : p === 'lab' || p === 'interests' ? '#FFFFFF' : base};`;
+    const bgStyle = `position:fixed; inset:0; z-index:0; pointer-events:none; background:${p === 'home' || p === 'about' || p === 'lab' ? liquidBackdrop : p === 'interests' ? '#FFFFFF' : base};`;
 
     const labChips = LAB_CATS.map((c) => ({
       label: c.label,
