@@ -23,6 +23,141 @@
   @media (max-width: 700px) {
     .home-card { transform: none !important; transform-origin: center !important; }
   }
+
+  /* Laboratory folder view */
+  .lab-folder-page {
+    position: relative;
+    z-index: 2;
+    min-height: calc(100vh - 78px);
+    overflow: hidden;
+    padding: clamp(34px, 5vh, 62px) 44px 88px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #171814;
+  }
+  .lab-folder-stage {
+    width: min(100%, 1040px);
+    min-height: clamp(520px, 68vh, 760px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1150px;
+  }
+  .lab-folder-stack {
+    position: relative;
+    width: min(86vw, 790px);
+    height: clamp(390px, 52vw, 560px);
+    transform-style: preserve-3d;
+    transform: rotateX(58deg) rotateZ(-1deg) translateY(-26px);
+    filter: drop-shadow(0 46px 42px rgba(44, 55, 50, .24));
+  }
+  .lab-folder {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 84%;
+    height: 62%;
+    transform: translate(-50%, -50%) translateY(var(--folder-y)) translateZ(var(--folder-z)) scale(var(--folder-scale));
+    transform-style: preserve-3d;
+    text-decoration: none;
+    color: #151711;
+    transition: transform 420ms cubic-bezier(.32,.72,0,1), filter 420ms ease;
+  }
+  .lab-folder:hover {
+    transform: translate(-50%, -50%) translateY(calc(var(--folder-y) - 12px)) translateZ(calc(var(--folder-z) + 24px)) scale(var(--folder-scale));
+    filter: brightness(1.04);
+  }
+  .lab-folder__tab {
+    position: absolute;
+    left: var(--tab-left);
+    top: -20%;
+    width: 30%;
+    height: 25%;
+    border: 1.4px solid rgba(22, 24, 18, .52);
+    border-bottom: 0;
+    border-radius: 22px 22px 8px 8px;
+    background:
+      linear-gradient(135deg, rgba(255,255,255,.72), rgba(255,255,255,.22) 44%, var(--folder-tint)),
+      radial-gradient(circle at 30% 10%, rgba(255,255,255,.88), transparent 34%);
+    -webkit-backdrop-filter: blur(28px) saturate(1.5);
+    backdrop-filter: blur(28px) saturate(1.5);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.92),
+      inset 0 -12px 24px rgba(255,255,255,.10);
+  }
+  .lab-folder__body {
+    position: absolute;
+    inset: 0;
+    border: 1.4px solid rgba(22, 24, 18, .55);
+    border-radius: 28px 28px 18px 18px;
+    background:
+      linear-gradient(135deg, rgba(255,255,255,.58), rgba(255,255,255,.16) 44%, var(--folder-tint)),
+      radial-gradient(circle at 28% 8%, rgba(255,255,255,.72), transparent 28%),
+      radial-gradient(circle at 82% 88%, rgba(51,255,68,.10), transparent 34%);
+    -webkit-backdrop-filter: blur(30px) saturate(1.5);
+    backdrop-filter: blur(30px) saturate(1.5);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.92),
+      inset 0 -20px 44px rgba(30, 48, 42, .10),
+      0 28px 42px -28px rgba(23, 32, 30, .42);
+  }
+  .lab-folder__ridge {
+    position: absolute;
+    left: 4%;
+    right: 4%;
+    top: 13%;
+    height: 8px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.34);
+    box-shadow:
+      0 18px 0 rgba(22,24,18,.08),
+      0 36px 0 rgba(255,255,255,.20);
+    opacity: .7;
+  }
+  .lab-folder__label {
+    position: absolute;
+    left: var(--label-left);
+    top: -12%;
+    min-width: 130px;
+    padding: 9px 16px 10px;
+    border-radius: 14px;
+    border: 1px solid rgba(22, 24, 18, .42);
+    background: rgba(246, 241, 229, .72);
+    -webkit-backdrop-filter: blur(18px) saturate(1.35);
+    backdrop-filter: blur(18px) saturate(1.35);
+    font-size: clamp(13px, 1.45vw, 16px);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: .13em;
+    text-align: center;
+    text-transform: lowercase;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.88), 0 10px 18px -18px rgba(21,24,23,.5);
+  }
+  .lab-folder-front {
+    position: absolute;
+    left: 4%;
+    right: 4%;
+    bottom: -10%;
+    height: 20%;
+    transform: translateZ(54px) rotateX(-62deg);
+    transform-origin: center top;
+    border: 1.4px solid rgba(22,24,18,.58);
+    border-radius: 0 0 22px 22px;
+    background: linear-gradient(180deg, rgba(255,255,255,.45), rgba(210,226,219,.26));
+    -webkit-backdrop-filter: blur(20px) saturate(1.35);
+    backdrop-filter: blur(20px) saturate(1.35);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.86);
+  }
+  @media (max-width: 700px) {
+    .lab-folder-page { padding: 52px 20px 70px; align-items: flex-start; }
+    .lab-folder-stage { min-height: 520px; align-items: flex-start; padding-top: 36px; }
+    .lab-folder-stack { width: 112vw; height: 460px; transform: rotateX(57deg) rotateZ(-1deg) translateY(4px) scale(.82); }
+    .lab-folder__label { min-width: 104px; padding: 8px 11px; letter-spacing: .1em; }
+  }
+  /* End Laboratory folder view */
+
 </style>
 
 </head>
@@ -84,78 +219,35 @@
           <section class="about-cell about-cell--intro" aria-label="Education and location">
             <p>I am a data scientist based in the <span class="about-location">NJ/NY&nbsp;area</span><span class="about-intro-rest">with a Masters degree in Data Science &amp; Statistics from Rutgers University, NB (2026) and a Bachelors degree in IT engineering from CBIT (2019).</span></p>
           </section>
-          <section class="about-cell" aria-label="Previous work">
-            <p>I worked as:<br>- a research engineer @ Rutgers University, NB for 1 yr 3 mo<br>- AI/ML engineer @ LangPal for 8 months</p>
-          </section>
-          <section class="about-cell about-cell--current" aria-label="Current work">
-            <p>I work as:<br>- Data Scientist @ Transit Startup</p>
-          </section>
-          <section class="about-cell about-cell--languages" aria-label="Languages">
-            <p>Languages: English, <mark class="about-highlight">Python</mark>, Malayalam, Arabic, <mark class="about-highlight">TypeScript</mark>, Telugu, <mark class="about-highlight">SQL</mark>, Hindi</p>
-          </section>
-        </div>
-        <div class="about-right">
-          <div class="about-gallery">
-            <a class="about-interests" href="#interests" onClick="{{ goInterests }}">check out some of my interests</a>
-            <div class="about-photos">
-              <svg class="about-photo" viewBox="726 241 315 364" role="img" aria-label="Ruth Sharon in sunlight"><image href="./assets/about-reference.png" width="1500" height="836" /></svg>
-              <svg class="about-photo" viewBox="1058 241 313 364" role="img" aria-label="Ruth Sharon celebrating graduation"><image href="./assets/about-reference.png" width="1500" height="836" /></svg>
-            </div>
-          </div>
-          <footer class="about-footer">
-            <nav class="about-socials" aria-label="Social and contact links">
-              <a href="https://www.linkedin.com/in/ruth1445/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><svg class="" viewBox="724 679 45 48" aria-hidden="true"><image href="./assets/about-reference.png" width="1500" height="836" /></svg></a>
-              <a href="https://github.com/ruth1445" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><svg class="" viewBox="781 680 43 48" aria-hidden="true"><image href="./assets/about-reference.png" width="1500" height="836" /></svg></a>
-              <a href="mailto:ruth.sharon@rutgers.edu" aria-label="Email"><svg class="" viewBox="833 681 53 44" aria-hidden="true"><image href="./assets/about-reference.png" width="1500" height="836" /></svg></a>
-              <a href="https://substack.com/@heyruthieee" aria-label="Substack" target="_blank" rel="noopener noreferrer"><svg class="" viewBox="898 676 49 53" aria-hidden="true"><image href="./assets/about-reference.png" width="1500" height="836" /></svg></a>
-              <a href="https://www.instagram.com/heyruthieee/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><svg class="" viewBox="958 680 43 45" aria-hidden="true"><image href="./assets/about-reference.png" width="1500" height="836" /></svg></a>
-            </nav>
-            <div class="about-links">
-              <a href="./assets/RuthSharon__Resume.pdf" target="_blank" rel="noopener noreferrer">resume</a>
-              <a href="https://publicyuzu.org/#/" target="_blank" rel="noopener noreferrer">blog</a>
-              <span class="about-stars"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 1 40 24 63 24 44 39 51 62 32 48 13 62 20 39 1 24 24 24Z"/></svg><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 1 40 24 63 24 44 39 51 62 32 48 13 62 20 39 1 24 24 24Z"/></svg></span>
-            </div>
-          </footer>
-        </div>
+  <sc-if value="{{ isLab }}">
+  <main class="lab-folder-page" aria-label="Laboratory">
+    <div class="lab-folder-stage">
+      <div class="lab-folder-stack" aria-label="Laboratory folders">
+        <a class="lab-folder" href="#lab-projects" style="--folder-y:-104px; --folder-z:-74px; --folder-scale:.88; --folder-tint:rgba(173, 203, 209, .30); --tab-left:8%; --label-left:10%;" aria-label="projects">
+          <span class="lab-folder__tab"></span>
+          <span class="lab-folder__body"></span>
+          <span class="lab-folder__ridge"></span>
+          <span class="lab-folder__label">projects</span>
+        </a>
+        <a class="lab-folder" href="#lab-passion" style="--folder-y:-28px; --folder-z:-8px; --folder-scale:.96; --folder-tint:rgba(226, 206, 222, .34); --tab-left:35%; --label-left:39%;" aria-label="passion">
+          <span class="lab-folder__tab"></span>
+          <span class="lab-folder__body"></span>
+          <span class="lab-folder__ridge"></span>
+          <span class="lab-folder__label">passion</span>
+        </a>
+        <a class="lab-folder" href="#lab-writing" style="--folder-y:54px; --folder-z:62px; --folder-scale:1.04; --folder-tint:rgba(204, 235, 183, .28); --tab-left:62%; --label-left:68%;" aria-label="writing">
+          <span class="lab-folder__tab"></span>
+          <span class="lab-folder__body"></span>
+          <span class="lab-folder__ridge"></span>
+          <span class="lab-folder__label">writing</span>
+        </a>
+        <span class="lab-folder-front" aria-hidden="true"></span>
       </div>
     </div>
   </main>
   </sc-if>
 
-  <sc-if value="{{ isInterests }}">
-  <div style="position: relative; z-index: 2; height: calc(100vh - 78px); overflow-y: auto; padding: 24px 44px 70px; display: flex; flex-direction: column; align-items: center; gap: 30px; font-family: 'Ascender Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #5C5C5C;">
-    <h1 style="margin: 0; font-size: clamp(22px, 2.2vw, 30px); font-weight: 700;">interests</h1>
-    <div class="interests-grid" style="width: min(100%, 1000px); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 1.8vw, 24px);">
-      <sc-for list="{{ interests }}" as="it" hint-placeholder-count="6">
-        <div style="min-width: 0; display: flex; flex-direction: column; gap: 10px;">
-          <span style="display: block; width: 100%; min-width: 0; min-height: 0; aspect-ratio: 4 / 3; overflow: hidden; background: #EFEFEF; border: 2px solid #111;">
-            <image-slot id="{{ it.slotId }}" shape="rect" placeholder="{{ it.hint }}" style="width: 100%; height: 100%;"></image-slot>
-          </span>
-          <span style="font-size: 15px;">{{ it.label }}</span>
-        </div>
-      </sc-for>
-    </div>
-  </div>
-  </sc-if>
-
-  <sc-if value="{{ isLab }}">
-  <div class="lab-page" data-lab-scroll="1" style="position: relative; z-index: 2; height: calc(100vh - 78px); overflow-y: auto; padding: 54px 44px 96px; display: flex; justify-content: center; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #1D1D1A;">
-    <div class="lab-content" style="width: min(100%, 1164px); display: flex; flex-direction: column; gap: 70px;">
-
-      <section class="lab-section lab-section--catalog" id="lab-projects" data-sec="lab-projects" style="scroll-margin-top: 10px; width: 100%; display: flex; flex-direction: column; gap: 44px; padding: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none;">
-        <div class="lab-topline" style="display: flex; align-items: center; justify-content: space-between; gap: 18px; padding-bottom: 10px; border-bottom: 1.5px solid rgba(31, 36, 35, .64); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: #16150F;">
-          <span>Laboratory</span>
-          <span>Projects</span>
-        </div>
-        <div class="lab-grid" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 54px 34px;">
-          <sc-for list="{{ projectCards }}" as="p" hint-placeholder-count="7">
-            <a class="lab-project" id="{{ p.id }}" href="{{ p.href }}" style="{{ p.style }}" style-hover="opacity: 0.72;">
-              <span style="{{ p.shotStyle }}">
-                <sc-if value="{{ p.image }}" style="display:block; width:100%; height:100%;">
-                  <img src="{{ p.image }}" alt="{{ p.title }} preview" style="display:block; width:100%; height:100%; object-fit:cover;">
-                </sc-if>
-                <sc-if value="{{ p.noImg }}">
-                  <image-slot id="{{ p.slotId }}" shape="rect" placeholder="{{ p.slotHint }}" style="width: 100%; height: 100%;"></image-slot>
+         <image-slot id="{{ p.slotId }}" shape="rect" placeholder="{{ p.slotHint }}" style="width: 100%; height: 100%;"></image-slot>
                 </sc-if>
               </span>
               <span style="display: flex; flex-direction: column; gap: 0; padding: 17px 0 0; text-align: left;">
