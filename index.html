@@ -30,7 +30,7 @@
     z-index: 2;
     min-height: calc(100vh - 78px);
     overflow: hidden;
-    padding: clamp(22px, 4vh, 52px) 44px 78px;
+    padding: clamp(36px, 6vh, 76px) 44px 78px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -38,152 +38,126 @@
     color: #171814;
   }
   .lab-folder-stage {
-    width: min(100%, 1080px);
+    width: min(100%, 1240px);
     min-height: clamp(560px, 72vh, 780px);
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
-    perspective: 1250px;
-    perspective-origin: 50% 45%;
+    padding-top: clamp(34px, 6vh, 76px);
   }
   .lab-folder-stack {
     position: relative;
-    width: min(82vw, 760px);
-    height: clamp(500px, 58vw, 620px);
-    transform-style: preserve-3d;
-    transform: rotateX(3deg) rotateY(-9deg) translateY(8px);
-    filter: drop-shadow(0 42px 34px rgba(36, 49, 44, .22));
+    width: min(92vw, 1120px);
+    height: clamp(430px, 54vw, 620px);
+    transform: translateY(28px);
+    filter: drop-shadow(0 42px 40px rgba(37, 49, 43, .18));
   }
   .lab-folder {
     position: absolute;
     left: 50%;
-    top: 50%;
-    width: 82%;
-    height: 72%;
-    transform: translate(-50%, -50%) translateX(var(--folder-x)) translateY(var(--folder-y)) translateZ(var(--folder-z)) rotateY(var(--folder-turn)) scale(var(--folder-scale));
-    transform-style: preserve-3d;
+    bottom: var(--folder-bottom);
+    z-index: var(--folder-z);
+    width: var(--folder-width);
+    height: var(--folder-height);
+    transform: translateX(-50%) scaleX(var(--folder-sx, 1)) scaleY(var(--folder-sy, 1));
+    transform-origin: center bottom;
+    display: block;
     text-decoration: none;
-    color: #151711;
-    transition: transform 440ms cubic-bezier(.32,.72,0,1), filter 420ms ease;
+    color: #141610;
+    transition: transform 420ms cubic-bezier(.32,.72,0,1), filter 360ms ease;
   }
   .lab-folder:hover {
-    transform: translate(-50%, -50%) translateX(var(--folder-x)) translateY(calc(var(--folder-y) - 10px)) translateZ(calc(var(--folder-z) + 42px)) rotateY(var(--folder-turn)) scale(var(--folder-scale));
-    filter: brightness(1.04);
+    transform: translateX(-50%) translateY(-8px) scaleX(var(--folder-sx, 1)) scaleY(var(--folder-sy, 1));
+    filter: brightness(1.035);
   }
   .lab-folder__tab {
     position: absolute;
     left: var(--tab-left);
-    top: -14%;
-    width: 31%;
-    height: 19%;
-    border: 1.45px solid rgba(22, 24, 18, .58);
+    top: calc(-1 * var(--tab-height) + 1px);
+    width: var(--tab-width);
+    height: var(--tab-height);
+    border: 1.25px solid rgba(17, 19, 14, .48);
     border-bottom: 0;
-    border-radius: 22px 22px 6px 6px;
+    border-radius: 22px 22px 7px 7px;
     background:
-      linear-gradient(135deg, rgba(255,255,255,.76), rgba(255,255,255,.28) 46%, var(--folder-tint)),
-      radial-gradient(circle at 28% 6%, rgba(255,255,255,.92), transparent 35%);
-    -webkit-backdrop-filter: blur(28px) saturate(1.55);
-    backdrop-filter: blur(28px) saturate(1.55);
+      linear-gradient(135deg, rgba(255,255,255,.78), rgba(255,255,255,.24) 54%, var(--folder-tint)),
+      var(--folder-color);
+    -webkit-backdrop-filter: blur(24px) saturate(1.4);
+    backdrop-filter: blur(24px) saturate(1.4);
     box-shadow:
-      inset 0 1px 0 rgba(255,255,255,.92),
-      inset 0 -10px 22px rgba(23,34,31,.07),
-      0 9px 15px -14px rgba(21,24,23,.55);
+      inset 0 1px 0 rgba(255,255,255,.88),
+      inset 0 -12px 24px rgba(30,36,31,.055),
+      0 8px 16px -16px rgba(19,22,19,.5);
   }
   .lab-folder__body {
     position: absolute;
     inset: 0;
-    border: 1.55px solid rgba(22, 24, 18, .62);
-    border-radius: 30px 30px 24px 24px;
+    overflow: hidden;
+    border: 1.25px solid rgba(17, 19, 14, .50);
+    border-radius: 22px 22px 8px 8px;
     background:
-      linear-gradient(145deg, rgba(255,255,255,.68), rgba(255,255,255,.20) 48%, var(--folder-tint)),
-      radial-gradient(circle at 26% 10%, rgba(255,255,255,.84), transparent 30%),
-      radial-gradient(circle at 82% 86%, rgba(51,255,68,.10), transparent 36%);
-    -webkit-backdrop-filter: blur(32px) saturate(1.55);
-    backdrop-filter: blur(32px) saturate(1.55);
+      linear-gradient(150deg, rgba(255,255,255,.70), rgba(255,255,255,.22) 48%, var(--folder-tint)),
+      radial-gradient(circle at 24% 10%, rgba(255,255,255,.82), transparent 28%),
+      radial-gradient(circle at 82% 92%, rgba(51,255,68,.08), transparent 36%),
+      var(--folder-color);
+    -webkit-backdrop-filter: blur(30px) saturate(1.45);
+    backdrop-filter: blur(30px) saturate(1.45);
     box-shadow:
-      inset 0 1px 0 rgba(255,255,255,.94),
-      inset 0 -28px 48px rgba(27, 45, 40, .11),
-      inset 12px 0 34px rgba(255,255,255,.16),
-      0 34px 44px -32px rgba(23, 32, 30, .42);
+      inset 0 1px 0 rgba(255,255,255,.90),
+      inset 0 -28px 44px rgba(29, 45, 39, .08),
+      0 22px 30px -30px rgba(22, 28, 24, .48);
   }
   .lab-folder__body::before {
     content: "";
     position: absolute;
-    left: 6%;
-    right: 6%;
-    top: 12%;
-    height: 10px;
+    left: 22px;
+    right: 22px;
+    top: 16px;
+    height: 1px;
     border-radius: 999px;
-    background: rgba(255,255,255,.44);
+    background: rgba(255,255,255,.56);
     box-shadow:
-      0 31px 0 rgba(22,24,18,.055),
-      0 62px 0 rgba(255,255,255,.24);
+      0 18px 0 rgba(17,19,14,.075),
+      0 38px 0 rgba(255,255,255,.22);
   }
   .lab-folder__body::after {
     content: "";
     position: absolute;
-    left: 5%;
-    right: 5%;
-    bottom: 8%;
-    height: 22%;
+    left: 6%;
+    right: 6%;
+    top: 24%;
+    height: 42%;
     border-radius: 20px;
-    border: 1px solid rgba(22,24,18,.16);
-    background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.22));
+    border: 1px solid rgba(17,19,14,.08);
+    background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.02));
+    opacity: .58;
   }
   .lab-folder__label {
     position: absolute;
-    left: var(--label-left);
-    top: -7%;
-    min-width: 128px;
-    padding: 9px 16px 10px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -48%);
+    width: min(76%, 168px);
+    padding: 8px 14px 9px;
     border-radius: 999px;
-    border: 1px solid rgba(22, 24, 18, .43);
-    background: rgba(246, 241, 229, .78);
-    -webkit-backdrop-filter: blur(18px) saturate(1.35);
-    backdrop-filter: blur(18px) saturate(1.35);
-    font-size: clamp(13px, 1.35vw, 16px);
+    border: 1px solid rgba(17, 19, 14, .34);
+    background: rgba(248, 242, 228, .70);
+    -webkit-backdrop-filter: blur(16px) saturate(1.3);
+    backdrop-filter: blur(16px) saturate(1.3);
+    font-size: clamp(13px, 1.25vw, 16px);
     font-weight: 700;
     line-height: 1;
-    letter-spacing: .18em;
+    letter-spacing: .20em;
     text-align: center;
     text-transform: lowercase;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,.88), 0 10px 18px -18px rgba(21,24,23,.5);
-    transform: translateZ(28px);
-  }
-  .lab-folder__spine {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -8%;
-    height: 18%;
-    transform: rotateX(-68deg);
-    transform-origin: center top;
-    border: 1.45px solid rgba(22,24,18,.54);
-    border-top: 0;
-    border-radius: 0 0 24px 24px;
-    background: linear-gradient(180deg, rgba(255,255,255,.36), rgba(198,218,211,.28));
-    -webkit-backdrop-filter: blur(20px) saturate(1.35);
-    backdrop-filter: blur(20px) saturate(1.35);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,.78), 0 24px 34px -28px rgba(23,32,30,.36);
-  }
-  .lab-folder-floor {
-    position: absolute;
-    left: 13%;
-    right: 13%;
-    bottom: 1%;
-    height: 20%;
-    transform: translateZ(-86px) rotateX(76deg);
-    transform-origin: center bottom;
-    border-radius: 28px;
-    background: radial-gradient(ellipse at center, rgba(48,65,58,.20), transparent 68%);
-    filter: blur(4px);
-    pointer-events: none;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.84);
   }
   @media (max-width: 700px) {
-    .lab-folder-page { padding: 50px 20px 76px; align-items: center; }
-    .lab-folder-stage { min-height: 560px; }
-    .lab-folder-stack { width: 106vw; height: 520px; transform: rotateX(4deg) rotateY(-7deg) translateY(14px) scale(.82); }
-    .lab-folder__label { min-width: 106px; padding: 8px 11px; letter-spacing: .12em; }
+    .lab-folder-page { padding: 56px 18px 70px; }
+    .lab-folder-stage { min-height: 540px; }
+    .lab-folder-stack { width: 106vw; height: 500px; transform: translateY(20px) scale(.86); }
+    .lab-folder { width: min(var(--folder-width), 98%); }
+    .lab-folder__label { width: min(82%, 128px); padding: 7px 10px 8px; letter-spacing: .13em; }
   }
   /* End Laboratory folder view */
 
@@ -306,24 +280,17 @@
   <main class="lab-folder-page" aria-label="Laboratory">
     <div class="lab-folder-stage">
       <div class="lab-folder-stack" aria-label="Laboratory folders">
-        <span class="lab-folder-floor" aria-hidden="true"></span>
-        <a class="lab-folder" id="lab-projects" href="#lab-projects" style="--folder-x:-16px; --folder-y:-88px; --folder-z:-58px; --folder-scale:.92; --folder-turn:3deg; --folder-tint:rgba(173, 203, 209, .30); --tab-left:9%; --label-left:13%;" aria-label="projects">
-          <span class="lab-folder__tab"></span>
+        <a class="lab-folder" id="lab-projects" href="#lab-projects" style="--folder-bottom: 262px; --folder-width: 82%; --folder-height: 238px; --folder-sx: .98; --folder-sy: .96; --folder-z: 1; --folder-color: rgba(205, 226, 224, .58); --folder-tint: rgba(153, 199, 210, .24); --tab-left: 8%; --tab-width: 24%; --tab-height: 48px;" aria-label="projects">
+          <span class="lab-folder__tab"><span class="lab-folder__label">projects</span></span>
           <span class="lab-folder__body"></span>
-          <span class="lab-folder__spine"></span>
-          <span class="lab-folder__label">projects</span>
         </a>
-        <a class="lab-folder" id="lab-passion" href="#lab-passion" style="--folder-x:12px; --folder-y:-18px; --folder-z:8px; --folder-scale:.98; --folder-turn:0deg; --folder-tint:rgba(226, 206, 222, .34); --tab-left:35%; --label-left:39%;" aria-label="passion">
-          <span class="lab-folder__tab"></span>
+        <a class="lab-folder" id="lab-passion" href="#lab-passion" style="--folder-bottom: 178px; --folder-width: 87%; --folder-height: 302px; --folder-sx: 1; --folder-sy: .98; --folder-z: 2; --folder-color: rgba(238, 216, 225, .58); --folder-tint: rgba(222, 184, 207, .24); --tab-left: 37%; --tab-width: 24%; --tab-height: 50px;" aria-label="passion">
+          <span class="lab-folder__tab"><span class="lab-folder__label">passion</span></span>
           <span class="lab-folder__body"></span>
-          <span class="lab-folder__spine"></span>
-          <span class="lab-folder__label">passion</span>
         </a>
-        <a class="lab-folder" id="lab-writing" href="#lab-writing" style="--folder-x:42px; --folder-y:56px; --folder-z:82px; --folder-scale:1.05; --folder-turn:-3deg; --folder-tint:rgba(204, 235, 183, .28); --tab-left:61%; --label-left:66%;" aria-label="writing">
-          <span class="lab-folder__tab"></span>
+        <a class="lab-folder" id="lab-writing" href="#lab-writing" style="--folder-bottom: 68px; --folder-width: 94%; --folder-height: 390px; --folder-sx: 1.015; --folder-sy: 1; --folder-z: 3; --folder-color: rgba(223, 235, 174, .60); --folder-tint: rgba(198, 226, 160, .24); --tab-left: 66%; --tab-width: 24%; --tab-height: 52px;" aria-label="writing">
+          <span class="lab-folder__tab"><span class="lab-folder__label">writing</span></span>
           <span class="lab-folder__body"></span>
-          <span class="lab-folder__spine"></span>
-          <span class="lab-folder__label">writing</span>
         </a>
       </div>
     </div>
