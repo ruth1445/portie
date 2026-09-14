@@ -20,142 +20,221 @@
   a { color: #23201A; text-decoration: none; }
   a:hover { color: #C4531F; }
   @keyframes riseIn { from { opacity: 0; transform: translateY(18px) scale(0.985); filter: blur(6px); } to { opacity: 1; transform: none; filter: blur(0); } }
+  @keyframes pageFloatIn { from { opacity: 0; transform: translateY(28px) scale(.985); filter: blur(10px); } to { opacity: 1; transform: none; filter: blur(0); } }
+  @keyframes labCardReveal { from { opacity: .18; transform: translateY(72px) scale(.96); } to { opacity: 1; transform: none; } }
+  [data-page="lab"] .site-header a { color: #EAF4EF !important; text-shadow: 0 1px 18px rgba(179,236,209,.16); }
+  [data-page="lab"] .site-header a:hover { color: #F0A9B7 !important; }
   @media (max-width: 700px) {
     .home-card { transform: none !important; transform-origin: center !important; }
   }
 
   /* Laboratory folder view */
-  .lab-folder-page {
+  .lab-night-page {
     position: relative;
     z-index: 2;
-    min-height: calc(100vh - 78px);
-    overflow: hidden;
-    padding: clamp(30px, 5vh, 66px) clamp(10px, 1.4vw, 24px) 0;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
+    height: calc(100vh - 78px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0 clamp(16px, 3vw, 46px) 96px;
+    color: #EAF4EF;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: #171814;
+    scroll-behavior: smooth;
+    animation: pageFloatIn 760ms cubic-bezier(.2,.9,.2,1) both;
   }
-  .lab-folder-stage {
-    width: 100vw;
-    min-height: clamp(560px, 72vh, 780px);
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    padding-top: clamp(34px, 6vh, 72px);
-  }
-  .lab-folder-stack {
-    position: relative;
-    width: min(97vw, 1720px);
-    height: clamp(440px, 43vw, 660px);
-    transform: none;
-    transform-origin: center bottom;
-    filter: drop-shadow(0 28px 28px rgba(42, 46, 35, .14));
-  }
-  .lab-folder {
-    position: absolute;
-    left: 50%;
-    bottom: var(--folder-bottom);
-    z-index: var(--folder-z);
-    width: var(--folder-width);
-    height: var(--folder-height);
-    transform: translateX(-50%);
-    transform-origin: center bottom;
-    display: block;
-    text-decoration: none;
-    color: #141610;
-    transition: transform 360ms cubic-bezier(.32,.72,0,1), filter 260ms ease;
-  }
-  .lab-folder:hover {
-    transform: translateX(-50%) translateY(-6px);
-    filter: brightness(1.025);
-  }
-  .lab-folder__tab {
-    position: absolute;
-    left: var(--tab-left);
-    top: calc(-1 * var(--tab-height) + 1px);
-    z-index: 5;
-    width: var(--tab-width);
-    height: var(--tab-height);
-    border: 1.15px solid rgba(17, 19, 14, .58);
-    border-bottom: 0;
-    border-radius: 21px 21px 0 0;
-    background: var(--folder-color);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,.45);
-  }
-  .lab-folder__files {
-    position: absolute;
-    left: 18px;
-    right: 18px;
-    top: -4px;
-    height: 90px;
-    z-index: 1;
-    pointer-events: none;
-  }
-  .lab-folder__file {
-    position: absolute;
-    left: calc(var(--i) * 7px);
-    right: calc(var(--i) * 5px);
-    top: calc(var(--i) * -8px);
-    height: 64px;
-    border: 1.05px solid rgba(17, 19, 14, .42);
-    border-radius: 17px 17px 5px 5px;
-    background: var(--file-color);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,.52);
-  }
-  .lab-folder__body {
-    position: absolute;
+  .lab-night-page::before {
+    content: "";
+    position: fixed;
     inset: 0;
-    z-index: 2;
-    overflow: hidden;
-    border: 1.15px solid rgba(17, 19, 14, .60);
-    border-radius: 21px 21px 0 0;
-    background: var(--folder-color);
-    box-shadow:
-      inset 0 1px 0 rgba(255,255,255,.46),
-      inset 0 -18px 32px rgba(39, 40, 24, .045),
-      0 14px 20px -24px rgba(22, 28, 24, .44);
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 72% 17%, rgba(228, 139, 170, .16), transparent 27%),
+      radial-gradient(circle at 20% 28%, rgba(101, 168, 190, .20), transparent 30%),
+      radial-gradient(circle at 78% 82%, rgba(105, 218, 121, .12), transparent 29%);
+    mix-blend-mode: screen;
   }
-  .lab-folder__body::before {
+  .lab-hero {
+    min-height: calc(100vh - 78px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: min(100%, 1120px);
+    margin: 0 auto;
+    padding: clamp(64px, 10vh, 120px) 0 82px;
+  }
+  .lab-kicker {
+    margin: 0 0 18px;
+    font-size: clamp(13px, 1.2vw, 16px);
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: rgba(234,244,239,.66);
+  }
+  .lab-title {
+    margin: 0;
+    max-width: 880px;
+    font-size: clamp(48px, 9vw, 128px);
+    line-height: .88;
+    letter-spacing: -.055em;
+    font-weight: 700;
+    color: #F6EEE8;
+    text-wrap: balance;
+  }
+  .lab-blurb {
+    max-width: 680px;
+    margin: 28px 0 0;
+    font-size: clamp(17px, 1.65vw, 24px);
+    line-height: 1.42;
+    color: rgba(234,244,239,.76);
+    text-wrap: pretty;
+  }
+  .lab-jump-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 34px;
+  }
+  .lab-jump-row a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 128px;
+    padding: 12px 18px 13px;
+    border: 1px solid rgba(240,169,183,.52);
+    border-radius: 999px;
+    background: rgba(240,169,183,.13);
+    color: #F6D7DE;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .16em;
+    text-transform: lowercase;
+    transition: transform 220ms ease, background 220ms ease, border-color 220ms ease;
+  }
+  .lab-jump-row a:hover {
+    transform: translateY(-2px);
+    background: rgba(240,169,183,.22);
+    border-color: rgba(240,169,183,.74);
+    color: #FFE4EA;
+  }
+  .lab-section {
+    width: min(100%, 1260px);
+    margin: 0 auto;
+    padding: 44px 0 78px;
+  }
+  .lab-section-bar {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 0 0 12px;
+    margin-bottom: clamp(24px, 4vw, 42px);
+    border-bottom: 1px solid rgba(234,244,239,.38);
+    color: rgba(234,244,239,.86);
+    font-size: clamp(13px, 1.35vw, 17px);
+    font-weight: 700;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+  }
+  .lab-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(18px, 2.3vw, 34px);
+  }
+  .lab-preview-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 0;
+    color: #EAF4EF;
+    text-decoration: none;
+    animation: labCardReveal both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 42%;
+  }
+  .lab-preview-surface {
+    position: relative;
+    aspect-ratio: 1 / 1.18;
+    border: 2px solid rgba(232, 126, 153, .72);
+    border-radius: 18px;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 38% 35%, rgba(131, 238, 137, .20), transparent 22%),
+      radial-gradient(circle at 66% 58%, rgba(122, 209, 141, .18), transparent 20%),
+      linear-gradient(145deg, rgba(91,98,85,.76), rgba(38,46,39,.86));
+    box-shadow:
+      0 30px 42px -34px rgba(0,0,0,.72),
+      inset 0 1px 0 rgba(255,255,255,.07);
+    transform: perspective(900px) rotateX(5deg) rotateY(-4deg);
+    transform-origin: center center;
+    transition: transform 360ms cubic-bezier(.32,.72,0,1), border-color 260ms ease, box-shadow 260ms ease;
+  }
+  .lab-preview-card:nth-child(4n + 2) .lab-preview-surface { transform: perspective(900px) rotateX(4deg) rotateY(3deg); border-color: rgba(205, 163, 223, .70); }
+  .lab-preview-card:nth-child(4n + 3) .lab-preview-surface { transform: perspective(900px) rotateX(6deg) rotateY(-2deg); border-color: rgba(128, 203, 205, .68); }
+  .lab-preview-card:nth-child(4n) .lab-preview-surface { transform: perspective(900px) rotateX(4deg) rotateY(4deg); border-color: rgba(222, 222, 142, .62); }
+  .lab-preview-card:hover .lab-preview-surface {
+    transform: perspective(900px) rotateX(0deg) rotateY(0deg) translateY(-8px) scale(1.015);
+    box-shadow: 0 38px 56px -34px rgba(0,0,0,.82), inset 0 1px 0 rgba(255,255,255,.10);
+  }
+  .lab-preview-surface::before {
     content: "";
     position: absolute;
-    left: 20px;
-    right: 20px;
-    top: 18px;
-    height: 1px;
-    border-radius: 999px;
-    background: rgba(17,19,14,.13);
-    box-shadow:
-      0 17px 0 rgba(255,255,255,.25),
-      0 34px 0 rgba(17,19,14,.08),
-      0 51px 0 rgba(255,255,255,.18);
+    inset: 0;
+    background:
+      radial-gradient(circle at 26% 42%, rgba(209,235,226,.16), transparent 17%),
+      radial-gradient(circle at 72% 28%, rgba(209,235,226,.10), transparent 16%),
+      radial-gradient(circle at 64% 74%, rgba(146,234,136,.12), transparent 18%);
+    opacity: .78;
   }
-  .lab-folder__label {
+  .lab-preview-surface::after {
+    content: "";
     position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -48%);
-    width: min(76%, 168px);
-    padding: 8px 14px 9px;
-    border-radius: 999px;
-    border: 1px solid rgba(17, 19, 14, .42);
-    background: rgba(248, 242, 228, .78);
-    font-size: clamp(13px, 1.18vw, 16px);
+    inset: 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(234,244,239,.08);
+    background: rgba(234,244,239,.025);
+  }
+  .lab-preview-meta {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 14px;
+    color: rgba(234,244,239,.88);
+  }
+  .lab-preview-title {
+    min-width: 0;
+    font-size: clamp(14px, 1.25vw, 18px);
+    line-height: 1.08;
     font-weight: 700;
-    line-height: 1;
-    letter-spacing: .20em;
-    text-align: center;
-    text-transform: lowercase;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,.65);
+    letter-spacing: -.01em;
+  }
+  .lab-preview-tag {
+    flex: 0 0 auto;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: rgba(246,215,222,.58);
+  }
+  @supports not (animation-timeline: view()) {
+    .lab-preview-card {
+      animation: pageFloatIn 760ms cubic-bezier(.2,.9,.2,1) both;
+    }
+    .lab-preview-card:nth-child(2) { animation-delay: 80ms; }
+    .lab-preview-card:nth-child(3) { animation-delay: 140ms; }
+    .lab-preview-card:nth-child(4) { animation-delay: 200ms; }
+  }
+  @media (max-width: 980px) {
+    .lab-preview-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .lab-title { max-width: 760px; }
   }
   @media (max-width: 700px) {
-    .lab-folder-page { padding: 56px 8px 0; }
-    .lab-folder-stage { min-height: 540px; }
-    .lab-folder-stack { width: 102vw; height: 500px; transform: scale(.88); transform-origin: center bottom; }
-    .lab-folder__files { left: 10px; right: 10px; }
-    .lab-folder__file { left: calc(var(--i) * 4px); right: calc(var(--i) * 3px); top: calc(var(--i) * -6px); }
-    .lab-folder__label { width: min(82%, 128px); padding: 7px 10px 8px; letter-spacing: .13em; }
+    .lab-night-page { height: calc(100vh - 78px); padding: 0 18px 72px; }
+    .lab-hero { min-height: calc(100vh - 78px); padding-top: 54px; }
+    .lab-preview-grid { grid-template-columns: 1fr; gap: 28px; }
+    .lab-preview-surface { aspect-ratio: 1.35 / 1; transform: none !important; }
+    .lab-section-bar { letter-spacing: .12em; }
   }
   /* End Laboratory folder view */
 
@@ -275,40 +354,62 @@
   </sc-if>
 
   <sc-if value="{{ isLab }}">
-  <main class="lab-folder-page" aria-label="Laboratory">
-    <div class="lab-folder-stage">
-      <div class="lab-folder-stack" aria-label="Laboratory folders">
-        <a class="lab-folder" id="lab-projects" href="#lab-projects" style="--folder-bottom: 212px; --folder-width: 86%; --folder-height: 236px; --folder-z: 1; --folder-color: #cfe6e6; --tab-left: 7%; --tab-width: 22%; --tab-height: 48px;" aria-label="projects">
-          <span class="lab-folder__files" aria-hidden="true">
-          <span class="lab-folder__file" style="--i:0; --file-color:#ecdfb1;"></span>
-          <span class="lab-folder__file" style="--i:1; --file-color:#dfe9c7;"></span>
-          <span class="lab-folder__file" style="--i:2; --file-color:#cfe6e6;"></span>
-          <span class="lab-folder__file" style="--i:3; --file-color:#ead7e1;"></span>
-          <span class="lab-folder__file" style="--i:4; --file-color:#f0e7b7;"></span>
-          <span class="lab-folder__file" style="--i:5; --file-color:#d7ead3;"></span>
-          <span class="lab-folder__file" style="--i:6; --file-color:#d6dfef;"></span>
-          </span>
-          <span class="lab-folder__tab"><span class="lab-folder__label">projects</span></span>
-          <span class="lab-folder__body"></span>
-        </a>
-        <a class="lab-folder" id="lab-passion" href="#lab-passion" style="--folder-bottom: 118px; --folder-width: 91%; --folder-height: 308px; --folder-z: 2; --folder-color: #ead7e1; --tab-left: 38%; --tab-width: 22%; --tab-height: 50px;" aria-label="passion">
-          <span class="lab-folder__files" aria-hidden="true">
-          <span class="lab-folder__file" style="--i:0; --file-color:#f0d9df;"></span>
-          <span class="lab-folder__file" style="--i:1; --file-color:#d9ead5;"></span>
-          </span>
-          <span class="lab-folder__tab"><span class="lab-folder__label">passion</span></span>
-          <span class="lab-folder__body"></span>
-        </a>
-        <a class="lab-folder" id="lab-writing" href="#lab-writing" style="--folder-bottom: 0px; --folder-width: 98%; --folder-height: 402px; --folder-z: 3; --folder-color: #e8e28f; --tab-left: 68%; --tab-width: 22%; --tab-height: 52px;" aria-label="writing">
-          <span class="lab-folder__files" aria-hidden="true">
-          <span class="lab-folder__file" style="--i:0; --file-color:#e9e0af;"></span>
-          <span class="lab-folder__file" style="--i:1; --file-color:#d7e5ee;"></span>
-          </span>
-          <span class="lab-folder__tab"><span class="lab-folder__label">writing</span></span>
-          <span class="lab-folder__body"></span>
-        </a>
+  <main class="lab-night-page" aria-label="Laboratory" data-lab-scroll>
+    <section class="lab-hero" aria-label="Laboratory introduction">
+      <p class="lab-kicker">Laboratory</p>
+      <h1 class="lab-title">projects, experiments, and open threads.</h1>
+      <p class="lab-blurb">A working archive of the things I have built, replicated, tested, written, and kept thinking about. The thumbnails are intentionally blank for now so the right images can land here next.</p>
+      <nav class="lab-jump-row" aria-label="Laboratory sections">
+        <sc-for list="{{ labIndex }}" as="cat" hint-placeholder-count="3">
+          <a href="{{ cat.href }}">{{ cat.label }}</a>
+        </sc-for>
+      </nav>
+    </section>
+
+    <section class="lab-section" id="lab-projects" aria-label="Projects">
+      <div class="lab-section-bar"><span>laboratory</span><span>projects</span></div>
+      <div class="lab-preview-grid">
+        <sc-for list="{{ projectCards }}" as="project" hint-placeholder-count="7">
+          <a class="lab-preview-card" href="{{ project.href }}" target="{{ project.target }}" rel="{{ project.rel }}">
+            <span class="lab-preview-surface" aria-hidden="true"></span>
+            <span class="lab-preview-meta">
+              <span class="lab-preview-title">{{ project.title }}</span>
+              <span class="lab-preview-tag">{{ project.tag }}</span>
+            </span>
+          </a>
+        </sc-for>
       </div>
-    </div>
+    </section>
+
+    <section class="lab-section" id="lab-passion" aria-label="Passion projects">
+      <div class="lab-section-bar"><span>laboratory</span><span>passion</span></div>
+      <div class="lab-preview-grid">
+        <sc-for list="{{ passionProjects }}" as="project" hint-placeholder-count="2">
+          <a class="lab-preview-card" href="{{ project.href }}" target="{{ project.target }}" rel="{{ project.rel }}">
+            <span class="lab-preview-surface" aria-hidden="true"></span>
+            <span class="lab-preview-meta">
+              <span class="lab-preview-title">{{ project.title }}</span>
+              <span class="lab-preview-tag">{{ project.tag }}</span>
+            </span>
+          </a>
+        </sc-for>
+      </div>
+    </section>
+
+    <section class="lab-section" id="lab-writing" aria-label="Writing">
+      <div class="lab-section-bar"><span>laboratory</span><span>writing</span></div>
+      <div class="lab-preview-grid">
+        <sc-for list="{{ writingProjects }}" as="project" hint-placeholder-count="2">
+          <a class="lab-preview-card" href="{{ project.href }}" target="{{ project.target }}" rel="{{ project.rel }}">
+            <span class="lab-preview-surface" aria-hidden="true"></span>
+            <span class="lab-preview-meta">
+              <span class="lab-preview-title">{{ project.title }}</span>
+              <span class="lab-preview-tag">{{ project.tag }}</span>
+            </span>
+          </a>
+        </sc-for>
+      </div>
+    </section>
   </main>
   </sc-if>
 
@@ -687,7 +788,9 @@ class Component extends DCLogic {
 
     const base = this.props.bgTone || '#A9B7BE';
     const liquidBackdrop = 'radial-gradient(circle at 19% 24%,rgba(150,201,229,.42),transparent 29%),radial-gradient(circle at 78% 73%,rgba(51,255,68,.17),transparent 25%),radial-gradient(circle at 66% 16%,rgba(224,191,234,.25),transparent 23%),#F7F0E2';
-    const bgStyle = `position:fixed; inset:0; z-index:0; pointer-events:none; background:${p === 'home' || p === 'about' || p === 'lab' ? liquidBackdrop : p === 'interests' ? '#FFFFFF' : base};`;
+    const nightBackdrop = 'radial-gradient(circle at 19% 24%,rgba(54,96,116,.54),transparent 29%),radial-gradient(circle at 78% 73%,rgba(67,160,74,.20),transparent 25%),radial-gradient(circle at 66% 16%,rgba(130,64,103,.30),transparent 23%),#141713';
+    const pageBg = p === 'lab' ? nightBackdrop : p === 'home' || p === 'about' ? liquidBackdrop : p === 'interests' ? '#FFFFFF' : base;
+    const bgStyle = `position:fixed; inset:0; z-index:0; pointer-events:none; background:${pageBg}; transition:background 900ms cubic-bezier(.2,.9,.2,1), filter 900ms cubic-bezier(.2,.9,.2,1);`;
 
     const labChips = LAB_CATS.map((c) => ({
       label: c.label,
@@ -706,6 +809,8 @@ class Component extends DCLogic {
       image: p.image || '',
       shotStyle: 'display:block; width:100%; aspect-ratio:1.66 / 1; background:rgba(255,255,255,.34); overflow:hidden;',
       noImg: !p.image,
+      target: p.href && /^https?:/.test(p.href) ? '_blank' : '',
+      rel: p.href && /^https?:/.test(p.href) ? 'noopener noreferrer' : '',
     }));
     const labIndex = LAB_CATS.map((c) => ({
       label: c.label.replace(' projects', ''),
