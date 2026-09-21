@@ -6,7 +6,7 @@
 <title>ruth sharon — portfolio</title>
 <script src="./support.js"></script>
 <link rel="stylesheet" href="./about-restored.css?v=7">
-  <link rel="stylesheet" href="./site.css?v=3">
+  <link rel="stylesheet" href="./site.css?v=4">
 <link rel="icon" href="data:,">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -387,7 +387,7 @@
 
   <sc-if value="{{ isLab }}">
   <main class="lx-page" aria-label="Laboratory">
-    <p class="lx-intro">i love experimenting and building new things. below are some of my projects, experiments, and writing. as always, everything is a work in progress!</p>
+    <p class="lx-intro">i love experimenting and building new things. as always, everything is a work in progress!</p>
     <div class="lx-body">
       <div class="lx-lists">
         <section aria-labelledby="lx-projects">
@@ -402,12 +402,11 @@
           </div>
         </section>
         <section aria-labelledby="lx-writing">
-          <div class="lx-h-row"><h2 class="lx-h" id="lx-writing">writing</h2><a class="lx-more" href="https://substack.com/@heyruthieee" target="_blank" rel="noopener noreferrer">everything on substack ↗</a></div>
+          <div class="lx-h-row"><h2 class="lx-h" id="lx-writing">writing</h2><a class="lx-more" href="https://substack.com/@heyruthieee" target="_blank" rel="noopener noreferrer">substack ↗</a></div>
           <div class="lx-table" role="list">
             <sc-for list="{{ writing }}" as="w" hint-placeholder-count="2">
               <a class="lx-row lx-row--writing" role="listitem" href="{{ w.href }}" target="_blank" rel="noopener noreferrer">
-                <span class="lx-title">{{ w.title }}<span class="lx-sub">{{ w.sub }}</span></span>
-                <span class="lx-date">{{ w.date }}</span>
+                <span class="lx-title">{{ w.title }}</span>
                 <span class="lx-arrow" aria-hidden="true">↗</span>
               </a>
             </sc-for>
@@ -416,9 +415,6 @@
       </div>
       <aside class="lx-preview" aria-live="polite">
         <img src="{{ labCur.image }}" alt="{{ labCur.title }} preview">
-        <strong>{{ labCur.title }}</strong>
-        <p>{{ labCur.blurb }}</p>
-        <span class="lx-open">open project →</span>
       </aside>
     </div>
   </main>
