@@ -546,3 +546,15 @@ body[data-page='about'] .site-header a {
   .about-copy .home-overlap path,
   .about-copy .home-finding { transition: none; }
 }
+
+/* Card footer: let the card grow to fit its content so the footer row is never clipped. */
+@media (min-width: 701px) {
+  .about-right { aspect-ratio: auto; grid-template-rows: auto auto; }
+  .about-socials { padding-top: 1.1cqw; padding-bottom: 1.1cqw; }
+  .about-links { padding-top: .9cqw; padding-bottom: .9cqw; }
+}
+.about-socials a { color: #23201A; }
+.about-socials .social-icon { display: block; width: 100%; max-width: 40px; aspect-ratio: 1; }
+@media (max-width: 700px) {
+  .about-socials .social-icon { width: 32px; height: 32px; }
+}
