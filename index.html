@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ruth sharon — portfolio</title>
 <script src="./support.js"></script>
-<link rel="stylesheet" href="./about-restored.css?v=6">
-  <link rel="stylesheet" href="./site.css?v=2">
+<link rel="stylesheet" href="./about-restored.css?v=7">
+  <link rel="stylesheet" href="./site.css?v=3">
 <link rel="icon" href="data:,">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,7 +16,7 @@
 
 <style>
   html { scroll-behavior: smooth; }
-  html, body { margin: 0; padding: 0; background: #F7E9C1; }
+  html, body { margin: 0; padding: 0; background: #FAF9F6; }
   * { box-sizing: border-box; }
   a { color: #23201A; text-decoration: none; }
   a:hover { color: #C4531F; }
@@ -202,7 +202,7 @@
 <x-dc data-loading>
 
 
-<div class="site-shell" style="min-height: 100vh; background: #F7E9C1; color: #23201A; font-family: 'Inter Tight', 'Helvetica Neue', Helvetica, Arial, sans-serif; display: flex; flex-direction: column; position: relative; overflow-x: hidden;">
+<div class="site-shell" style="min-height: 100vh; background: #FAF9F6; color: #23201A; font-family: 'Inter Tight', 'Helvetica Neue', Helvetica, Arial, sans-serif; display: flex; flex-direction: column; position: relative; overflow-x: hidden;">
 
   <div style="{{ bgStyle }}"></div>
 
@@ -437,16 +437,15 @@
           <sc-for list="{{ pj.links }}" as="lk" hint-placeholder-count="1"><a class="{{ lk.cls }}" href="{{ lk.href }}" target="_blank" rel="noopener noreferrer">{{ lk.label }} ↗</a></sc-for>
         </div>
       </div>
+      <sc-if value="{{ pj.hasMeta }}">
       <dl class="pj-meta">
         <sc-for list="{{ pj.meta }}" as="m" hint-placeholder-count="2"><div><dt>{{ m.k }}</dt><dd>{{ m.v }}</dd></div></sc-for>
       </dl>
+      </sc-if>
       <sc-for list="{{ pj.sections }}" as="sec" hint-placeholder-count="0">
         <section class="pj-section"><h2>{{ sec.h }}</h2><div><p>{{ sec.body }}</p></div></section>
       </sc-for>
-      <a class="pj-next" href="{{ pj.next.href }}" onClick="{{ pj.next.open }}">
-        <span><span class="pj-next-label">next project</span><strong>{{ pj.next.title }} →</strong></span>
-        <img src="{{ pj.next.image }}" alt="">
-      </a>
+
     </div>
   </main>
   </sc-if>
@@ -842,7 +841,7 @@ class Component extends DCLogic {
       };
     });
 
-    const pageBg = '#F7E9C1';
+    const pageBg = '#FAF9F6';
     const bgStyle = `position:fixed; inset:0; z-index:0; pointer-events:none; background:${pageBg}; transition:background 900ms cubic-bezier(.2,.9,.2,1), filter 900ms cubic-bezier(.2,.9,.2,1);`;
     const crumbs =
       p === 'about'
@@ -915,7 +914,6 @@ class Component extends DCLogic {
 
     const pjIdx = Math.max(0, PROJECTS.findIndex((x) => x.slug === this.state.project));
     const pjSrc = PROJECTS[pjIdx];
-    const pjNext = PROJECTS[(pjIdx + 1) % PROJECTS.length];
     const ext = (u) => u && /^https?:/.test(u);
     const pjLinks = [
       ['code', pjSrc.code], ['live demo', pjSrc.demo], ['read the write-up', pjSrc.writeup], ['view project', !pjSrc.code && !pjSrc.demo && !pjSrc.writeup ? pjSrc.href : null],
@@ -925,9 +923,9 @@ class Component extends DCLogic {
       blurb: pjSrc.blurb,
       image: pjSrc.image,
       links: pjLinks,
-      meta: [['topic', pjSrc.tag], ['role', pjSrc.role], ['when', pjSrc.when], ['stack', pjSrc.stack]].filter(([, v]) => v).map(([k, v]) => ({ k, v })),
+      meta: [['role', pjSrc.role], ['when', pjSrc.when], ['stack', pjSrc.stack]].filter(([, v]) => v).map(([k, v]) => ({ k, v })),
       sections: pjSrc.sections || [],
-      next: { title: pjNext.title, image: pjNext.image, href: '#p/' + pjNext.slug, open: openProject(pjNext.slug) },
+      hasMeta: !!(pjSrc.role || pjSrc.when || pjSrc.stack),
     };
 
     const I = INTERESTS;

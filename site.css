@@ -1,9 +1,9 @@
 /* Shared look for the about and laboratory pages. */
 :root {
-  --bg: #F7E9C1;
+  --bg: #FAF9F6;
   --ink: #23201A;
   --muted: #6B6454;
-  --rule: #D9C89C;
+  --rule: #E4E1D8;
   --neon: #33ff44;
   --green-dark: #08a814;
   --green-light: #a8f2b3;
@@ -69,7 +69,7 @@ body, .site-shell { font-family: var(--font); }
 .ab-key-item--easy .ab-swatch { background: var(--neon); }
 .ab-key-item--getby .ab-swatch { background: var(--green-light); }
 .ab-key-label { font-size: 15px; text-decoration: underline dotted #a39a82; text-underline-offset: 4px; }
-.ab-tip { position: absolute; left: -12px; bottom: calc(100% + 8px); z-index: 5; width: 340px; padding: 14px 16px; background: #FBF3DA; border: 1.5px solid var(--ink); border-radius: 12px; box-shadow: 0 12px 28px rgba(60, 45, 15, .18); font-size: 14px; line-height: 1.35; color: var(--muted); opacity: 0; visibility: hidden; transform: translateY(4px); transition: opacity 160ms ease, transform 160ms ease, visibility 160ms; }
+.ab-tip { position: absolute; left: -12px; bottom: calc(100% + 8px); z-index: 5; width: 340px; padding: 14px 16px; background: #F3F1EC; border: 1.5px solid var(--ink); border-radius: 12px; box-shadow: 0 12px 28px rgba(60, 45, 15, .18); font-size: 14px; line-height: 1.35; color: var(--muted); opacity: 0; visibility: hidden; transform: translateY(4px); transition: opacity 160ms ease, transform 160ms ease, visibility 160ms; }
 .ab-tip p { margin: 0 0 8px; }
 .ab-tip p:last-child { margin-bottom: 0; }
 .ab-tip strong { color: var(--ink); }
@@ -163,7 +163,7 @@ body, .site-shell { font-family: var(--font); }
 .it-page { position: relative; z-index: 2; padding: 40px 44px 96px; color: var(--ink); animation: pageFloatIn 600ms cubic-bezier(.2,.9,.2,1) both; }
 .it-title { margin: 0 0 24px; font-size: clamp(32px, 3.4vw, 44px); letter-spacing: -0.035em; font-weight: 700; }
 .it-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: 250px; gap: 16px; }
-.it-tile { position: relative; box-sizing: border-box; border: 2px solid var(--ink); border-radius: 18px; background: #FBF3DA; overflow: hidden; padding: 22px; display: flex; flex-direction: column; justify-content: space-between; gap: 12px; color: var(--ink); background-size: cover; background-position: center; }
+.it-tile { position: relative; box-sizing: border-box; border: 2px solid var(--ink); border-radius: 18px; background: #F3F1EC; overflow: hidden; padding: 22px; display: flex; flex-direction: column; justify-content: space-between; gap: 12px; color: var(--ink); background-size: cover; background-position: center; }
 a.it-tile { transition: transform 200ms ease; }
 a.it-tile:hover { color: var(--ink); transform: translateY(-3px); }
 .it-label { font-size: 13px; color: var(--muted); }
