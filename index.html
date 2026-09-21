@@ -741,6 +741,13 @@ class Component extends DCLogic {
     });
     document.body.appendChild(clone);
     target.style.visibility = 'hidden';
+    clone.querySelectorAll('span').forEach((node) => {
+      node.animate([{ opacity: getComputedStyle(node).opacity }, { opacity: 0 }], {
+        duration: 480,
+        easing: 'ease',
+        fill: 'forwards',
+      });
+    });
 
     const animation = clone.animate([
       {
@@ -772,9 +779,11 @@ class Component extends DCLogic {
 
     animation.finished.then(() => {
       clone.remove();
+      target.style.visibility = '';
       this._labTransitioning = false;
     }).catch(() => {
       clone.remove();
+      target.style.visibility = '';
       this._labTransitioning = false;
       this.set('lab');
     });
