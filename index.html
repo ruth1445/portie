@@ -6,14 +6,13 @@
 <title>ruth sharon — portfolio</title>
 <script src="./support.js"></script>
 <link rel="stylesheet" href="./about-restored.css?v=6">
-  <link rel="stylesheet" href="./about-places.css?v=17">
-  <script src="./about-places.js?v=12" defer></script>
+  <link rel="stylesheet" href="./site.css?v=1">
 <link rel="icon" href="data:,">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500&amp;family=Poppins:wght@400;500;600;700;800&amp;family=Space+Mono:wght@400&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;0,600;0,700;1,500&amp;display=swap" rel="stylesheet">
 
 <style>
   html { scroll-behavior: smooth; }
@@ -47,7 +46,7 @@
     flex-wrap: wrap;
     gap: 7px;
     min-height: 28px;
-    font-family: 'Poppins', Arial, sans-serif;
+    font-family: inherit;
     font-size: clamp(11px, .95vw, 13px);
     font-weight: 600;
     line-height: 1;
@@ -76,7 +75,7 @@
 
   /* Laboratory folder view */
   :root {
-    --lab-font: "Neue Haas Grotesk Display Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --lab-font: "Inter Tight", "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
   .lab-night-page {
     position: relative;
@@ -203,7 +202,7 @@
 <x-dc data-loading>
 
 
-<div class="site-shell" style="min-height: 100vh; background: #F7E9C1; color: #23201A; font-family: 'Bricolage Grotesque', system-ui, sans-serif; display: flex; flex-direction: column; position: relative; overflow-x: hidden;">
+<div class="site-shell" style="min-height: 100vh; background: #F7E9C1; color: #23201A; font-family: 'Inter Tight', 'Helvetica Neue', Helvetica, Arial, sans-serif; display: flex; flex-direction: column; position: relative; overflow-x: hidden;">
 
   <div style="{{ bgStyle }}"></div>
 
@@ -262,145 +261,92 @@
   </sc-if>
 
   <sc-if value="{{ isAbout }}">
-  <main class="about-page" aria-label="About Ruth Sharon">
-    <div class="about-wrap">
-      <div class="about-board">
-        <div class="about-copy">
-          <section class="about-cell about-cell--titles" aria-label="titles i've held">
-            <div class="workline" aria-label="titles i've held timeline">
-              <div class="workline-heading">
-                <h2>titles i've held</h2>
-              </div>
-              <ol class="workline-list">
-                <li class="workline-item workline-item--now">
-                  <span class="workline-node" aria-hidden="true"></span>
-                  <div>
-                    <strong>data scientist</strong>
-                    <span>transit startup · you are here</span>
-                  </div>
-                </li>
-                <li class="workline-item">
-                  <span class="workline-node" aria-hidden="true"></span>
-                  <div>
-                    <strong>research engineer</strong>
-                    <span>rutgers university, nb · 1 yr 3 mo</span>
-                  </div>
-                </li>
-                <li class="workline-item">
-                  <span class="workline-node" aria-hidden="true"></span>
-                  <div>
-                    <strong>ai/ml engineer</strong>
-                    <span>langpal · 8 mo</span>
-                  </div>
-                </li>
-                <li class="workline-item workline-item--school">
-                  <span class="workline-node" aria-hidden="true"></span>
-                  <div>
-                    <strong>master of science</strong>
-                    <span>rutgers university, nb</span>
-                  </div>
-                </li>
-                <li class="workline-item workline-item--school">
-                  <span class="workline-node" aria-hidden="true"></span>
-                  <div>
-                    <strong>bachelor of engineering</strong>
-                    <span>cbit, hyderabad</span>
-                  </div>
-                </li>
-              </ol>
-            </div>
-          </section>
-          <section class="about-cell about-cell--places" aria-label="places i've called home">
-            <h2>places i've called home:</h2>
-            <div class="home-venn" aria-label="places i've called home">
-              <article class="home-place-card home-place-card--nj">
-                <button class="home-map home-map--nj" type="button" data-interest-place="new-brunswick" aria-label="view new brunswick photos"></button>
-                <span class="home-place-label home-place-label--nj"><strong>new brunswick,<br>nj, usa</strong><em>(2.5 years)</em></span>
-              </article>
-              <article class="home-place-card home-place-card--riyadh">
-                <button class="home-map home-map--riyadh" type="button" data-interest-place="riyadh" aria-label="view riyadh photos"></button>
-                <span class="home-place-label home-place-label--riyadh"><strong>riyadh, ksa</strong><em>(15 years)</em></span>
-              </article>
-              <article class="home-place-card home-place-card--kerala">
-                <button class="home-map home-map--kerala" type="button" data-interest-place="kerala" aria-label="view kerala photos"></button>
-                <span class="home-place-label home-place-label--kerala"><strong>kerala, india</strong><em>(3.5 months)</em></span>
-              </article>
-              <article class="home-place-card home-place-card--hyderabad">
-                <button class="home-map home-map--hyderabad" type="button" data-interest-place="hyderabad" aria-label="view hyderabad photos"></button>
-                <span class="home-place-label home-place-label--hyderabad"><strong>telangana, india</strong><em>(6.5 years)</em></span>
-              </article>
-            </div>
-          </section>
-          <section class="about-cell about-cell--languages" aria-label="my languages">
-            <div class="language-map-artifact">
-              <h2>where i'd survive on language alone</h2>
-              <div class="language-map-wrap" aria-label="world language confidence map">
-                <img class="language-world" src="./assets/language-world.svg" alt="world map shaded by language confidence">
-              </div>
-              <div class="language-key" aria-label="language map key">
-                <div class="language-key-item language-key-item--local" tabindex="0">
-                  <span class="language-swatch" aria-hidden="true"></span>
-                  <span class="language-key-label">i'd sound local</span>
-                  <aside class="language-tooltip">
-                    <p><strong>india</strong><br>hindi, malayalam, telugu, english</p>
+  <main class="ab-page" aria-label="About Ruth Sharon">
+    <aside class="ab-side">
+      <svg class="ab-photo" viewBox="726 241 315 364" role="img" aria-label="Ruth Sharon in sunlight"><image href="./assets/about-reference.png" width="1500" height="836" /></svg>
+      <div class="ab-id">
+        <h1>ruth sharon</h1>
+        <p>data scientist · new brunswick, nj</p>
+      </div>
+      <nav class="ab-links" aria-label="Links">
+          <a href="https://www.linkedin.com/in/ruth1445/" target="_blank" rel="noopener noreferrer"><span>linkedin</span><span aria-hidden="true">↗</span></a>
+          <a href="https://github.com/ruth1445" target="_blank" rel="noopener noreferrer"><span>github</span><span aria-hidden="true">↗</span></a>
+          <a href="mailto:ruth.sharon@rutgers.edu"><span>email</span><span aria-hidden="true">↗</span></a>
+          <a href="https://substack.com/@heyruthieee" target="_blank" rel="noopener noreferrer"><span>substack</span><span aria-hidden="true">↗</span></a>
+          <a href="https://www.instagram.com/heyruthieee/" target="_blank" rel="noopener noreferrer"><span>instagram</span><span aria-hidden="true">↗</span></a>
+          <a href="./assets/RuthSharon__Resume.pdf" target="_blank" rel="noopener noreferrer"><span>resume</span><span aria-hidden="true">↗</span></a>
+          <a href="https://publicyuzu.org/#/" target="_blank" rel="noopener noreferrer"><span>blog</span><span aria-hidden="true">↗</span></a>
+      </nav>
+      <a class="ab-interests" href="#interests" onClick="{{ goInterests }}">other interests →</a>
+    </aside>
+    <div class="ab-main">
+      <section class="ab-section" aria-labelledby="ab-titles">
+        <h2 id="ab-titles">titles i've held</h2>
+        <ol class="ab-line">
+            <li class="ab-stop ab-stop--now"><span class="ab-node" aria-hidden="true"></span><div><strong>data scientist</strong><span>transit startup · you are here</span></div></li>
+            <li class="ab-stop"><span class="ab-node" aria-hidden="true"></span><div><strong>research engineer</strong><span>rutgers university, nb · 1 yr 3 mo</span></div></li>
+            <li class="ab-stop"><span class="ab-node" aria-hidden="true"></span><div><strong>ai/ml engineer</strong><span>langpal · 8 mo</span></div></li>
+            <li class="ab-stop ab-stop--school"><span class="ab-node" aria-hidden="true"></span><div><strong>master of science</strong><span>rutgers university, nb</span></div></li>
+            <li class="ab-stop ab-stop--school"><span class="ab-node" aria-hidden="true"></span><div><strong>bachelor of engineering</strong><span>cbit, hyderabad</span></div></li>
+        </ol>
+      </section>
+      <section class="ab-section" aria-labelledby="ab-places">
+        <h2 id="ab-places">places i've called home</h2>
+        <ul class="ab-places">
+            <li class="ab-place">
+              <span class="ab-place-map" style="--map:url('./assets/about-map-riyadh.png')" aria-hidden="true"></span>
+              <strong>15 years</strong>
+              <span>riyadh, ksa</span>
+            </li>
+            <li class="ab-place">
+              <span class="ab-place-map" style="--map:url('./assets/about-map-hyderabad.png')" aria-hidden="true"></span>
+              <strong>6.5 years</strong>
+              <span>telangana, india</span>
+            </li>
+            <li class="ab-place">
+              <span class="ab-place-map" style="--map:url('./assets/about-map-nj.png')" aria-hidden="true"></span>
+              <strong>2.5 years</strong>
+              <span>new brunswick, nj, usa</span>
+            </li>
+            <li class="ab-place">
+              <span class="ab-place-map" style="--map:url('./assets/about-map-kerala.png')" aria-hidden="true"></span>
+              <strong>3.5 months</strong>
+              <span>kerala, india</span>
+            </li>
+        </ul>
+      </section>
+      <section class="ab-section" aria-labelledby="ab-lang">
+        <h2 id="ab-lang">where i'd survive on language alone</h2>
+        <img class="ab-world" src="./assets/language-world.svg" alt="world map shaded by how well ruth's languages would get her by">
+        <div class="ab-key" aria-label="map key">
+            <div class="ab-key-item ab-key-item--local" tabindex="0">
+              <span class="ab-swatch" aria-hidden="true"></span><span class="ab-key-label">i'd sound local</span>
+              <div class="ab-tip" role="tooltip"><p><strong>india</strong><br>hindi, malayalam, telugu, english</p>
                     <p><strong>the arab world</strong><br>arabic, from morocco to oman</p>
-                    <p><strong>us, uk, australia, guyana, trinidad, fiji...</strong><br>english (plus hindi in the caribbean and fiji)</p>
-                  </aside>
-                </div>
-                <div class="language-key-item language-key-item--easy" tabindex="0">
-                  <span class="language-swatch" aria-hidden="true"></span>
-                  <span class="language-key-label">easy to get around</span>
-                  <aside class="language-tooltip">
-                    <p><strong>nepal &amp; pakistan</strong><br>hindi and urdu are basically one spoken language</p>
+                    <p><strong>us, uk, australia, guyana, trinidad, fiji...</strong><br>english (plus hindi in the caribbean and fiji)</p></div>
+            </div>
+            <div class="ab-key-item ab-key-item--easy" tabindex="0">
+              <span class="ab-swatch" aria-hidden="true"></span><span class="ab-key-label">easy to get around</span>
+              <div class="ab-tip" role="tooltip"><p><strong>nepal &amp; pakistan</strong><br>hindi and urdu are basically one spoken language</p>
                     <p><strong>sri lanka, malaysia &amp; mauritius</strong><br>tamil via malayalam, plus english</p>
                     <p><strong>suriname</strong><br>lots of people speak hindustani</p>
                     <p><strong>chad &amp; south sudan</strong><br>local arabic is the common language</p>
-                    <p><strong>the nordics &amp; netherlands</strong><br>everyone speaks english</p>
-                  </aside>
-                </div>
-                <div class="language-key-item language-key-item--getby" tabindex="0">
-                  <span class="language-swatch" aria-hidden="true"></span>
-                  <span class="language-key-label">i'd get by</span>
-                  <aside class="language-tooltip">
-                    <p><strong>bangladesh, bhutan &amp; afghanistan</strong><br>bollywood hindi is widely understood</p>
+                    <p><strong>the nordics &amp; netherlands</strong><br>everyone speaks english</p></div>
+            </div>
+            <div class="ab-key-item ab-key-item--getby" tabindex="0">
+              <span class="ab-swatch" aria-hidden="true"></span><span class="ab-key-label">i'd get by</span>
+              <div class="ab-tip" role="tooltip"><p><strong>bangladesh, bhutan &amp; afghanistan</strong><br>bollywood hindi is widely understood</p>
                     <p><strong>somalia, djibouti &amp; eritrea</strong><br>enough arabic around</p>
-                    <p><strong>much of western europe</strong><br>english works well enough</p>
-                  </aside>
-                </div>
-              </div>
+                    <p><strong>much of western europe</strong><br>english works well enough</p></div>
             </div>
-          </section>
         </div>
-        <div class="about-right">
-          <div class="about-gallery">
-            <a class="about-interests" href="#interests" onClick="{{ goInterests }}">check out some of my interests</a>
-            <div class="about-photos">
-              <svg class="about-photo" viewBox="726 241 315 364" role="img" aria-label="Ruth Sharon in sunlight"><image href="./assets/about-reference.png" width="1500" height="836" /></svg>
-              <svg class="about-photo" viewBox="1058 241 313 364" role="img" aria-label="Ruth Sharon celebrating graduation"><image href="./assets/about-reference.png" width="1500" height="836" /></svg>
-            </div>
-          </div>
-          <footer class="about-footer">
-            <nav class="about-socials" aria-label="Social and contact links">
-              <a href="https://www.linkedin.com/in/ruth1445/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 11v5"/><path d="M8 8v.01"/><path d="M12 16v-5"/><path d="M16 16v-3a2 2 0 1 0 -4 0"/><path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4l0 -10"/></svg></a>
-              <a href="https://github.com/ruth1445" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"/></svg></a>
-              <a href="mailto:ruth.sharon@rutgers.edu" aria-label="Email"><svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10"/><path d="M3 7l9 6l9 -6"/></svg></a>
-              <a href="https://substack.com/@heyruthieee" aria-label="Substack" target="_blank" rel="noopener noreferrer"><svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" transform="translate(4.5 3.5) scale(.625 .708)" d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg></a>
-              <a href="https://www.instagram.com/heyruthieee/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4l0 -8"/><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"/><path d="M16.5 7.5v.01"/></svg></a>
-            </nav>
-            <div class="about-links">
-              <a href="./assets/RuthSharon__Resume.pdf" target="_blank" rel="noopener noreferrer">resume</a>
-              <a href="https://publicyuzu.org/#/" target="_blank" rel="noopener noreferrer">blog</a>
-              <span class="about-stars"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 1 40 24 63 24 44 39 51 62 32 48 13 62 20 39 1 24 24 24Z"/></svg><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 1 40 24 63 24 44 39 51 62 32 48 13 62 20 39 1 24 24 24Z"/></svg></span>
-            </div>
-          </footer>
-        </div>
-      </div>
+      </section>
     </div>
   </main>
   </sc-if>
 
   <sc-if value="{{ isInterests }}">
-  <div style="position: relative; z-index: 2; height: calc(100vh - 78px); overflow-y: auto; padding: 24px 44px 70px; display: flex; flex-direction: column; align-items: center; gap: 30px; font-family: 'Ascender Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #5C5C5C;">
+  <div style="position: relative; z-index: 2; height: calc(100vh - 78px); overflow-y: auto; padding: 24px 44px 70px; display: flex; flex-direction: column; align-items: center; gap: 30px; font-family: inherit; color: #5C5C5C;">
     <h1 style="margin: 0; font-size: clamp(22px, 2.2vw, 30px); font-weight: 700;">interests</h1>
     <div class="interests-grid" style="width: min(100%, 1000px); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 1.8vw, 24px);">
       <sc-for list="{{ interests }}" as="it" hint-placeholder-count="6">
@@ -416,45 +362,48 @@
   </sc-if>
 
   <sc-if value="{{ isLab }}">
-  <main class="lab-night-page" aria-label="Laboratory">
-    <section class="lab-quiet-hero" aria-label="Laboratory introduction">
-      <p class="lab-placeholder">i love experimenting and building new things. below are some of my projects, experiments, and writing. as always, everything is a work in progress!</p>
-    </section>
-
-    <section class="lab-plain-grid" aria-label="Projects grouped by category">
-      <sc-for list="{{ labColumns }}" as="column" hint-placeholder-count="3">
-        <div class="lab-project-column">
-          <h2 class="lab-column-title">{{ column.label }}</h2>
-          <sc-for list="{{ column.items }}" as="project" hint-placeholder-count="7">
-            <a class="lab-project-tile" href="{{ project.href }}" target="{{ project.target }}" rel="{{ project.rel }}">
-              <span class="lab-project-thumb" style="{{ project.borderStyle }} {{ project.thumbStyle }}" aria-hidden="true"></span>
-              <span class="lab-project-title">{{ project.title }}</span>
-            </a>
-          </sc-for>
-        </div>
-      </sc-for>
-    </section>
+  <main class="lx-page" aria-label="Laboratory">
+    <p class="lx-intro">i love experimenting and building new things. below are some of my projects, experiments, and writing. as always, everything is a work in progress!</p>
+    <div class="lx-body">
+      <div class="lx-table" role="list">
+        <div class="lx-head" aria-hidden="true"><span>no.</span><span>title</span><span>topic</span><span>type</span><span></span></div>
+        <sc-for list="{{ labRows }}" as="p" hint-placeholder-count="10">
+          <a class="{{ p.cls }}" role="listitem" href="{{ p.href }}" target="{{ p.target }}" rel="{{ p.rel }}" onMouseEnter="{{ p.show }}" onFocus="{{ p.show }}">
+            <span class="lx-num">{{ p.num }}</span>
+            <span class="lx-title"><img class="lx-thumb" src="{{ p.image }}" alt="" loading="lazy">{{ p.title }}</span>
+            <span class="lx-tag">{{ p.tag }}</span>
+            <span class="lx-kind">{{ p.kind }}</span>
+            <span class="lx-arrow" aria-hidden="true">↗</span>
+          </a>
+        </sc-for>
+      </div>
+      <aside class="lx-preview" aria-live="polite">
+        <img src="{{ labCur.image }}" alt="{{ labCur.title }} preview">
+        <strong>{{ labCur.title }}</strong>
+        <p>{{ labCur.blurb }}</p>
+      </aside>
+    </div>
   </main>
   </sc-if>
 
   <sc-if value="{{ isContact }}">
-  <div style="position: relative; z-index: 2; height: calc(100vh - 78px); overflow-y: auto; padding: 40px 44px 70px; display: flex; flex-direction: column; align-items: center; font-family: 'Neue Montreal', 'PP Neue Montreal', 'Neue Haas Grotesk Display Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;">
-  <div style="width: min(100%, 1180px); background: #EDE7D6; padding: clamp(36px, 4vw, 56px) clamp(28px, 3.4vw, 48px); font-family: 'Neue Montreal', 'PP Neue Montreal', 'Neue Haas Grotesk Display Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;">
-    <span style="font-family: 'Neue Montreal', 'PP Neue Montreal', 'Neue Haas Grotesk Display Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; letter-spacing: 0.2em; color: #6F6653;">contact</span>
+  <div style="position: relative; z-index: 2; height: calc(100vh - 78px); overflow-y: auto; padding: 40px 44px 70px; display: flex; flex-direction: column; align-items: center; font-family: inherit;">
+  <div style="width: min(100%, 1180px); background: #EDE7D6; padding: clamp(36px, 4vw, 56px) clamp(28px, 3.4vw, 48px); font-family: inherit;">
+    <span style="font-family: inherit; font-size: 12px; letter-spacing: 0.2em; color: #6F6653;">contact</span>
     <h1 style="margin: 14px 0 22px; font-size: clamp(38px, 6vw, 68px); line-height: 1; letter-spacing: -0.02em; font-weight: 700;">say hello</h1>
     <p style="margin: 0 0 40px; font-size: 18px; line-height: 1.75; color: #4A4438;">placeholder — drop in your real email and links.</p>
     <div style="display: flex; flex-direction: column;">
       <a href="mailto:hello@example.com" style="display: flex; align-items: baseline; justify-content: space-between; gap: 24px; padding: 20px 0; border-top: 1px solid #CFC5AB;" style-hover="color: #C4531F;">
         <span style="font-size: 24px;">hello@example.com</span>
-        <span style="font-family: 'Neue Montreal', 'PP Neue Montreal', 'Neue Haas Grotesk Display Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; color: #6F6653;">email</span>
+        <span style="font-family: inherit; font-size: 12px; color: #6F6653;">email</span>
       </a>
       <a href="#linkedin" style="display: flex; align-items: baseline; justify-content: space-between; gap: 24px; padding: 20px 0; border-top: 1px solid #CFC5AB;" style-hover="color: #C4531F;">
         <span style="font-size: 24px;">linkedin</span>
-        <span style="font-family: 'Neue Montreal', 'PP Neue Montreal', 'Neue Haas Grotesk Display Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; color: #6F6653;">↗</span>
+        <span style="font-family: inherit; font-size: 12px; color: #6F6653;">↗</span>
       </a>
       <a href="#instagram" style="display: flex; align-items: baseline; justify-content: space-between; gap: 24px; padding: 20px 0; border-top: 1px solid #CFC5AB; border-bottom: 1px solid #CFC5AB;" style-hover="color: #C4531F;">
         <span style="font-size: 24px;">instagram</span>
-        <span style="font-family: 'Neue Montreal', 'PP Neue Montreal', 'Neue Haas Grotesk Display Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; color: #6F6653;">↗</span>
+        <span style="font-family: inherit; font-size: 12px; color: #6F6653;">↗</span>
       </a>
     </div>
   </div>
@@ -469,7 +418,7 @@ const CARDS = [
   { key: 'lab', word: 'laboratory', caption: 'all my projects and experiments', rows: [[2,0,5,3],[8,1,6],[7,4,9]] },
 ];
 
-const FONT = '700 100px "Helvetica Neue", Helvetica, sans-serif';
+const FONT = '700 100px "Inter Tight", "Helvetica Neue", Helvetica, sans-serif';
 let METRICS = null;
 function metrics(chars) {
   if (typeof document === 'undefined') return null;
@@ -634,21 +583,20 @@ const LAB_CATS = [
 ];
 const PLACEHOLDER = '#lab-projects';
 const PROJECTS = [
-  { cat: 'projects', title: 'eta estimator', blurb: 'Quantified transit prediction error across routes, time periods, and weather to surface 6+ minute failure cases.', href: PLACEHOLDER, tag: 'data science', image: './1.jpg' },
-  { cat: 'projects', title: 'langpal 11labs pipeline', blurb: 'Built an end-to-end voice loop with ElevenLabs STT/TTS, Gemini, Supabase, FastAPI, and a Flutter app.', href: PLACEHOLDER, tag: 'AI engineering', image: './2.jpg' },
-  { cat: 'projects', title: 'rational metareasoning', blurb: 'Replicated value-of-computation style reasoning to decide when extra deliberation is worth the cost.', href: PLACEHOLDER, tag: 'research', image: './3.jpg' },
-  { cat: 'projects', title: 'micro', blurb: 'Replicated an expert-router setup with MLflow tracking, faster training, and module-level routing diagnostics.', href: PLACEHOLDER, tag: 'ML systems', image: './4.jpg' },
-  { cat: 'projects', title: 'monosemanticity', blurb: 'Trained sparse autoencoders on language-model activations to study interpretable features and superposition.', href: PLACEHOLDER, tag: 'interpretability', image: './5.jpg' },
-  { cat: 'projects', title: 'societal impacts research paper', blurb: 'Co-authored an NBEA paper using an NLP pipeline over 8K+ Reddit posts to study chatbot perception and bias.', href: PLACEHOLDER, tag: 'NLP research', image: './6.jpg' },
-  { cat: 'projects', title: 'does a growth mindset nudge boost achievement?', blurb: 'Analyzed whether a short growth-mindset intervention shifts achievement outcomes using a causal/statistical lens.', href: PLACEHOLDER, tag: 'statistics', image: './7.jpg' },
-  { cat: 'passion', title: 'learning from people', blurb: 'A public interview and writing project about creative people, work, taste, and the strange ways people think.', href: 'https://publicyuzu.org/#/', tag: 'public yuzu', image: './8.jpg' },
-  { cat: 'passion', title: 'harmonies', blurb: 'A small web experiment in layered sound, language, and visual rhythm.', href: 'https://ruth1445.github.io/harmonies/', tag: 'creative code', image: './9.jpg' },
-  { cat: 'writing', title: 'learning from people', blurb: 'Long-form conversations and portraits hosted on Public Yuzu.', href: 'https://publicyuzu.org/#/', tag: 'interviews', image: './10.jpg' },
-  { cat: 'writing', title: 'substack', blurb: 'Essays, notes, and thinking-in-public on AI, philosophy, language, and becoming sharper.', href: 'https://substack.com/@heyruthieee', tag: 'essays', image: './11.jpg' },
+  { cat: 'projects', title: 'eta estimator', blurb: 'quantified transit prediction error across routes, time periods, and weather to surface 6+ minute failure cases.', href: PLACEHOLDER, tag: 'data science', image: './1.jpg' },
+  { cat: 'projects', title: 'langpal 11labs pipeline', blurb: 'built an end-to-end voice loop with elevenlabs stt/tts, gemini, supabase, fastapi, and a flutter app.', href: PLACEHOLDER, tag: 'ai engineering', image: './2.jpg' },
+  { cat: 'projects', title: 'rational metareasoning', blurb: 'replicated value-of-computation style reasoning to decide when extra deliberation is worth the cost.', href: PLACEHOLDER, tag: 'research', image: './3.jpg' },
+  { cat: 'projects', title: 'micro', blurb: 'replicated an expert-router setup with mlflow tracking, faster training, and module-level routing diagnostics.', href: PLACEHOLDER, tag: 'ml systems', image: './4.jpg' },
+  { cat: 'projects', title: 'monosemanticity', blurb: 'trained sparse autoencoders on language-model activations to study interpretable features and superposition.', href: PLACEHOLDER, tag: 'interpretability', image: './5.jpg' },
+  { cat: 'projects', title: 'societal impacts research paper', blurb: 'co-authored an nbea paper using an nlp pipeline over 8k+ reddit posts to study chatbot perception and bias.', href: PLACEHOLDER, tag: 'nlp research', image: './6.jpg' },
+  { cat: 'projects', title: 'does a growth mindset nudge boost achievement?', blurb: 'analyzed whether a short growth-mindset intervention shifts achievement outcomes using a causal/statistical lens.', href: PLACEHOLDER, tag: 'statistics', image: './7.jpg' },
+  { cat: 'passion', title: 'learning from people', blurb: 'a public interview and writing project about creative people, work, taste, and the strange ways people think.', href: 'https://publicyuzu.org/#/', tag: 'public yuzu', image: './8.jpg' },
+  { cat: 'passion', title: 'harmonies', blurb: 'a small web experiment in layered sound, language, and visual rhythm.', href: 'https://ruth1445.github.io/harmonies/', tag: 'creative code', image: './9.jpg' },
+  { cat: 'writing', title: 'substack', blurb: 'essays, notes, and thinking-in-public on ai, philosophy, language, and becoming sharper.', href: 'https://substack.com/@heyruthieee', tag: 'essays', image: './11.jpg' },
 ];
 
 class Component extends DCLogic {
-  state = { page: 'home', hover: null, slide: 0, barAR: null, listMode: false, card: null };
+  state = { page: 'home', hover: null, slide: 0, barAR: null, listMode: false, card: null, labHi: 0 };
 
   componentDidMount() {
     this._onChipClick = (ev) => {
@@ -726,9 +674,9 @@ class Component extends DCLogic {
         key: c.key,
         href: '#' + c.key,
         caption: c.caption,
-        captionStyle: `position:absolute; left:50%; bottom:calc(100% + 14px); transform:translateX(-50%) translateY(${on ? '0' : '6px'}); opacity:${on ? 1 : 0}; pointer-events:none; white-space:nowrap; color:#23201A; font-family:'Helvetica Neue',Helvetica,sans-serif; font-size:15px; font-weight:700; letter-spacing:-0.01em; text-transform:lowercase; transition:opacity 320ms ease, transform 320ms cubic-bezier(.2,.9,.2,1);`,
+        captionStyle: `position:absolute; left:50%; bottom:calc(100% + 14px); transform:translateX(-50%) translateY(${on ? '0' : '6px'}); opacity:${on ? 1 : 0}; pointer-events:none; white-space:nowrap; color:#23201A; font-family:'Inter Tight','Helvetica Neue',Helvetica,sans-serif; font-size:15px; font-weight:700; letter-spacing:-0.01em; text-transform:lowercase; transition:opacity 320ms ease, transform 320ms cubic-bezier(.2,.9,.2,1);`,
         letters,
-        style: `position:relative; container-type:inline-size; display:block; width:clamp(210px,27vw,360px); aspect-ratio:1; border-radius:30px; background:${theme.boxesBehind ? 'transparent' : 'linear-gradient(135deg,rgba(255,255,255,.38),' + glass(t.bg, 0.12) + ' 58%,rgba(255,255,255,.16))'}; backdrop-filter:blur(28px) saturate(1.35); -webkit-backdrop-filter:blur(28px) saturate(1.35); border:1.5px solid rgba(21,24,23,.68); box-shadow:0 28px 54px -34px rgba(35,42,43,.38), inset 0 1px 0 rgba(255,255,255,.88), inset 1px 0 0 rgba(255,255,255,.38); color:${t.ink}; font-family:'Helvetica Neue',Helvetica,sans-serif; overflow:visible; transform-origin:${origin}; transition:transform 420ms cubic-bezier(.32,.72,0,1), background 500ms ease, box-shadow 420ms ease; transform:perspective(1000px) translateY(${on ? '-8px' : '0'}) rotateY(${lean.toFixed(2)}deg) scaleX(${stretch.toFixed(3)});`,
+        style: `position:relative; container-type:inline-size; display:block; width:clamp(210px,27vw,360px); aspect-ratio:1; border-radius:30px; background:${theme.boxesBehind ? 'transparent' : 'linear-gradient(135deg,rgba(255,255,255,.38),' + glass(t.bg, 0.12) + ' 58%,rgba(255,255,255,.16))'}; backdrop-filter:blur(28px) saturate(1.35); -webkit-backdrop-filter:blur(28px) saturate(1.35); border:1.5px solid rgba(21,24,23,.68); box-shadow:0 28px 54px -34px rgba(35,42,43,.38), inset 0 1px 0 rgba(255,255,255,.88), inset 1px 0 0 rgba(255,255,255,.38); color:${t.ink}; font-family:'Inter Tight','Helvetica Neue',Helvetica,sans-serif; overflow:visible; transform-origin:${origin}; transition:transform 420ms cubic-bezier(.32,.72,0,1), background 500ms ease, box-shadow 420ms ease; transform:perspective(1000px) translateY(${on ? '-8px' : '0'}) rotateY(${lean.toFixed(2)}deg) scaleX(${stretch.toFixed(3)});`,
         onClick: (e) => { e.preventDefault(); this.set(c.key); },
         onEnter: () => this.setState({ hover: c.key }),
         onLeave: () => this.setState({ hover: null }),
@@ -756,7 +704,7 @@ class Component extends DCLogic {
         chars,
         stripStyle: `position:absolute; inset:20% 7%; display:flex; align-items:stretch; gap:0; opacity:${on ? 0 : 1}; transform:scale(${on ? 1.03 : 1}); filter:blur(${on ? '5px' : '0px'}); will-change:opacity,transform,filter; transition:opacity 520ms ${E}, transform 620ms ${E}, filter 520ms ${E};`,
         wordStyle: `position:absolute; inset:0; display:flex; align-items:center; justify-content:center; padding:0 6%; font-size:clamp(24px, 2.7vw, 34px); line-height:1; font-weight:500; letter-spacing:-0.01em; color:${LAB_INK}; white-space:nowrap; opacity:${on ? 1 : 0}; transform:scale(${on ? 1 : 0.965}); filter:blur(${on ? '0px' : '6px'}); will-change:opacity,transform,filter; transition:opacity 520ms ${E}, transform 620ms ${E}, filter 520ms ${E};`,
-        style: `position:relative; container-type:inline-size; display:block; overflow:hidden; width:100%; height:clamp(76px, 12.5vh, 132px); background:${on ? 'rgba(242,237,225,0.10)' : 'transparent'}; ${ri ? 'border-top:1px solid rgba(242,237,225,0.16);' : ''} color:${LAB_INK}; font-family:'Helvetica Neue',Helvetica,sans-serif; transition:background 380ms ${E};`,
+        style: `position:relative; container-type:inline-size; display:block; overflow:hidden; width:100%; height:clamp(76px, 12.5vh, 132px); background:${on ? 'rgba(242,237,225,0.10)' : 'transparent'}; ${ri ? 'border-top:1px solid rgba(242,237,225,0.16);' : ''} color:${LAB_INK}; font-family:'Inter Tight','Helvetica Neue',Helvetica,sans-serif; transition:background 380ms ${E};`,
         onEnter: () => this.setState({ hover: bar.key }),
         onLeave: () => this.setState({ hover: null }),
       };
@@ -802,8 +750,8 @@ class Component extends DCLogic {
         title: c.title,
         body: c.body,
         style: `position:absolute; left:50%; bottom:16%; width:clamp(198px,24%,248px); height:clamp(292px,52%,318px); padding:22px 22px 24px; border-radius:0; transform-origin:50% 150%; transform:${t}; z-index:${on ? 30 : 10 + i}; cursor:default; display:flex; flex-direction:column; gap:10px; background:#F5F0E4; border:1px solid #23201A; box-shadow:${on ? '0 18px 34px -26px rgba(35,32,26,0.4)' : '0 10px 24px -22px rgba(35,32,26,0.3)'}; border-top:3px solid ${on ? c.tint : '#23201A'}; opacity:${dim ? 0.7 : 1}; transition:transform 520ms ${E}, box-shadow 520ms ${E}, opacity 360ms ease, border-color 360ms ease;`,
-        numStyle: `font-family:'Space Mono',monospace; font-size:11px; letter-spacing:0.18em; color:${c.tint};`,
-        titleStyle: `margin:0; font-family:'Helvetica Neue',Helvetica,sans-serif; font-size:${on ? 19 : 17}px; font-weight:700; letter-spacing:-0.01em; color:#16150F; transition:font-size 420ms ${E};`,
+        numStyle: `font-family:inherit; font-size:11px; letter-spacing:0.18em; color:${c.tint};`,
+        titleStyle: `margin:0; font-family:'Inter Tight','Helvetica Neue',Helvetica,sans-serif; font-size:${on ? 19 : 17}px; font-weight:700; letter-spacing:-0.01em; color:#16150F; transition:font-size 420ms ${E};`,
         bodyStyle: `margin:0; font-family:Georgia,'Times New Roman',serif; font-size:13.5px; line-height:1.5; color:rgba(22,21,15,0.78); text-wrap:pretty; opacity:${on ? 1 : 0}; transform:translateY(${on ? '0' : '8px'}); transition:opacity 380ms ease ${on ? '120ms' : '0ms'}, transform 460ms ${E};`,
         onEnter: () => this.setState({ card: c.key }),
         onLeave: () => this.setState({ card: null }),
@@ -863,8 +811,29 @@ class Component extends DCLogic {
       { key: 'writing', label: 'writing', items: writingProjects },
     ];
 
+    const LAB_KIND = { projects: 'project', passion: 'passion project', writing: 'writing' };
+    const labHi = Math.min(this.state.labHi || 0, PROJECTS.length - 1);
+    const labRows = PROJECTS.map((pr, i) => {
+      const ext = pr.href && /^https?:/.test(pr.href);
+      return {
+        num: String(i + 1).padStart(2, '0'),
+        title: pr.title,
+        tag: pr.tag,
+        kind: LAB_KIND[pr.cat],
+        image: pr.image,
+        href: pr.href,
+        target: ext ? '_blank' : '',
+        rel: ext ? 'noopener noreferrer' : '',
+        cls: 'lx-row' + (i === labHi ? ' is-active' : ''),
+        show: () => { if (this.state.labHi !== i) this.setState({ labHi: i }); },
+      };
+    });
+    const labCur = PROJECTS[labHi];
+
     return {
       bgStyle,
+      labRows,
+      labCur,
       homeCardRowStyle,
       labIndex,
       projectCards,
@@ -903,7 +872,7 @@ class Component extends DCLogic {
       aboutToggle: this.state.listMode ? 'take me back' : 'click here',
       toggleList: (e) => { e.preventDefault(); this.setState({ listMode: !this.state.listMode, card: null }); },
       fan,
-      fanHintStyle: `position:absolute; left:6px; bottom:10px; pointer-events:none; font-family:'Helvetica Neue',Helvetica,sans-serif; font-size:12px; letter-spacing:0.04em; color:rgba(28,26,20,0.5); opacity:${this.state.card ? 0 : 1}; transition:opacity 320ms ease;`,
+      fanHintStyle: `position:absolute; left:6px; bottom:10px; pointer-events:none; font-family:'Inter Tight','Helvetica Neue',Helvetica,sans-serif; font-size:12px; letter-spacing:0.04em; color:rgba(28,26,20,0.5); opacity:${this.state.card ? 0 : 1}; transition:opacity 320ms ease;`,
       isLab: p === 'lab',
       isContact: p === 'contact',
       goHome: (e) => { e.preventDefault(); this.set('home'); },
