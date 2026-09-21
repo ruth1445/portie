@@ -24,6 +24,19 @@
   @keyframes pageFloatIn { from { opacity: 0; transform: translateY(28px) scale(.985); filter: blur(10px); } to { opacity: 1; transform: none; filter: blur(0); } }
   @keyframes labCardReveal { from { opacity: .18; transform: translateY(72px) scale(.96); } to { opacity: 1; transform: none; } }
   .about-page { animation: pageFloatIn 720ms cubic-bezier(.2,.9,.2,1) both; }
+
+  /* Shared-element transition: home laboratory card -> laboratory page only. */
+  body[data-lab-shared="true"] .lx-page { animation: none !important; }
+  .lab-shared-transition-card {
+    position: fixed !important;
+    z-index: 9999 !important;
+    margin: 0 !important;
+    transform: none !important;
+    transform-origin: center !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+    will-change: left, top, width, height, border-radius, background, opacity;
+  }
   .site-brand {
     display: flex;
     align-items: center;
@@ -708,7 +721,67 @@ class Component extends DCLogic {
     clearInterval(this._raf);
   }
 
+  openLabShared(target) {
+    if (!target || this._labTransitioning) return this.set('lab');
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return this.set('lab');
+
+    this._labTransitioning = true;
+    const rect = target.getBoundingClientRect();
+    const clone = target.cloneNode(true);
+    clone.removeAttribute('href');
+    clone.removeAttribute('onClick');
+    clone.setAttribute('aria-hidden', 'true');
+    clone.classList.add('lab-shared-transition-card');
+    Object.assign(clone.style, {
+      left: rect.left + 'px',
+      top: rect.top + 'px',
+      width: rect.width + 'px',
+      height: rect.height + 'px',
+      aspectRatio: 'auto',
+    });
+    document.body.appendChild(clone);
+    target.style.visibility = 'hidden';
+
+    const animation = clone.animate([
+      {
+        left: rect.left + 'px', top: rect.top + 'px',
+        width: rect.width + 'px', height: rect.height + 'px',
+        borderRadius: '30px', opacity: 1,
+      },
+      {
+        offset: 0.72,
+        left: '0px', top: '0px', width: '100vw', height: '100vh',
+        borderRadius: '0px', opacity: 1,
+        background: '#FAF9F6',
+      },
+      {
+        left: '0px', top: '0px', width: '100vw', height: '100vh',
+        borderRadius: '0px', opacity: 0,
+        background: '#FAF9F6',
+      }
+    ], {
+      duration: 760,
+      easing: 'cubic-bezier(.76,0,.16,1)',
+      fill: 'forwards',
+    });
+
+    window.setTimeout(() => {
+      document.body.dataset.labShared = 'true';
+      this.set('lab');
+    }, 545);
+
+    animation.finished.then(() => {
+      clone.remove();
+      this._labTransitioning = false;
+    }).catch(() => {
+      clone.remove();
+      this._labTransitioning = false;
+      this.set('lab');
+    });
+  }
+
   set(page) {
+    if (page !== 'lab') delete document.body.dataset.labShared;
     const hash = page === 'home' ? '#top' : '#' + page;
     if (location.hash !== hash) history.pushState(null, '', hash);
     document.body.dataset.page = page;
@@ -756,7 +829,7 @@ class Component extends DCLogic {
         captionStyle: `position:absolute; left:50%; bottom:calc(100% + 14px); transform:translateX(-50%) translateY(${on ? '0' : '6px'}); opacity:${on ? 1 : 0}; pointer-events:none; white-space:nowrap; color:#23201A; font-family:'Inter Tight','Helvetica Neue',Helvetica,sans-serif; font-size:15px; font-weight:700; letter-spacing:-0.01em; text-transform:lowercase; transition:opacity 320ms ease, transform 320ms cubic-bezier(.2,.9,.2,1);`,
         letters,
         style: `position:relative; container-type:inline-size; display:block; width:clamp(210px,27vw,360px); aspect-ratio:1; border-radius:30px; background:${theme.boxesBehind ? 'transparent' : 'linear-gradient(135deg,rgba(255,255,255,.38),' + glass(t.bg, 0.12) + ' 58%,rgba(255,255,255,.16))'}; backdrop-filter:blur(28px) saturate(1.35); -webkit-backdrop-filter:blur(28px) saturate(1.35); border:1.5px solid rgba(21,24,23,.68); box-shadow:0 28px 54px -34px rgba(35,42,43,.38), inset 0 1px 0 rgba(255,255,255,.88), inset 1px 0 0 rgba(255,255,255,.38); color:${t.ink}; font-family:'Inter Tight','Helvetica Neue',Helvetica,sans-serif; overflow:visible; transform-origin:${origin}; transition:transform 420ms cubic-bezier(.32,.72,0,1), background 500ms ease, box-shadow 420ms ease; transform:perspective(1000px) translateY(${on ? '-8px' : '0'}) rotateY(${lean.toFixed(2)}deg) scaleX(${stretch.toFixed(3)});`,
-        onClick: (e) => { e.preventDefault(); this.set(c.key); },
+        onClick: (e) => { e.preventDefault(); c.key === 'lab' ? this.openLabShared(e.currentTarget) : this.set(c.key); },
         onEnter: () => this.setState({ hover: c.key }),
         onLeave: () => this.setState({ hover: null }),
       };
