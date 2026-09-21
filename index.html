@@ -6,7 +6,7 @@
 <title>ruth sharon — portfolio</title>
 <script src="./support.js"></script>
 <link rel="stylesheet" href="./about-restored.css?v=6">
-  <link rel="stylesheet" href="./site.css?v=1">
+  <link rel="stylesheet" href="./site.css?v=2">
 <link rel="icon" href="data:,">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -346,42 +346,107 @@
   </sc-if>
 
   <sc-if value="{{ isInterests }}">
-  <div style="position: relative; z-index: 2; height: calc(100vh - 78px); overflow-y: auto; padding: 24px 44px 70px; display: flex; flex-direction: column; align-items: center; gap: 30px; font-family: inherit; color: #5C5C5C;">
-    <h1 style="margin: 0; font-size: clamp(22px, 2.2vw, 30px); font-weight: 700;">interests</h1>
-    <div class="interests-grid" style="width: min(100%, 1000px); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 1.8vw, 24px);">
-      <sc-for list="{{ interests }}" as="it" hint-placeholder-count="6">
-        <div style="min-width: 0; display: flex; flex-direction: column; gap: 10px;">
-          <span style="display: block; width: 100%; min-width: 0; min-height: 0; aspect-ratio: 4 / 3; overflow: hidden; background: #EFEFEF; border: 2px solid #111;">
-            <image-slot id="{{ it.slotId }}" shape="rect" placeholder="{{ it.hint }}" style="width: 100%; height: 100%;"></image-slot>
-          </span>
-          <span style="font-size: 15px;">{{ it.label }}</span>
-        </div>
-      </sc-for>
+  <main class="it-page" aria-label="Other interests">
+    <h1 class="it-title">other interests</h1>
+    <div class="it-grid">
+      <a class="it-tile it-reading" href="{{ it.reading.href }}">
+        <span class="it-label">reading now</span>
+        <span class="it-cover" style="{{ it.reading.coverStyle }}"><span>{{ it.reading.coverText }}</span></span>
+        <span class="it-meta"><strong>{{ it.reading.title }}</strong><span>{{ it.reading.author }}</span></span>
+      </a>
+      <a class="it-tile it-quote" href="{{ it.quote.href }}">
+        <span class="it-label">favourite excerpts from books</span>
+        <blockquote>{{ it.quote.text }}</blockquote>
+        <span class="it-foot"><span>{{ it.quote.source }}</span><span>more excerpts →</span></span>
+      </a>
+      <a class="it-tile it-film" href="{{ it.film.href }}" style="{{ it.film.style }}">
+        <span class="it-pill">film photography</span>
+        <span class="it-foot"><span>{{ it.film.caption }}</span><span>gallery →</span></span>
+      </a>
+      <a class="it-tile it-lang" href="#about" onClick="{{ goAbout }}">
+        <span class="it-label">language learning</span>
+        <span class="it-body">fluent in english, arabic, hindi and malayalam; getting by in telugu, urdu and tamil.</span>
+        <span class="it-link">see the map →</span>
+      </a>
+      <a class="it-tile it-food" href="{{ it.food.href }}">
+        <span class="it-label">food / cooking</span>
+        <span class="it-big">{{ it.food.text }}</span>
+        <span class="it-link">recipes →</span>
+      </a>
+      <div class="it-strip">
+        <sc-for list="{{ it.photos }}" as="ph" hint-placeholder-count="3"><span class="it-tile it-photo" style="{{ ph.style }}"></span></sc-for>
+      </div>
+      <div class="it-tile it-music">
+        <span class="it-label">music · on repeat</span>
+        <sc-for list="{{ it.songs }}" as="sg" hint-placeholder-count="3"><a class="it-song" href="{{ sg.href }}"><span><strong>{{ sg.title }}</strong> <em>{{ sg.artist }}</em></span><span aria-hidden="true">↗</span></a></sc-for>
+        <sc-if value="{{ it.noSongs }}"><span class="it-empty">coming soon</span></sc-if>
+      </div>
     </div>
-  </div>
+  </main>
   </sc-if>
 
   <sc-if value="{{ isLab }}">
   <main class="lx-page" aria-label="Laboratory">
     <p class="lx-intro">i love experimenting and building new things. below are some of my projects, experiments, and writing. as always, everything is a work in progress!</p>
     <div class="lx-body">
-      <div class="lx-table" role="list">
-        <div class="lx-head" aria-hidden="true"><span>no.</span><span>title</span><span>topic</span><span>type</span><span></span></div>
-        <sc-for list="{{ labRows }}" as="p" hint-placeholder-count="10">
-          <a class="{{ p.cls }}" role="listitem" href="{{ p.href }}" target="{{ p.target }}" rel="{{ p.rel }}" onMouseEnter="{{ p.show }}" onFocus="{{ p.show }}">
-            <span class="lx-num">{{ p.num }}</span>
-            <span class="lx-title"><img class="lx-thumb" src="{{ p.image }}" alt="" loading="lazy">{{ p.title }}</span>
-            <span class="lx-tag">{{ p.tag }}</span>
-            <span class="lx-kind">{{ p.kind }}</span>
-            <span class="lx-arrow" aria-hidden="true">↗</span>
-          </a>
-        </sc-for>
+      <div class="lx-lists">
+        <section aria-labelledby="lx-projects">
+          <h2 class="lx-h" id="lx-projects">projects</h2>
+          <div class="lx-table" role="list">
+            <sc-for list="{{ labRows }}" as="p" hint-placeholder-count="8">
+              <a class="{{ p.cls }}" role="listitem" href="{{ p.href }}" onClick="{{ p.open }}" onMouseEnter="{{ p.show }}" onFocus="{{ p.show }}">
+                <span class="lx-title"><img class="lx-thumb" src="{{ p.image }}" alt="" loading="lazy">{{ p.title }}</span>
+                <span class="lx-arrow" aria-hidden="true">→</span>
+              </a>
+            </sc-for>
+          </div>
+        </section>
+        <section aria-labelledby="lx-writing">
+          <div class="lx-h-row"><h2 class="lx-h" id="lx-writing">writing</h2><a class="lx-more" href="https://substack.com/@heyruthieee" target="_blank" rel="noopener noreferrer">everything on substack ↗</a></div>
+          <div class="lx-table" role="list">
+            <sc-for list="{{ writing }}" as="w" hint-placeholder-count="2">
+              <a class="lx-row lx-row--writing" role="listitem" href="{{ w.href }}" target="_blank" rel="noopener noreferrer">
+                <span class="lx-title">{{ w.title }}<span class="lx-sub">{{ w.sub }}</span></span>
+                <span class="lx-date">{{ w.date }}</span>
+                <span class="lx-arrow" aria-hidden="true">↗</span>
+              </a>
+            </sc-for>
+          </div>
+        </section>
       </div>
       <aside class="lx-preview" aria-live="polite">
         <img src="{{ labCur.image }}" alt="{{ labCur.title }} preview">
         <strong>{{ labCur.title }}</strong>
         <p>{{ labCur.blurb }}</p>
+        <span class="lx-open">open project →</span>
       </aside>
+    </div>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isProject }}">
+  <main class="pj-page" aria-label="{{ pj.title }}">
+    <div class="pj-hero">
+      <img class="pj-cover" src="{{ pj.image }}" alt="">
+      <div class="pj-tab"><h1>{{ pj.title }}</h1></div>
+    </div>
+    <div class="pj-body">
+      <div class="pj-intro">
+        <p>{{ pj.blurb }}</p>
+        <div class="pj-actions">
+          <sc-for list="{{ pj.links }}" as="lk" hint-placeholder-count="1"><a class="{{ lk.cls }}" href="{{ lk.href }}" target="_blank" rel="noopener noreferrer">{{ lk.label }} ↗</a></sc-for>
+        </div>
+      </div>
+      <dl class="pj-meta">
+        <sc-for list="{{ pj.meta }}" as="m" hint-placeholder-count="2"><div><dt>{{ m.k }}</dt><dd>{{ m.v }}</dd></div></sc-for>
+      </dl>
+      <sc-for list="{{ pj.sections }}" as="sec" hint-placeholder-count="0">
+        <section class="pj-section"><h2>{{ sec.h }}</h2><div><p>{{ sec.body }}</p></div></section>
+      </sc-for>
+      <a class="pj-next" href="{{ pj.next.href }}" onClick="{{ pj.next.open }}">
+        <span><span class="pj-next-label">next project</span><strong>{{ pj.next.title }} →</strong></span>
+        <img src="{{ pj.next.image }}" alt="">
+      </a>
     </div>
   </main>
   </sc-if>
@@ -582,6 +647,11 @@ const LAB_CATS = [
   { key: 'writing', label: 'writing' },
 ];
 const PLACEHOLDER = '#lab-projects';
+// Projects shown in the laboratory. Each gets its own page at #p/<slug>.
+// Optional fields for that page (leave out anything you don't have yet — empty parts stay hidden):
+//   role, when, stack: short strings shown in the details row
+//   code, demo, writeup: links shown as buttons
+//   sections: [{ h: 'the problem', body: '...' }, ...]
 const PROJECTS = [
   { cat: 'projects', title: 'eta estimator', blurb: 'quantified transit prediction error across routes, time periods, and weather to surface 6+ minute failure cases.', href: PLACEHOLDER, tag: 'data science', image: './1.jpg' },
   { cat: 'projects', title: 'langpal 11labs pipeline', blurb: 'built an end-to-end voice loop with elevenlabs stt/tts, gemini, supabase, fastapi, and a flutter app.', href: PLACEHOLDER, tag: 'ai engineering', image: './2.jpg' },
@@ -590,10 +660,24 @@ const PROJECTS = [
   { cat: 'projects', title: 'monosemanticity', blurb: 'trained sparse autoencoders on language-model activations to study interpretable features and superposition.', href: PLACEHOLDER, tag: 'interpretability', image: './5.jpg' },
   { cat: 'projects', title: 'societal impacts research paper', blurb: 'co-authored an nbea paper using an nlp pipeline over 8k+ reddit posts to study chatbot perception and bias.', href: PLACEHOLDER, tag: 'nlp research', image: './6.jpg' },
   { cat: 'projects', title: 'does a growth mindset nudge boost achievement?', blurb: 'analyzed whether a short growth-mindset intervention shifts achievement outcomes using a causal/statistical lens.', href: PLACEHOLDER, tag: 'statistics', image: './7.jpg' },
-  { cat: 'passion', title: 'learning from people', blurb: 'a public interview and writing project about creative people, work, taste, and the strange ways people think.', href: 'https://publicyuzu.org/#/', tag: 'public yuzu', image: './8.jpg' },
-  { cat: 'passion', title: 'harmonies', blurb: 'a small web experiment in layered sound, language, and visual rhythm.', href: 'https://ruth1445.github.io/harmonies/', tag: 'creative code', image: './9.jpg' },
-  { cat: 'writing', title: 'substack', blurb: 'essays, notes, and thinking-in-public on ai, philosophy, language, and becoming sharper.', href: 'https://substack.com/@heyruthieee', tag: 'essays', image: './11.jpg' },
+  { cat: 'projects', title: 'harmonies', blurb: 'a small web experiment in layered sound, language, and visual rhythm.', href: 'https://ruth1445.github.io/harmonies/', tag: 'creative code', image: './9.jpg' },
 ];
+PROJECTS.forEach((p) => { p.slug = p.slug || p.title.replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); });
+
+// Writing: add essays here as { title, sub, date, href }.
+const WRITING = [
+  { title: 'learning from people', sub: 'interview series on public yuzu', date: 'ongoing', href: 'https://publicyuzu.org/#/' },
+];
+
+// Other interests: fill these in as you go; empty fields show a simple placeholder tile.
+const INTERESTS = {
+  reading: { title: '', author: '', cover: '', href: '#interests' },
+  quote: { text: '', source: '', href: '#interests' },
+  film: { cover: '', caption: '', href: '#interests' },
+  food: { text: '', href: '#interests' },
+  photos: [],
+  songs: [],
+};
 
 class Component extends DCLogic {
   state = { page: 'home', hover: null, slide: 0, barAR: null, listMode: false, card: null, labHi: 0 };
@@ -633,8 +717,8 @@ class Component extends DCLogic {
     const hash = page === 'home' ? '#top' : '#' + page;
     if (location.hash !== hash) history.pushState(null, '', hash);
     document.body.dataset.page = page;
-    document.title = (page === 'home' ? 'ruth sharon' : page + ' — ruth sharon') + ' — portfolio';
-    this.setState({ page, hover: null });
+    document.title = (page === 'home' ? 'ruth sharon' : (page.startsWith('p/') ? page.slice(2).replace(/-/g, ' ') : page) + ' — ruth sharon') + ' — portfolio';
+    this.setState({ page, hover: null, project: page.startsWith('p/') ? page.slice(2) : this.state.project });
     window.scrollTo(0, 0);
   }
 
@@ -770,6 +854,11 @@ class Component extends DCLogic {
           ]
       : p === 'lab'
         ? [{ label: 'laboratory', current: true }]
+      : p.startsWith('p/')
+        ? [
+            { label: 'laboratory', href: '#lab', onClick: (e) => { e.preventDefault(); this.set('lab'); } },
+            { label: (PROJECTS.find((x) => 'p/' + x.slug === p) || PROJECTS[0]).title, current: true },
+          ]
       : p === 'contact'
         ? [{ label: 'contact', current: true }]
       : [];
@@ -811,29 +900,56 @@ class Component extends DCLogic {
       { key: 'writing', label: 'writing', items: writingProjects },
     ];
 
-    const LAB_KIND = { projects: 'project', passion: 'passion project', writing: 'writing' };
     const labHi = Math.min(this.state.labHi || 0, PROJECTS.length - 1);
-    const labRows = PROJECTS.map((pr, i) => {
-      const ext = pr.href && /^https?:/.test(pr.href);
-      return {
-        num: String(i + 1).padStart(2, '0'),
-        title: pr.title,
-        tag: pr.tag,
-        kind: LAB_KIND[pr.cat],
-        image: pr.image,
-        href: pr.href,
-        target: ext ? '_blank' : '',
-        rel: ext ? 'noopener noreferrer' : '',
-        cls: 'lx-row' + (i === labHi ? ' is-active' : ''),
-        show: () => { if (this.state.labHi !== i) this.setState({ labHi: i }); },
-      };
-    });
+    const openProject = (slug) => (e) => { e.preventDefault(); this.set('p/' + slug); };
+    const labRows = PROJECTS.map((pr, i) => ({
+      title: pr.title,
+      image: pr.image,
+      href: '#p/' + pr.slug,
+      open: openProject(pr.slug),
+      cls: 'lx-row' + (i === labHi ? ' is-active' : ''),
+      show: () => { if (this.state.labHi !== i) this.setState({ labHi: i }); },
+    }));
     const labCur = PROJECTS[labHi];
+    const writing = WRITING;
+
+    const pjIdx = Math.max(0, PROJECTS.findIndex((x) => x.slug === this.state.project));
+    const pjSrc = PROJECTS[pjIdx];
+    const pjNext = PROJECTS[(pjIdx + 1) % PROJECTS.length];
+    const ext = (u) => u && /^https?:/.test(u);
+    const pjLinks = [
+      ['code', pjSrc.code], ['live demo', pjSrc.demo], ['read the write-up', pjSrc.writeup], ['view project', !pjSrc.code && !pjSrc.demo && !pjSrc.writeup ? pjSrc.href : null],
+    ].filter(([, u]) => ext(u)).map(([label, href], i) => ({ label, href, cls: 'pj-btn' + (i === 0 ? ' pj-btn--main' : '') }));
+    const pj = {
+      title: pjSrc.title,
+      blurb: pjSrc.blurb,
+      image: pjSrc.image,
+      links: pjLinks,
+      meta: [['topic', pjSrc.tag], ['role', pjSrc.role], ['when', pjSrc.when], ['stack', pjSrc.stack]].filter(([, v]) => v).map(([k, v]) => ({ k, v })),
+      sections: pjSrc.sections || [],
+      next: { title: pjNext.title, image: pjNext.image, href: '#p/' + pjNext.slug, open: openProject(pjNext.slug) },
+    };
+
+    const I = INTERESTS;
+    const it = {
+      reading: { title: I.reading.title || 'coming soon', author: I.reading.author, href: I.reading.href, coverText: I.reading.cover ? '' : 'book', coverStyle: I.reading.cover ? 'background-image:url("' + I.reading.cover + '");' : '' },
+      quote: { text: I.quote.text ? '“' + I.quote.text + '”' : 'favourite passages, coming soon.', source: I.quote.source ? '— ' + I.quote.source : '', href: I.quote.href },
+      film: { caption: I.film.caption, href: I.film.href, style: I.film.cover ? 'background-image:url("' + I.film.cover + '");' : '' },
+      food: { text: I.food.text || 'coming soon', href: I.food.href },
+      photos: [0, 1, 2].map((k) => ({ style: I.photos[k] ? 'background-image:url("' + I.photos[k] + '");' : '' })),
+      songs: I.songs,
+      noSongs: !I.songs.length,
+    };
 
     return {
       bgStyle,
       labRows,
       labCur,
+      writing,
+      pj,
+      it,
+      isProject: p.startsWith('p/'),
+      goAbout: (e) => { e.preventDefault(); this.set('about'); },
       homeCardRowStyle,
       labIndex,
       projectCards,
@@ -883,9 +999,11 @@ class Component extends DCLogic {
 const portfolio = new Component();
 const route = () => {
   const hash = location.hash.slice(1);
-  const page = ['about', 'interests', 'lab', 'contact'].includes(hash) ? hash : /^(lab-|projects-|passion-|writing-)/.test(hash) ? 'lab' : 'home';
-  document.body.dataset.page = page;
-  portfolio.setState({ page, hover: null });
+  const isProj = /^p\/[a-z0-9-]+$/.test(hash) && PROJECTS.some((x) => 'p/' + x.slug === hash);
+  const page = isProj ? hash : ['about', 'interests', 'lab', 'contact'].includes(hash) ? hash : /^(lab-|projects-|passion-|writing-)/.test(hash) ? 'lab' : 'home';
+  document.body.dataset.page = isProj ? 'project' : page;
+  portfolio.setState({ page, hover: null, project: isProj ? hash.slice(2) : portfolio.state.project });
+  window.scrollTo(0, 0);
 };
 route();
 portfolio.mount(document.querySelector('x-dc'));
