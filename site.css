@@ -61,6 +61,26 @@ body, .site-shell { font-family: var(--font); }
 .ab-place span:not(.ab-place-map) { font-size: 15px; color: var(--muted); }
 
 .ab-world { display: block; width: 100%; height: auto; }
+.ab-cursor-spark {
+  position: fixed;
+  z-index: 9998;
+  pointer-events: none;
+  color: var(--neon);
+  font-size: var(--spark-size, 10px);
+  line-height: 1;
+  text-shadow: 0 0 6px rgba(51,255,68,.75), 0 0 12px rgba(51,255,68,.32);
+  transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  animation: abSpark 520ms ease-out forwards;
+  will-change: transform, opacity;
+}
+@keyframes abSpark {
+  0% { opacity: .95; transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+  55% { opacity: .8; }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--spark-x)), calc(-50% + var(--spark-y))) scale(.12) rotate(var(--spark-r)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ab-cursor-spark { display: none; }
+}
 .ab-key { display: flex; flex-wrap: wrap; gap: 10px 32px; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--ink); }
 .ab-key-item { position: relative; display: flex; align-items: center; gap: 8px; padding: 6px 0; cursor: help; outline: none; }
 .ab-swatch { width: 16px; height: 16px; border-radius: 4px; }
