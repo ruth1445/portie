@@ -710,7 +710,6 @@ class Component extends DCLogic {
   }
 
   set(page) {
-    if (page !== 'lab') delete document.body.dataset.labShared;
     const hash = page === 'home' ? '#top' : '#' + page;
     if (location.hash !== hash) history.pushState(null, '', hash);
     document.body.dataset.page = page;
