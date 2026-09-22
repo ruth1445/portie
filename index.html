@@ -713,7 +713,7 @@ class Component extends DCLogic {
     const hash = page === 'home' ? '#top' : '#' + page;
     if (location.hash !== hash) history.pushState(null, '', hash);
     document.body.dataset.page = page;
-    document.title = (page === 'home' ? 'ruth sharon' : (page.startsWith('p/') ? page.slice(2).replace(/-/g, ' ') : page) + ' — ruth sharon') + ' — portfolio';
+    document.title = 'Ruth Sharon';
     this.setState({ page, hover: null, project: page.startsWith('p/') ? page.slice(2) : this.state.project });
     window.scrollTo(0, 0);
   }
