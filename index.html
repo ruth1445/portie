@@ -691,6 +691,31 @@ class Component extends DCLogic {
     };
     document.addEventListener('click', this._onChipClick, true);
     this._cleanupChip = () => document.removeEventListener('click', this._onChipClick, true);
+
+    this._mapSparkTarget = document.querySelector('.ab-world');
+    this._lastMapSpark = 0;
+    this._onMapSpark = (ev) => {
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const now = performance.now();
+      if (now - this._lastMapSpark < 34) return;
+      this._lastMapSpark = now;
+
+      const count = Math.random() > 0.78 ? 2 : 1;
+      for (let i = 0; i < count; i++) {
+        const spark = document.createElement('span');
+        spark.className = 'ab-cursor-spark';
+        spark.textContent = Math.random() > 0.18 ? '✦' : '•';
+        spark.style.left = (ev.clientX + (Math.random() - 0.5) * 9) + 'px';
+        spark.style.top = (ev.clientY + (Math.random() - 0.5) * 9) + 'px';
+        spark.style.setProperty('--spark-x', ((Math.random() - 0.5) * 30).toFixed(1) + 'px');
+        spark.style.setProperty('--spark-y', ((Math.random() - 0.5) * 30 - 6).toFixed(1) + 'px');
+        spark.style.setProperty('--spark-r', ((Math.random() - 0.5) * 100).toFixed(0) + 'deg');
+        spark.style.setProperty('--spark-size', (7 + Math.random() * 7).toFixed(1) + 'px');
+        document.body.appendChild(spark);
+        spark.addEventListener('animationend', () => spark.remove(), { once: true });
+      }
+    };
+    this._mapSparkTarget?.addEventListener('pointermove', this._onMapSpark);
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { METRICS = null; this.forceUpdate(); });
     this._measure = () => {
       const el = this._bars && this._bars.firstElementChild;
@@ -706,6 +731,8 @@ class Component extends DCLogic {
 
   componentWillUnmount() {
     window.removeEventListener('resize', this._measure);
+    this._mapSparkTarget?.removeEventListener('pointermove', this._onMapSpark);
+    this._cleanupChip?.();
     clearInterval(this._raf);
   }
 
