@@ -25,18 +25,6 @@
   @keyframes labCardReveal { from { opacity: .18; transform: translateY(72px) scale(.96); } to { opacity: 1; transform: none; } }
   .about-page { animation: pageFloatIn 720ms cubic-bezier(.2,.9,.2,1) both; }
 
-  /* Shared-element transition: home laboratory card -> laboratory page only. */
-  body[data-lab-shared="true"] .lx-page { animation: none !important; }
-  .lab-shared-transition-card {
-    position: fixed !important;
-    z-index: 9999 !important;
-    margin: 0 !important;
-    transform: none !important;
-    transform-origin: center !important;
-    overflow: hidden !important;
-    pointer-events: none !important;
-    will-change: left, top, width, height, border-radius, background, opacity;
-  }
   .site-brand {
     display: flex;
     align-items: center;
