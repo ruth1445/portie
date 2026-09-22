@@ -107,7 +107,7 @@ body, .site-shell { font-family: var(--font); }
 /* laboratory v2: compact, all caps, regular weight */
 .lx-page { max-width: 1280px; margin: 0 auto; padding: 72px 44px 104px; box-sizing: border-box; }
 .lx-page, .lx-page .lx-title, .lx-page .lx-h, .lx-page .lx-more, .lx-page .lx-intro { font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 400; }
-.lx-page .lx-intro { max-width: 520px; margin: 0 0 48px; line-height: 1.6; color: var(--muted); }
+.lx-page .lx-intro { width: 100%; max-width: none; margin: 0 0 48px; line-height: 1.6; color: var(--muted); }
 .lx-page .lx-body { grid-template-columns: minmax(0, 1fr) 400px; gap: 80px; }
 .lx-page .lx-lists { gap: 44px; }
 .lx-page .lx-h { margin: 0 0 10px; color: var(--muted); }
