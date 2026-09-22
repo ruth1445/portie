@@ -838,7 +838,7 @@ class Component extends DCLogic {
         captionStyle: `position:absolute; left:50%; bottom:calc(100% + 14px); transform:translateX(-50%) translateY(${on ? '0' : '6px'}); opacity:${on ? 1 : 0}; pointer-events:none; white-space:nowrap; color:#23201A; font-family:'Inter Tight','Helvetica Neue',Helvetica,sans-serif; font-size:15px; font-weight:700; letter-spacing:-0.01em; text-transform:lowercase; transition:opacity 320ms ease, transform 320ms cubic-bezier(.2,.9,.2,1);`,
         letters,
         style: `position:relative; container-type:inline-size; display:block; width:clamp(210px,27vw,360px); aspect-ratio:1; border-radius:30px; background:${theme.boxesBehind ? 'transparent' : 'linear-gradient(135deg,rgba(255,255,255,.38),' + glass(t.bg, 0.12) + ' 58%,rgba(255,255,255,.16))'}; backdrop-filter:blur(28px) saturate(1.35); -webkit-backdrop-filter:blur(28px) saturate(1.35); border:1.5px solid rgba(21,24,23,.68); box-shadow:0 28px 54px -34px rgba(35,42,43,.38), inset 0 1px 0 rgba(255,255,255,.88), inset 1px 0 0 rgba(255,255,255,.38); color:${t.ink}; font-family:'Inter Tight','Helvetica Neue',Helvetica,sans-serif; overflow:visible; transform-origin:${origin}; transition:transform 420ms cubic-bezier(.32,.72,0,1), background 500ms ease, box-shadow 420ms ease; transform:perspective(1000px) translateY(${on ? '-8px' : '0'}) rotateY(${lean.toFixed(2)}deg) scaleX(${stretch.toFixed(3)});`,
-        onClick: (e) => { e.preventDefault(); c.key === 'lab' ? this.openLabShared(e.currentTarget) : this.set(c.key); },
+        onClick: (e) => { e.preventDefault(); this.set(c.key); },
         onEnter: () => this.setState({ hover: c.key }),
         onLeave: () => this.setState({ hover: null }),
       };
